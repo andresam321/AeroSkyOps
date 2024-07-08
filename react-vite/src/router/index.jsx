@@ -11,6 +11,7 @@ import AircraftList from '../components/Aircraft/AircraftList';
 import SplashPage from '../components/HomePage/SplashPage';
 import AirportAreas from '../components/AirportPage/AirportAreas';
 import OwnerDetails from '../components/Owner/OwnerDetails';
+import FuelRequestList from '../components/Fueling/FuelRequestList';
 
 export const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ export const router = createBrowserRouter([
       {
         path: "/owner/:id",
         element: <OwnerDetails />,
+      },
+      {
+        path: "/fueling/request/list",
+        element: <FuelRequestList />,  
       },
       // {
       //   path: "/parking_spots/:parking_spotId/update",
