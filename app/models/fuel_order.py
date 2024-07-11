@@ -44,5 +44,9 @@ class FuelOrder(db.Model):
             'quantity':self.quantity,
             'paid':self.paid,
             'is_completed': self.is_completed,
-            'order_date':self.order_date
+            'order_date':self.order_date,
+            'parking_spot_spot_number': self.parking_spot.spot_number if self.parking_spot else None,  # Lazy loaded spot_number info
+            'aircraft_tail_number': self.aircraft.tail_number if self.aircraft else None,  # Lazy loaded aircraft info
+            'aircraft_model': self.aircraft.model if self.aircraft else None,  # Lazy loaded aircraft model
+            'aircraft_parking_spot_id': self.aircraft.parking_spot_id if self.aircraft else None  
         }

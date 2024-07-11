@@ -37,12 +37,16 @@ const handleUpdateStatus = (fuelId, newStatus) => {
 
 
 return (
-    <div className='fuel-request-list'>
+        <div className='fuel-request-list'>
             <h1>Fuel Request</h1>
             {sortedFuelRequests.map((fuel) => (
                 <div key={fuel.id} className={`fuel-request ${fuel.fuel_type.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-')}`}>
                     <div>
                         <p><strong>Aircraft ID:</strong> {fuel.aircraft_id}</p>
+                        <p><strong>Aircraft Tail Number:</strong> {fuel.aircraft_tail_number}</p>
+                        <p><strong>Aircraft Model:</strong> {fuel.aircraft_model}</p>
+                        <p><strong>Parking Spot Location:</strong> {fuel.parking_spot}</p>
+                        <p><strong>Parking Spot ID:</strong> {fuel.aircraft_parking_spot_id || "Not Assigned Yet"}</p>
                         <p><strong>Fuel Type:</strong> <span className="fuel-type-label">{fuel.fuel_type}</span></p>
                         <p><strong>Prist:</strong> {fuel.positive_prist}</p>
                         <p><strong>Fuel Amount:</strong> {fuel.quantity}</p>
@@ -65,9 +69,9 @@ return (
                                 </button>
                             )}
                             {fuel.is_completed !== 'Yes' && (
-                            <button className="completed" onClick={() => handleUpdateStatus(fuel.id, 'Yes')}>
-                                Mark as Completed
-                            </button>
+                                <button className="completed" onClick={() => handleUpdateStatus(fuel.id, 'Yes')}>
+                                    Mark as Completed
+                                </button>
                             )}
                         </div>
                     )}
@@ -76,7 +80,6 @@ return (
         </div>
     );
 };
-
 
 
 

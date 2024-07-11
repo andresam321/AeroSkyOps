@@ -13,6 +13,8 @@ def all_fuel_request():
     fuel_requests = FuelOrder.query.all()
     return {"fuel_request":[fuel_request.to_dict() for fuel_request in fuel_requests]}
 
+
+#uppdate fueling status only
 @fueling_routes.route("/<int:id>/update/status", methods=["PUT"])
 @login_required
 def update_fuel_status(id):
@@ -37,6 +39,13 @@ def update_fuel_status(id):
         "completed_by_user_id": fuel_order.completed_by_user_id,
         "fuel_order": fuel_order.to_dict()
     })
+
+@fueling_routes.route("<int:parking_id>/new/fuel_request", methods = ["POST"])
+@login_required
+def create_fuel_request_on_parking_spot(parking_id):
+    
+    form = FuelOrderForm
+    form["csrf_token"].data = request.cookies["csrf_token"] 
 
 
 
