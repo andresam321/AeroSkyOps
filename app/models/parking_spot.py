@@ -23,7 +23,6 @@ class ParkingSpot(db.Model):
 
     airport_parking = db.relationship("AirportParking", back_populates = 'parking_spots')
 
-    #one to one
     fuel_orders = db.relationship("FuelOrder", back_populates="parking_spot", cascade='all, delete-orphan')
 
     #one to one 
