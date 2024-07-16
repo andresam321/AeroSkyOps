@@ -13,7 +13,7 @@ def check_firstName(form, field):
 class FuelOrderForm(FlaskForm):
     fuel_type = SelectField("Fuel Type", choices = [('100ll AvGas', '100ll AvGas'), ('94 unleaded', '94 unleaded'), ('Jet A', 'Jet A'),('100 unleaded', '100 unleaded')])
     request_by = StringField("Request By", validators=[DataRequired()])
-    positive_prist = StringField("Positive Prist", choices = [('Yes', 'Yes'), ('No', 'No'), ('NA', 'NA')])
+    positive_prist = SelectField("Positive Prist", choices = [('Yes', 'Yes'), ('No', 'No'), ('NA', 'NA')])
     quantity = StringField("Quantity", validators=[DataRequired()])
     paid = SelectField("Paid", choices=[('Yes', 'Yes'), ('No', 'No'), ('Call for payment', 'Call for payment')])
     is_completed = SelectField("Is completed", choices=[('Yes', 'Yes'), ('No', 'No'), ('En Route', 'En Route')])

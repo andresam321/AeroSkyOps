@@ -40,12 +40,34 @@ def update_fuel_status(id):
         "fuel_order": fuel_order.to_dict()
     })
 
-@fueling_routes.route("<int:parking_id>/new/fuel_request", methods = ["POST"])
+@fueling_routes.route("/<int:parking_id>/aircraft/<int:aircraft_id>/new/fuel_request", methods=["POST"])
 @login_required
-def create_fuel_request_on_parking_spot(parking_id):
+def create_fuel_request_on_parking_spot(parking_id, aircraft_id):
     
-    form = FuelOrderForm
-    form["csrf_token"].data = request.cookies["csrf_token"] 
+    form = FuelOrderForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+    
+    if form.validate_on_submit():
+        new_fuel_request = FuelOrder(
+        aircraft_id=aircraft_id,
+        created_by_user_id=current_user.id,
+        parking_spot_id = parking_id,
+        fuel_type = form.data['fuel_type'],
+        request_by = form.data['request_by'],
+        positive_prist = form.data['positive_prist'],
+        quantity = form.data['quantity'],
+        paid = form.data['paid'],
+        is_completed = form.data['is_completed'],
+        order_date = form.data['order_date']
+        
+        )
+        db.session.add(new_fuel_request)
+        db.session.commit()
+        
+        return new_fuel_request.to_dict(), 201
+    else:
+        print("Form errors:", form.errors)
+        return {'errors':form.errors}, 400
 
 
 
