@@ -1,5 +1,6 @@
 const LOAD_ALL_FUEL_REQUEST = "loadAllFuelRequest/LOAD_ALL_FUEL_REQUEST"
 const UPDATE_FUEL_REQUEST_STATUS = "updateFuelRequestStatus/UPDATE_FUEL_REQUEST_STATUS"
+const CREATE_FUEL_ORDER = "createFuelOrder/CREATE_FUEL_ORDER"
 
 
 
@@ -12,7 +13,11 @@ const updateFuelRequestStatus = (fuel) => ({
     type:UPDATE_FUEL_REQUEST_STATUS,
     payload:fuel
 
+})
 
+const createFuelOrder = (fuel) => ({
+    type:CREATE_FUEL_ORDER,
+    payload:fuel
 })
 
 
@@ -61,6 +66,21 @@ export const thunkUpdateFuelRequest = (id, statusData) => async (dispatch) => {
     }
 };
 
+export const thunkCreateFuelOrder = (parking_id,aircraft_id, fuel_request) => async (dispatch) => {
+    try {
+        const res = await fetch(`/${parking_id}/aircraft/${aircraft_id}/new/fuel_request`, {
+        method:"POST",
+        body:fuel_request
+        })
+        if (res.ok) {
+            const data = await res.json();
+            await dispatch(createFuelOrder(data));
+        }
+    } catch (error) {
+        console.error('Error creating owners:', error);
+    }
+}
+
 
 function fuelingReducer(state = {}, action) {
 
@@ -76,6 +96,11 @@ function fuelingReducer(state = {}, action) {
                 ...state,
                 [action.payload.id]: action.payload,
             };
+        }
+        case CREATE_FUEL_ORDER: {
+            const newState = { ... state };
+            newState[action.payload.id] = action.payload;
+            return newState
         }
         default:
             return state;

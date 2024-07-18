@@ -40,6 +40,7 @@ def update_fuel_status(id):
         "fuel_order": fuel_order.to_dict()
     })
 
+#sends a fuel request to the page
 @fueling_routes.route("/<int:parking_id>/aircraft/<int:aircraft_id>/new/fuel_request", methods=["POST"])
 @login_required
 def create_fuel_request_on_parking_spot(parking_id, aircraft_id):
