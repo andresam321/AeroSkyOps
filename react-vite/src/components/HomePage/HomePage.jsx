@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetParkingSpotsByArea, } from '../../redux/parking_spot';
 import { thunkUnAssignAircraftFromParkingSpot,thunkGetAllAssignedAircrafts, thunkGetSingleAircraft } from '../../redux/aircraft';
+import CreateFuelOrder from '../Fueling/CreateFuelOrder';
 import { thunkGetAssignParkingSpotsWithSpecificArea } from '../../redux/parking_spot';
 import { thunkGetAllAreasWithParkingSpots } from '../../redux/airport_area';
 import { NavLink, useParams } from 'react-router-dom';
@@ -78,6 +79,11 @@ return (
           <div className='info-div'>
             <h3>Aircraft Info</h3>
             <div className="aircraft-link">
+              <OpenModalButton
+                  buttonText={"Create Fuel Order"}
+                  className="action-button delete-button"
+                  modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} parkingId={eachVal.id} />}
+              />
               <NavLink to={`/aircraft/${eachVal.aircraft.id}`} className="aircraft-info">
                 <div className='plane-image-div'>
                   <img src={eachVal.aircraft.plane_image} alt="Plane" />

@@ -5,43 +5,43 @@
     border-radius: 5px;
 }
 
-/* Style for each individual fuel request */
+
 .fuel-request {
-    margin-bottom: 20px; /* Increased margin between each fuel request */
-    padding: 15px; /* Increased padding for better separation */
+    margin-bottom: 20px; 
+    padding: 15px;
     border-radius: 8px;
-    background-color: #fff; /* White background */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
-    color: #333; /* Default text color */
-    transition: background-color 0.3s; /* Smooth transition for background color */
+    background-color: #fff; 
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
+    color: #333; 
+    transition: background-color 0.3s; 
 }
 
 .fuel-request:hover {
-    background-color: #f0f0f0; /* Light gray background on hover */
+    background-color: #f0f0f0; 
 }
 
-/* Specific styles for different fuel types */
+
 .fuel-type-label {
-    color: #333; /* Default text color for fuel type */
+    color: #333; 
 }
 
 .jet-a .fuel-type-label {
-    color: #000000; /* Black text for Jet A fuel type */
+    color: #000000; 
 }
 
 .avgas-100ll .fuel-type-label {
-    color: #002bd6; /* Blue text for Avgas 100LL fuel type */
+    color: #002bd6; 
 }
 
 .unleaded-94 .fuel-type-label {
-    color: #eafe06; /* Yellow text for Unleaded 94 fuel type */
+    color: #eafe06; 
 }
 
 .unleaded-100 .fuel-type-label {
-    color: #7781d3; /* Light blue text for Unleaded 100 fuel type */
+    color: #7781d3; 
 }
 
-/* Button styles for different status */
+
 .button-container {
     margin-top: 10px;
 }
@@ -54,24 +54,24 @@
     cursor: pointer;
     border-radius: 5px;
     font-size: 14px;
-    color: #0c0c0c; /* White text for buttons */
-    background-color: rgba(0, 0, 0, 0.5); /* Darker background color with some transparency */
+    color: #0c0c0c; 
+    background-color: rgba(0, 0, 0, 0.5); 
 }
 
 .button-container button:hover {
-    background-color: rgba(0, 0, 0, 0.8); /* Darker background color on hover */
+    background-color: rgba(0, 0, 0, 0.8); 
 }
 
 
-/* Conditional styles based on is_completed */
+
 .fuel-request.completed {
-    background-color: #28a745; /* Completed color */
+    background-color: #28a745; 
 }
 
 .fuel-request.en-route {
-    background-color: #ffc107; /* Pending color */
+    background-color: #ffc107; 
 }
 
 .fuel-request.needs-asap {
-    background-color: #dc3545; /* Priority color */
+    background-color: #dc3545; 
 }

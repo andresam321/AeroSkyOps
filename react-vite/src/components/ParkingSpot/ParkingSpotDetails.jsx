@@ -32,12 +32,12 @@ return (
         <div className="button-container">
             <OpenModalButton buttonText={"Update"} className="update-color" modalComponent={<UpdateParkingSpot spotId={parking_spotId.id} />} />
         
-        <button type='button' className="">
+        <div type='button' className="">
             <OpenModalButton 
                 buttonText="Delete" type='' className="" 
                 modalComponent={<DeleteParkingSpot 
                 spotId={parking_spotId.id} />}
-            /></button>
+            /></div>
         </div>
     </div>
 </div>
