@@ -41,7 +41,16 @@ return (
         <form className='' onSubmit={handlSubmit}>
             <div className=''>
                 <label>Fuel Type:</label>
-                <input type='text' value={fuel_type} onChange={(e) => setFuel_type(e.target.value)}/>
+                <select
+                    value={fuel_type}
+                    onChange={(e) => setFuel_type(e.target.value)}
+                >
+                    <option value="">Select Option</option>
+                    <option value="Jet A">Jet A</option>
+                    <option value="100ll AvGas">100ll AvGas</option>
+                    <option value="94 unleaded">94 unleaded</option>
+                    <option value="100 unleaded">100 unleaded</option>
+                </select>
                 <label>Request By:</label>
                 <input type="text" value={request_by}
                 onChange={(e) => setRequest_by(e.target.value)}
@@ -65,11 +74,16 @@ return (
             </div>
             <div>
                 <label>Service Paid?</label>
-                <input type='text' value={paid}
-                onChange={(e) => setPaid(e.target.value)}
-                />
-                {/* <label>Status?</label>
                 <select
+                    value={paid}
+                    onChange={(e) => setPaid(e.target.value)}
+                >
+                    <option value="">Select Status Type</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <label>Status?</label>
+                {/* <select
                     value={is_completed}
                     onChange={(e) => setIs_completed(e.target.value)}
                 >
