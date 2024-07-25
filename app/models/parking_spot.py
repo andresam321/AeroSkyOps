@@ -23,10 +23,10 @@ class ParkingSpot(db.Model):
 
     airport_parking = db.relationship("AirportParking", back_populates = 'parking_spots')
 
-    fuel_orders = db.relationship("FuelOrder", back_populates="parking_spot", cascade='all, delete-orphan')
+    fuel_orders = db.relationship("FuelOrder", back_populates="parking_spot")
 
     #one to one 
-    aircraft = db.relationship('Aircraft', back_populates = 'parking_spot',cascade='all, delete-orphan', uselist=False,single_parent=True)
+    aircraft = db.relationship('Aircraft', back_populates = 'parking_spot', uselist=False,single_parent=True)
 
     def to_dict(self):
         return {
