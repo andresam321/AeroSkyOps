@@ -58,6 +58,7 @@ def create_fuel_request_on_parking_spot(parking_id, aircraft_id):
         positive_prist = form.data['positive_prist'],
         quantity = form.data['quantity'],
         paid = form.data['paid'],
+        service_deadline_by = form.data["service_deadline_by"],
         is_completed = form.data['is_completed'],
         order_date = form.data['order_date']
         
