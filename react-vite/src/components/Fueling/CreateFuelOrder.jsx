@@ -10,7 +10,8 @@ const CreateFuelOrder = () => {
     const[positive_prist,setPositive_prist] = useState('')
     const[quantity, setQuantity] = useState('')
     const[paid,setPaid] = useState('')
-    const[service_deadline_by,setService_deadline_by] = useState('')
+    const[service_date_deadline_by,setService__date_deadline_by] = useState('')
+    const[service_time_deadline_by,setService__time_deadline_by] = useState('')
     const[is_completed, setIs_completed] = useState('') 
 
     
@@ -23,7 +24,8 @@ const CreateFuelOrder = () => {
         formData.append('positive_prist',positive_prist);    
         formData.append('quantity', quantity);
         formData.append('paid',paid);
-        formData.append('service_deadline_by',service_deadline_by);
+        formData.append('service_date_deadline_by',service_date_deadline_by);
+        formData.append('service_time_deadline_by',service_time_deadline_by);
         formData.append('is_completed',is_completed);
 
         try {
@@ -96,9 +98,15 @@ return (
                 </select> */}
             </div>
             <div>
-                <label>Needs to be Service By?</label>
-                <input type="time" value={service_deadline_by}
-                onChange={(e) => setService_deadline_by(e.target.value)}
+                <label>Date needs to be Serviced By?</label>
+                <input type="Date" value={service_date_deadline_by}
+                onChange={(e) => setService__date_deadline_by(e.target.value)}
+                />
+            </div>
+            <div>
+                <label>Time needs to be Serviced By?</label>
+                <input type="time" value={service_time_deadline_by}
+                onChange={(e) => setService__time_deadline_by(e.target.value)}
                 />
             </div>
             <button  type="submit">Submit</button>
