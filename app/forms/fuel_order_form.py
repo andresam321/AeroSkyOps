@@ -16,6 +16,7 @@ class FuelOrderForm(FlaskForm):
     positive_prist = SelectField("Positive Prist", choices = [('Yes', 'Yes'), ('No', 'No'), ('NA', 'NA')])
     quantity = StringField("Quantity", validators=[DataRequired()])
     paid = SelectField("Paid", choices=[('Yes', 'Yes'), ('No', 'No'), ('Call for payment', 'Call for payment')])
-    service_deadline_by = StringField("Request By", validators=[DataRequired()])
+    service_date_deadline_by = StringField("service_date_deadline_by", validators=[DataRequired()])
+    service_time_deadline_by = StringField("service_time_deadline_by", validators=[DataRequired()])
     is_completed = SelectField("Is completed", choices=[('Yes', 'Yes'), ('No', 'No'), ('En Route', 'En Route')])
     order_date = StringField("Order Date")

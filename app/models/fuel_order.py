@@ -19,7 +19,8 @@ class FuelOrder(db.Model):
     positive_prist = db.Column(db.String(10), nullable = False)
     quantity = db.Column(db.String(255), nullable = False)
     paid = db.Column(db.String(55), nullable = False)
-    service_deadline_by = db.Column(db.String(25), nullable=False) 
+    service_date_deadline_by = db.Column(db.String(25), nullable=False)
+    service_time_deadline_by = db.Column(db.String(25), nullable=False)  
     is_completed = db.Column(db.String(25), nullable=False) 
     order_date = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.now)
@@ -44,7 +45,8 @@ class FuelOrder(db.Model):
             'positive_prist':self.positive_prist,
             'quantity':self.quantity,
             'paid':self.paid,
-            'service_deadline_by': self.service_deadline_by,
+            'service_date_deadline_by': self.service_date_deadline_by,
+            'service_time_deadline_by': self.service_time_deadline_by,
             'is_completed': self.is_completed,
             'order_date':self.order_date,
             'parking_spot_spot_number': self.parking_spot.spot_number if self.parking_spot else None,  # Lazy loaded spot_number info

@@ -97,7 +97,7 @@ return (
             </div>
             <div>
                 <label>Needs to be Service By?</label>
-                <input type="Date" value={service_deadline_by}
+                <input type="time" value={service_deadline_by}
                 onChange={(e) => setService_deadline_by(e.target.value)}
                 />
             </div>
