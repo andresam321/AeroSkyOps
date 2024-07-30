@@ -38,7 +38,7 @@ const HomePage = () => {
           try {
               await dispatch(thunkGetParkingSpotsByArea(id));
               // await dispatch(thunkGetAllAreasWithParkingSpots(id));
-              await dispatch(thunkGetParkingSpotsByArea(id));
+              // await dispatch(thunkGetParkingSpotsByArea(id));
           } catch (error) {
               console.error('Failed to fetch parking spots:', error);
           }
@@ -82,7 +82,7 @@ return (
               <OpenModalButton
                   buttonText={"Create Fuel Order"}
                   className="action-button delete-button"
-                  modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} parkingId={eachVal.id} />}
+                  modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} />}
               />
               <NavLink to={`/aircraft/${eachVal.aircraft.id}`} className="aircraft-info">
                 <div className='plane-image-div'>
