@@ -14,6 +14,7 @@ const CreateFuelOrder = ({aircraftId} ) => {
     const[quantity, setQuantity] = useState('')
     const[paid,setPaid] = useState('')
     const[tail_number, setTail_number] = useState("")
+    const[owner, setOwner] = useState('')
     const[service_date_deadline_by,setService__date_deadline_by] = useState('')
     const[service_time_deadline_by,setService__time_deadline_by] = useState('')
     const[is_completed, setIs_completed] = useState('') 
@@ -31,6 +32,7 @@ const CreateFuelOrder = ({aircraftId} ) => {
     useEffect(() => {
         if (aircraft) {
         setTail_number(aircraft.tail_number || '');
+        setFuel_type(aircraft.fuel_type || '');
     }
     }, [aircraft]);
     
@@ -46,7 +48,8 @@ const CreateFuelOrder = ({aircraftId} ) => {
         formData.append('service_date_deadline_by',service_date_deadline_by);
         formData.append('service_time_deadline_by',service_time_deadline_by);
         formData.append('is_completed',is_completed);
-        formData.append('tail_number', tail_number);  
+        formData.append('tail_number', tail_number);
+        formData.append('owner', owner);
 
         try {
             await dispatch(thunkCreateFuelOrder(formData, aircraftId));    
@@ -71,17 +74,23 @@ return (
                         readOnly />
 
                 </div>
-                <label>Fuel Type:</label>
-                <select
+                <div className="">
+                    <label>Owner That Request for fuel:</label>
+                    {/* <select
                     value={fuel_type}
                     onChange={(e) => setFuel_type(e.target.value)}
                 >
                     <option value="">Select Option</option>
-                    <option value="Jet A">Jet A</option>
-                    <option value="100ll AvGas">100ll AvGas</option>
-                    <option value="94 unleaded">94 unleaded</option>
-                    <option value="100 unleaded">100 unleaded</option>
-                </select>
+                </select> */}
+
+                </div>
+                    <label>Fuel Type:</label>
+                    <input type="text" id="fuel_type" 
+                            value={fuel_type} 
+                            readOnly />
+
+
+
                 <label>Request By:</label>
                 <input type="text" value={request_by}
                 onChange={(e) => setRequest_by(e.target.value)}

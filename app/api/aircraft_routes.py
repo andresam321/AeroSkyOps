@@ -26,6 +26,14 @@ def aircraft_by_id(id):
     return aircraft.to_dict(),200
 
 
+#get one aircraft that displays parking spot and all the owners
+
+@aircraft_routes.route("/<int:id>/aircraft/with_owners/parking_spot")
+@login_required
+def aircraft_with_owners_parking_spot(id):
+    pass
+
+
 #creating airplane 
 @aircraft_routes.route("/new", methods=["POST"])
 @login_required
