@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     employee_id = db.Column(db.String(55), unique=True, default=lambda: str(uuid.uuid4()))
     firstname = db.Column(db.String(40), nullable=False)
     lastname = db.Column(db.String(40), nullable=False)
-    username = db.Column(db.String(40), nullable=False, unique=True)
+    # username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
@@ -28,6 +28,8 @@ class User(db.Model, UserMixin):
     created_fuel_orders = db.relationship("FuelOrder", foreign_keys='FuelOrder.created_by_user_id', back_populates="created_by", cascade="all, delete-orphan")
 
     created_owners = db.relationship("Owner", foreign_keys='Owner.created_by_user_id', back_populates="created_by", cascade="all, delete-orphan")
+    
+    role = db.relationship("Role", back_populates = "users")
 
     
     def __init__(self,**kwargs):
