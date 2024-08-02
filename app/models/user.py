@@ -18,6 +18,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
 
+    # do we want to cascade delete any of these items?
+    # i.e. would it be better to delete all aircraft/fuel orders if the owner user gets deleted
+    # or set the "creator" field of those items to null instead?
     
     parking_spots = db.relationship("ParkingSpot", back_populates = "employee",cascade='all, delete-orphan')
 
