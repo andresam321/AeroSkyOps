@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 import { thunkCreateFuelOrder } from '../../redux/fueling'
 import { thunkGetSingleAircraft } from '../../redux/aircraft'
 
-const CreateFuelOrder = ({aircraftId} ) => {
+const CreateFuelOrder = ({aircraftId}) => {
     const dispatch = useDispatch()
     // const {aircraftId} = useParams()
     // const {aircraftId} = useParams()
@@ -49,12 +49,11 @@ const CreateFuelOrder = ({aircraftId} ) => {
         formData.append('service_time_deadline_by',service_time_deadline_by);
         formData.append('is_completed',is_completed);
         formData.append('tail_number', tail_number);
-        formData.append('owner', owner);
 
         try {
-            await dispatch(thunkCreateFuelOrder(formData, aircraftId));    
+            await dispatch(thunkCreateFuelOrder(aircraftId, formData));    
         } catch (error) {
-            
+            console.log(error)
         }
 
     
@@ -123,7 +122,7 @@ return (
                     <option value="No">No</option>
                 </select>
                 <label>Status?</label>
-                {/* <select
+                <select
                     value={is_completed}
                     onChange={(e) => setIs_completed(e.target.value)}
                 >
@@ -131,7 +130,7 @@ return (
                     <option value="Yes">Completed</option>
                     <option value="En Route">En Route</option>
                     <option value="No">Needs servicing</option>
-                </select> */}
+                </select>
             </div>
             <div>
                 <label>Date needs to be Serviced By?</label>

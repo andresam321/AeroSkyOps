@@ -41,9 +41,9 @@ def update_fuel_status(id):
     })
 
 #sends a fuel request to the page
-@fueling_routes.route("/<int:parking_id>/aircraft/<int:aircraft_id>/new/fuel_request", methods=["POST"])
+@fueling_routes.route("/aircraft/<int:aircraft_id>/new/fuel_request", methods=["POST"])
 @login_required
-def create_fuel_request_on_parking_spot(parking_id, aircraft_id):
+def create_fuel_request_on_parking_spot(aircraft_id):
     
     form = FuelOrderForm()
     form["csrf_token"].data = request.cookies["csrf_token"]
@@ -52,7 +52,7 @@ def create_fuel_request_on_parking_spot(parking_id, aircraft_id):
         new_fuel_request = FuelOrder(
         aircraft_id=aircraft_id,
         created_by_user_id=current_user.id,
-        parking_spot_id = parking_id,
+        parking_spot_id = aircraft_id,
         fuel_type = form.data['fuel_type'],
         request_by = form.data['request_by'],
         positive_prist = form.data['positive_prist'],

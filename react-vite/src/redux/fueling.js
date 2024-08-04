@@ -66,9 +66,9 @@ export const thunkUpdateFuelRequest = (id, statusData) => async (dispatch) => {
     }
 };
 
-export const thunkCreateFuelOrder = (parking_id,aircraft_id, fuel_request) => async (dispatch) => {
+export const thunkCreateFuelOrder = (aircraft_id, fuel_request) => async (dispatch) => {
     try {
-        const res = await fetch(`/${parking_id}/aircraft/${aircraft_id}/new/fuel_request`, {
+        const res = await fetch(`/api/fuelings/aircraft/${aircraft_id}/new/fuel_request`, {
         method:"POST",
         body:fuel_request
         })
