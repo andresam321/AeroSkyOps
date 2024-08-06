@@ -1,11 +1,14 @@
 import {useState,useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { thunkCreateFuelOrder } from '../../redux/fueling'
+import { useModal } from '../../context/Modal';
 import { thunkGetSingleAircraft } from '../../redux/aircraft'
 
 const CreateFuelOrder = ({aircraftId}) => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
+    const {closeModal} = useModal()
     // const {aircraftId} = useParams()
     // const {aircraftId} = useParams()
     const[fuel_type, setFuel_type] = useState('')
@@ -51,7 +54,9 @@ const CreateFuelOrder = ({aircraftId}) => {
         formData.append('tail_number', tail_number);
 
         try {
-            await dispatch(thunkCreateFuelOrder(aircraftId, formData));    
+            await dispatch(thunkCreateFuelOrder(aircraftId, formData));
+            navigate(`/fueling/request/list`)
+            closeModal()     
         } catch (error) {
             console.log(error)
         }
