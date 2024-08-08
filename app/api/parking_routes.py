@@ -151,26 +151,26 @@ def get_parking_spots_with_aircraft(airport_parking_id):
     }, 200
 
 
-# Edit a parking spot to assign an aircraft
-@parking_routes.route("/<int:parking_spot_id>/edit", methods=['POST'])
-@login_required
-def edit_parking_spot(parking_spot_id):
+# # Edit a parking spot to assign an aircraft
+# @parking_routes.route("/<int:parking_spot_id>/edit", methods=['POST'])
+# @login_required
+# def edit_parking_spot(parking_spot_id):
     
-    parking_spot = ParkingSpot.query.get()
-    if not parking_spot:
-        return {"message": "parkingSpot couldn't be found"}, 404
-    aircraft_id = request.json.get(aircraft_id)
+#     parking_spot = ParkingSpot.query.get()
+#     if not parking_spot:
+#         return {"message": "parkingSpot couldn't be found"}, 404
+#     aircraft_id = request.json.get(aircraft_id)
 
-    aircraft = Aircraft.query.get(aircraft_id)
-    if not aircraft:
-        return {"message": "Parking spot couldnt be found"}, 404
+#     aircraft = Aircraft.query.get(aircraft_id)
+#     if not aircraft:
+#         return {"message": "Parking spot couldnt be found"}, 404
     
-    parking_spot.aircraft_id = aircraft_id
-    parking_spot.is_reserved = "Yes"
+#     parking_spot.aircraft_id = aircraft_id
+#     parking_spot.is_reserved = "Yes"
 
-    db.session.commit()
+#     db.session.commit()
 
-    return {"message": "Plane added to parking spot successfully"}, 201
+#     return {"message": "Plane added to parking spot successfully"}, 201
 
 
 

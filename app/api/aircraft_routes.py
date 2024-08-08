@@ -195,6 +195,10 @@ def assign_aircraft_to_parking():
 @aircraft_routes.route("/unassign_aircraft_from_parking_spot", methods=["POST"])
 @login_required
 def unassign_aircraft_from_parking():
+    # if current_user.role != "manager":
+    #     return {"errors": "Forbidden"}, 403
+    print(current_user)
+    
     aircraft_id = request.json.get('aircraft_id')
 
     aircraft = Aircraft.query.get(aircraft_id)
