@@ -40,21 +40,33 @@ return (
         <div className='fuel-request-list'>
             <h1>Fuel Request</h1>
             {sortedFuelRequests.map((fuel) => (
+                
                 <div key={fuel.id} className={`fuel-request ${fuel.fuel_type.toLowerCase().replace(/\s+/g, '-').replace(/\//g, '-')}`}>
                     <div>
-                        <p><strong>Aircraft ID:</strong> {fuel.aircraft_id}</p>
-                        <p><strong>Aircraft Tail Number:</strong> {fuel.aircraft_tail_number}</p>
-                        <p><strong>Aircraft Model:</strong> {fuel.aircraft_model}</p>
-                        <p><strong>Parking Spot Location:</strong> {fuel.parking_spot}</p>
-                        <p><strong>Parking Spot ID:</strong> {fuel.aircraft_parking_spot_id || "Not Assigned Yet"}</p>
-                        <p><strong>Fuel Type:</strong> <span className="fuel-type-label">{fuel.fuel_type}</span></p>
-                        <p><strong>Prist:</strong> {fuel.positive_prist}</p>
-                        <p><strong>Fuel Amount:</strong> {fuel.quantity}</p>
+                        <p>Aircraft ID:{fuel.aircraft_id}</p>
+                        <p>Aircraft Tail Number:{fuel.aircraft_tail_number}</p>
+                        <p>Aircraft Model:{fuel.aircraft_model}</p>
+                        <p>Parking Spot Location:{fuel.parking_spot}</p>
+                        <p>Parking Spot ID:{fuel.aircraft_parking_spot_id || "Not Assigned Yet"}</p>
+                        <p>
+                        {Array.isArray(fuel.aircraft_parking_spot_id) && fuel.aircraft_parking_spot_id.length > 0 ? (
+                                <ul>
+                                    {fuel.aircraft_parking_spot_id.map((spotId, index) => (
+                                        <li key={index}>{spotId}</li>
+                                        
+                                    ))}
+                                </ul>
+                            ) : "Not Assigned Yet"}
+                        </p>
+
+                        <p>Fuel Type:<span className="fuel-type-label">{fuel.fuel_type}</span></p>
+                        <p>Prist:{fuel.positive_prist}</p>
+                        <p>Fuel Amount:{fuel.quantity}</p>
                     </div>
                     <div>
-                        <p><strong>Completed?</strong> {fuel.is_completed}</p>
-                        <p><strong>Paid:</strong> {fuel.paid}</p>
-                        <p><strong>Ordered:</strong> {fuel.order_date}</p>
+                        <p>Completed?{fuel.is_completed}</p>
+                        <p>Paid:{fuel.paid}</p>
+                        <p>Ordered:{fuel.order_date}</p>
                     </div>
                     {fuel.is_completed && (
                         <div className="button-container">

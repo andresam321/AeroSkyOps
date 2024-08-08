@@ -37,6 +37,9 @@ const user = useSelector((state) => state.session.user);
             <li className="nav-item">
               <NavLink to="/aircraft/list" className="nav-link">Aircraft List</NavLink>
             </li>
+            <li className="nav-item">
+              <NavLink to="/fueling/request/list" className="nav-link">Fuel Order List</NavLink>
+            </li>
             {/* <li className="nav-item">
             <OpenModalButton
                 buttonText={"Area"}
