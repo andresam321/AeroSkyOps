@@ -13,7 +13,7 @@ class Role(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    users = db.relationship("User", back_populates="role")
+    users = db.relationship("User", foreign_keys = "User.role_id", back_populates="role")
 
     def to_dict(self):
         return {
