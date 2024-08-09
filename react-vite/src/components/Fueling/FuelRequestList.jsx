@@ -9,7 +9,7 @@ const dispatch = useDispatch()
 
 const allFuelRequest = useSelector((state) => state.fuelingReducer.allFuelRequest)
 const [activeButtonId, setActiveButtonId] = useState({});
-console.log("line11", allFuelRequest)
+// console.log("line11", allFuelRequest)
 
 
 useEffect(() => {
@@ -50,7 +50,7 @@ const sortedFuelRequests = [...allFuelRequest].sort((a, b) => {
 
 
 const handleUpdateStatus = (fuelId, newStatus, buttonType) => {
-        setActiveButtonId(prev => ({ ...prev, [fuelId]: buttonType })); // Set the active button state
+        setActiveButtonId(prev => ({ ...prev, [fuelId]: buttonType })); 
         dispatch(thunkUpdateFuelRequest(fuelId, { is_completed: newStatus }));
 };
 

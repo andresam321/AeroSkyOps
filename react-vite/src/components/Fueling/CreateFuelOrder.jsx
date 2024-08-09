@@ -24,7 +24,7 @@ const CreateFuelOrder = ({aircraftId}) => {
  
 
     const aircraft = useSelector((state) => state.aircraftReducer[aircraftId]);
-    console.log("line23",aircraft)
+    // console.log("line23",aircraft)
 
     useEffect(() => {
         if (aircraftId) {
