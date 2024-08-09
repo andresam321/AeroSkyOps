@@ -1,77 +1,115 @@
 .fuel-request-list {
-    margin-top: 20px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 20px;
+    font-family: Arial, sans-serif;
 }
-
 
 .fuel-request {
-    margin-bottom: 20px; 
-    padding: 15px;
-    border-radius: 8px;
-    background-color: #fff; 
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
-    color: #333; 
-    transition: background-color 0.3s; 
-}
-
-.fuel-request:hover {
-    background-color: #f0f0f0; 
-}
-
-
-.fuel-type-label {
-    color: #333; 
-}
-
-.jet-a .fuel-type-label {
-    color: #000000; 
-}
-
-.avgas-100ll .fuel-type-label {
-    color: #002bd6; 
-}
-
-.unleaded-94 .fuel-type-label {
-    color: #eafe06; 
-}
-
-.unleaded-100 .fuel-type-label {
-    color: #7781d3; 
-}
-
-
-.button-container {
-    margin-top: 10px;
-}
-
-.button-container button {
-    margin-right: 10px;
-    margin-top: 5px;
-    padding: 8px 12px;
-    border: none;
-    cursor: pointer;
+    border: 1px solid #ddd;
     border-radius: 5px;
-    font-size: 14px;
-    color: #0c0c0c; 
-    background-color: rgba(0, 0, 0, 0.5); 
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Adds space between elements */
 }
 
-.button-container button:hover {
-    background-color: rgba(0, 0, 0, 0.8); 
+.header {
+    font-weight: bold;
+    margin-bottom: 10px;
 }
 
-
-
-.fuel-request.completed {
-    background-color: #28a745; 
+.section {
+    display: flex;
+    flex-wrap: wrap; /* Allows wrapping to handle different screen sizes */
+    gap: 20px; /* Space between columns */
 }
 
+.section .label {
+    font-weight: bold;
+    width: 200px; /* Fixed width for labels */
+}
+
+.section .value {
+    margin-left: 10px; /* Space between label and value */
+}
+
+/* Status-specific Styles */
 .fuel-request.en-route {
-    background-color: #ffc107; 
+    border-left: 5px solid #f1c40f;
+    background-color: #fffbe6;
 }
 
 .fuel-request.needs-asap {
-    background-color: #dc3545; 
+    border-left: 5px solid #e74c3c;
+    background-color: #ffe6e6;
+}
+
+.fuel-request.completed {
+    border-left: 5px solid #2ecc71;
+    background-color: #e6ffe6;
+}
+
+/* Button Container Styles */
+.button-container {
+    display: flex;
+    gap: 10px; /* Space between buttons */
+}
+
+.button-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    text-align: center; /* Center text in the button */
+    min-width: 120px; /* Ensure buttons have a minimum width */
+}
+
+.button-container button:hover {
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+.button-container button:active {
+    opacity: 0.8; /* Slightly reduce opacity to indicate click */
+}
+
+/* Active Button Style */
+.button-container button.active {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Highlight active button */
+    border: 2px solid #000; /* Optional: Add border to highlight the active button */
+    background-color: #2980b9; /* Change background color for active button */
+}
+
+/* Status-specific Button Styles */
+.en-route {
+    background-color: #f1c40f;
+}
+
+.en-route:hover {
+    background-color: #f39c12;
+}
+
+.needs-asap {
+    background-color: #e74c3c;
+}
+
+.needs-asap:hover {
+    background-color: #c0392b;
+}
+
+.completed {
+    background-color: #2ecc71;
+}
+
+.completed:hover {
+    background-color: #27ae60;
+}
+
+/* Fuel Type Label Styles */
+.fuel-type-label {
+    font-weight: bold;
+    color: #3498db;
 }
