@@ -29,10 +29,10 @@ class Aircraft(db.Model):
     employee = db.relationship('User', back_populates ='aircrafts')
 
     #one to one 
-    parking_spot = db.relationship("ParkingSpot",back_populates = "aircraft",cascade='all, delete-orphan',single_parent=True,uselist=False)
+    parking_spot = db.relationship("ParkingSpot",back_populates = "aircraft",single_parent=True,uselist=False)
 
     #one to many
-    owner = db.relationship("Owner", back_populates = "aircraft",cascade='all, delete-orphan')
+    owner = db.relationship("Owner", back_populates = "aircraft")
 
     #one to many
     fuel_order = db.relationship("FuelOrder", back_populates = "aircraft",cascade='all, delete-orphan')
