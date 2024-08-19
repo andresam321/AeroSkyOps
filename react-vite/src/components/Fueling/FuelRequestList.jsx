@@ -17,7 +17,7 @@ useEffect(() => {
     dispatch(thunkUpdateFuelRequest())
 }, [dispatch])
 
- useEffect(() => {
+useEffect(() => {
         // Initialize activeButtonId based on fuel requests from the backend
         if (Array.isArray(allFuelRequest)) {
             const initialButtonStates = {};

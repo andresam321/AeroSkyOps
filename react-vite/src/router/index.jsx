@@ -62,7 +62,7 @@ export const router = createBrowserRouter([
         element: <OwnerDetails />,
       },
       {
-        path: "/fueling/request/list",
+        path: "ara",
         element: <FuelRequestList />,  
       },
       // {
