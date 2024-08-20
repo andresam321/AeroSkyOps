@@ -19,12 +19,12 @@ const user = useSelector((state) => state.session.user);
 
   return (
     <nav className="navbar">
+        {user && (
       <ul className="nav-menu">
         <li className="nav-item">
           <NavLink to="/areas" className="nav-link">Home</NavLink>
         </li>
 
-        {user && (
           <>
             <li className="nav-item">
               <NavLink to="/parking_spots/new" className="nav-link">Create New Parking Spot</NavLink>
@@ -49,12 +49,12 @@ const user = useSelector((state) => state.session.user);
             </li> */}
             <AreaNavList/>
           </>
-        )}
 
         <li className="nav-item nav-item-right">
           <ProfileButton />
         </li>
       </ul>
+        )}
     </nav>
   );
 }

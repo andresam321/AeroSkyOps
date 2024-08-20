@@ -12,6 +12,7 @@ import SplashPage from '../components/HomePage/SplashPage';
 import AirportAreas from '../components/AirportPage/AirportAreas';
 import OwnerDetails from '../components/Owner/OwnerDetails';
 import FuelRequestList from '../components/Fueling/FuelRequestList';
+import WeatherSearch from '../components/WeatherSearch/WeatherSearch';
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +21,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <SplashPage />,  
+      },
+      {
+        path: "/airport/weather",
+        element: <WeatherSearch />,  
       },
       {
         path: "/areas",
@@ -62,7 +67,7 @@ export const router = createBrowserRouter([
         element: <OwnerDetails />,
       },
       {
-        path: "ara",
+        path: "/fueling/request/list",
         element: <FuelRequestList />,  
       },
       // {

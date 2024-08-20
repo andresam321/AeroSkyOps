@@ -12,6 +12,7 @@ import aircraftReducer from "./aircraft";
 import airportAreasReducer from "./airport_area";
 import ownerReducer from "./owner";
 import fuelingReducer from "./fueling";
+import flightAwareReducer from "./flightaware";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
   aircraftReducer: aircraftReducer,
   airportAreasReducer:airportAreasReducer,
   ownerReducer:ownerReducer,
-  fuelingReducer:fuelingReducer
+  fuelingReducer:fuelingReducer,
+  flightAwareReducer:flightAwareReducer
 });
 
 let enhancer;

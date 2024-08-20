@@ -3,6 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllAreasWithParkingSpots } from '../../redux/airport_area';
 import { NavLink,useParams } from 'react-router-dom';
 import './AirportAreas.css';
+import OpenModalButton from "../OpenModalButton/OpenModalButton"
+import WeatherSearch from '../WeatherSearch/WeatherSearch';
+
 
 const AirportAreas = () => {
     const {id} = useParams()
@@ -44,6 +47,11 @@ const AirportAreas = () => {
                     </div>
                 ))}
             </div>
+            <OpenModalButton
+                buttonText={"See Current Airport Weather"}
+                className="view-details-button"
+                modalComponent={<WeatherSearch />}
+            />
             <div className="fuel-prices">
                 <h2>Fuel Prices</h2>
                 <p>As of June 2024:</p>
