@@ -2,46 +2,64 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
+  padding: 30px;
   font-family: Arial, sans-serif;
+  background-color: #f4f6f9; 
 }
 
 .aircraft-details h2 {
   margin-bottom: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
 }
 
 .aircraft-details img {
-  max-width: 300px;
-  border-radius: 8px;
-  margin-bottom: 20px;
+  max-width: 320px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
 }
 
 .aircraft-details .details-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  max-width: 800px;
+  max-width: 900px;
   width: 100%;
 }
 
 .details-container div {
-  background: #f9f9f9;
-  padding: 10px;
+  background: #fff;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.details-container div:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); 
 }
 
 .details-container p {
   margin: 5px 0;
+  color: #555;
 }
 
 .details-container span {
   font-weight: bold;
+  color: #333;
 }
 
 .owners-list {
-  width: 100%; 
-  margin-top: 20px; 
+  width: 100%;
+  margin-top: 30px;
+}
+
+.owners-list h4 {
+  margin-bottom: 15px;
+  font-size: 20px;
+  color: #333;
 }
 
 .owners-grid {
@@ -51,15 +69,22 @@
 }
 
 .owner-card {
-  flex: 1 1 calc(50% - 20px); 
-  background: #f9f9f9;
-  padding: 10px;
+  flex: 1 1 calc(50% - 20px);
+  background: #fff;
+  padding: 15px;
   border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+
+.owner-card:hover {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transform: scale(1.02); 
 }
 
 .owner-card p {
   margin: 5px 0;
+  color: #555;
 }
 
 .owner-card span {
@@ -68,36 +93,52 @@
 
 .button-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   width: 100%;
-  max-width: 400px; 
-  margin-top: 20px; 
+  max-width: 400px;
+  margin-top: 30px;
 }
 
-.update-button, .delete-button {
+.update-button,
+.delete-button {
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
-  padding: 10px 20px;
+  padding: 12px 20px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
-  max-width: 150px; 
-  height: 40px; 
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 45%;
   display: flex;
-  align-items: center; 
-  justify-content: center; 
-  box-sizing: border-box; 
+  align-items: center;
+  justify-content: center;
 }
 
 .update-button:hover {
-  background-color: #0056b3 !important;
+  background-color: #0056b3;
+  transform: scale(1.05); 
 }
 
 .delete-button {
-  background-color: #dc3545 !important;
+  background-color: #dc3545;
 }
 
 .delete-button:hover {
-  background-color: #c82333 !important;
+  background-color: #c82333;
+  transform: scale(1.05); 
+}
+
+.view-details-button {
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.view-details-button:hover {
+  background-color: #0056b3;
 }

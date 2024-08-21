@@ -1,42 +1,57 @@
 .fuel-request-list {
     padding: 20px;
     font-family: Arial, sans-serif;
+    background-color: #f4f6f9;
+    max-width: 900px;
+    margin: 0 auto;
 }
 
 .fuel-request {
     border: 1px solid #ddd;
-    border-radius: 5px;
-    padding: 15px;
-    margin-bottom: 15px;
-    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .header {
     font-weight: bold;
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    color: #2c3e50;
+    margin-bottom: 15px;
 }
 
 .section {
     display: grid;
-    grid-template-columns: auto 1fr;
+    grid-template-columns: 150px auto;
     gap: 10px;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 10px;
+    padding-bottom: 15px;
 }
 
 .section .label {
     font-weight: bold;
-    text-align: right; /* Align labels to the right */
+    color: #7f8c8d;
+    text-align: right;
+    font-size: 14px;
 }
 
 .section .value {
-    text-align: left; /* Align values to the left */
+    text-align: left;
+    color: #2c3e50;
+    font-size: 14px;
 }
 
+.fuel-type-label {
+    font-weight: bold;
+    color: #3498db;
+}
+
+/* Status-Based Styling */
 .fuel-request.en-route {
     border-left: 5px solid #f1c40f;
     background-color: #fffbe6;
@@ -52,65 +67,89 @@
     background-color: #e6ffe6;
 }
 
+/* Button Container */
 .button-container {
     display: flex;
     gap: 10px;
-    margin-top: 10px;
-    justify-content: center; /* Center buttons horizontally */
+    margin-top: 20px;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow buttons to wrap if needed */
 }
 
+/* Button Styling */
 .button-container button {
-    padding: 8px 16px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: #fff;
     cursor: pointer;
-    font-size: 14px;
+    font-size: 16px;
+    font-weight: bold;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
     text-align: center;
-    min-width: 120px;
+    min-width: 140px;
+    flex: 1;
+    max-width: 200px;
 }
 
 .button-container button:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
 }
 
 .button-container button:active {
     opacity: 0.8;
 }
 
+/* Button Active State (Indicate the Current Status) */
 .button-container button.active {
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: 2px solid #000;
-    background-color: #2980b9;
+    background-color: #9b59b6; /* Distinct color for active buttons */
 }
 
+/* Status-Specific Button Colors */
 .en-route {
     background-color: #f1c40f;
 }
 
-.en-route:hover {
+.en-route.active {
     background-color: #f39c12;
 }
 
 .needs-asap {
-    background-color: #e74c3c;
+    background-color: #2980b9;
 }
 
-.needs-asap:hover {
-    background-color: #c0392b;
+.needs-asap.active {
+    background-color: #8e44ad; /* Different color for active state */
 }
 
 .completed {
     background-color: #2ecc71;
 }
 
-.completed:hover {
+.completed.active {
     background-color: #27ae60;
 }
 
-/* Fuel Type Label Styles */
-.fuel-type-label {
-    font-weight: bold;
-    color: #3498db;
+/* Responsive Design */
+@media (max-width: 768px) {
+    .fuel-request-list {
+        padding: 10px;
+    }
+    
+    .section {
+        grid-template-columns: 1fr;
+        gap: 5px;
+    }
+    
+    .button-container {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .button-container button {
+        max-width: none; /* Allow buttons to stretch across the full width on smaller screens */
+    }
 }

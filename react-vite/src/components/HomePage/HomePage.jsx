@@ -73,44 +73,42 @@ const HomePage = () => {
 return (
 <div className="parking-spot-container">
   {loadSpotWithPlanesAndWithout.map((eachVal, index) => (
-    <div key={index} className={`flex-item ${eachVal.aircraft ? 'occupied' : 'empty'}`}>
+    <div key={index} className={`card-container ${eachVal.aircraft ? 'occupied' : 'empty'}`}>
       {eachVal.aircraft && (
-        <>
-          <div className='info-div'>
-            <h3>Aircraft Info</h3>
-            <div className="aircraft-link">
-              <OpenModalButton
-                  buttonText={"Create Fuel Order"}
-                  className="action-button delete-button"
-                  modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} />}
-              />
-              <NavLink to={`/aircraft/${eachVal.aircraft.id}`} className="aircraft-info">
-                <div className='plane-image-div'>
-                  <img src={eachVal.aircraft.plane_image} alt="Plane" />
-                </div>
-                <p>Model: {eachVal.aircraft.model}</p>
-                <p>Tail Number: {eachVal.aircraft.tail_number}</p>
-                <p>Fuel Type: {eachVal.aircraft.fuel_type}</p>
-              </NavLink>
+        <div className="aircraft-info-container">
+          <h3 className="card-heading">Aircraft Info</h3>
+          <NavLink to={`/aircraft/${eachVal.aircraft.id}`} className="nav-link">
+            <div className="plane-image-container">
+              <img src={eachVal.aircraft.plane_image} alt="Aircraft" />
             </div>
-          </div>
-          <button className="remove-button" onClick={() => handleRemoveAircraft(eachVal.aircraft.id)}>Remove from Parking</button>
-        </>
+            <div className="aircraft-details">
+              <p>Model: {eachVal.aircraft.model}</p>
+              <p>Tail Number: {eachVal.aircraft.tail_number}</p>
+              <p>Fuel Type: {eachVal.aircraft.fuel_type}</p>
+            </div>
+          </NavLink>
+          <OpenModalButton
+              buttonText="Create Fuel Order"
+              className="primary-button"
+              modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} />}
+          />
+          <button className="secondary-button" onClick={() => handleRemoveAircraft(eachVal.aircraft.id)}>Remove from Parking</button>
+        </div>
       )}
-      <div className='info-div'>
-        <h3>Parking Spot Info</h3>
-        <NavLink to={`/parking_spot/${eachVal.id}`} className="">
-          <p>Spot Number: {eachVal.spot_number}</p>
-          <p>Is Reserved: {eachVal.is_reserved}</p>
-          <p>Spot Size: {eachVal.spot_size}</p>
+      <div className="parking-spot-info-container">
+        <h3 className="card-heading">Parking Spot Info</h3>
+        <NavLink to={`/parking_spot/${eachVal.id}`} className="nav-link">
+          <div className="parking-details">
+            <p>Spot Number: {eachVal.spot_number}</p>
+            <p>Is Reserved: {eachVal.is_reserved}</p>
+            <p>Spot Size: {eachVal.spot_size}</p>
+          </div>
         </NavLink>
-      </div>
-      <div>
         {!eachVal.aircraft && (
           <OpenModalButton
-            buttonText="Assign Aircraft"
-            className="assign-button"
-            modalComponent={<AircraftAssignment spotId={eachVal.id} areaId={id} />}
+              buttonText="Assign Aircraft"
+              className="primary-button"
+              modalComponent={<AircraftAssignment spotId={eachVal.id} areaId={id} />}
           />
         )}
       </div>
