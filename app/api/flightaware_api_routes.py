@@ -6,6 +6,7 @@ from flask import Blueprint, request, jsonify
 FLIGHTAWARE_API_KEY = os.environ.get('x-apikey')
 BASE_URL = "https://aeroapi.flightaware.com/aeroapi"
 
+### 24hour weather api
 def get_weather_data(airport_code):
     """Fetch weather data for a given airport code."""
     url = f"{BASE_URL}/airports/{airport_code}/weather/observations"
@@ -60,9 +61,71 @@ def fetch_and_process_weather(airport_code):
     return process_weather_data(raw_data)
 
 
-weather_routes = Blueprint("flightaware", __name__)
+### plane identification api
 
-@weather_routes.route("/airport_weather", methods=["GET"])
+def get_flight_ident(tail_number):
+    url = f"{BASE_URL}/flights/{tail_number}"
+    headers = {
+        'x-apikey': f'{FLIGHTAWARE_API_KEY}'  
+        
+    }
+    try:
+        # Make the request to the API
+        response = requests.get(url, headers=headers)
+        response.raise_for_status()  # Raise HTTPError for bad responses
+        
+        # Log the raw response for debugging
+        print("Raw Response Status Code:", response.status_code)
+        print("Raw Response Headers:", response.headers)
+        print("Raw Response Body:", response.text)
+        
+        # Parse the JSON data
+        tail_number_info = response.json()
+        return tail_number_info
+    
+    except requests.RequestException as e:
+        # Handle any exceptions that occur
+        return {"error": str(e)}
+    
+
+def process_flight_ident(data):
+    """Process and format flight data to extract origin and destination."""
+    if 'flights' in data:
+        flights = data['flights']
+        processed_data = [
+            {
+                'origin': {
+                    'code': flight['origin'].get('code'),
+                    'city': flight['origin'].get('city'),
+                    'name': flight['origin'].get('name'),
+                },
+                'destination': {
+                    'code': flight['destination'].get('code'),
+                    'city': flight['destination'].get('city'),
+                    'name': flight['destination'].get('name'),
+                }
+            }
+            for flight in flights
+        ]
+        return processed_data
+    else:
+        return {"error": "No flight data found in the provided data."}
+
+
+def fetch_and_process_fligth_ident(tail_number):
+    """Fetch and process weather data for an airport."""
+    raw_data = get_flight_ident(tail_number)
+    if 'error' in raw_data:
+        return raw_data  # Return error if occurred
+    
+    return process_flight_ident(raw_data)
+
+
+
+
+flightaware_routes = Blueprint("flightaware", __name__)
+
+@flightaware_routes.route("/airport_weather", methods=["GET"])
 def get_airport_weather():
     airport_code = request.args.get('airport_code')
     if not airport_code:
@@ -71,3 +134,14 @@ def get_airport_weather():
     # Fetch and process weather data
     weather_info = fetch_and_process_weather(airport_code)
     return jsonify(weather_info)
+
+
+@flightaware_routes.route("/flight_ident", methods=["GET"])
+def get_flight_identification():
+    tail_number = request.args.get("tail_number")
+    
+    if not tail_number:
+        return jsonify({'error': 'Tail Number code is required'}), 400
+    
+    ident_info = fetch_and_process_fligth_ident(tail_number)
+    return jsonify(ident_info)

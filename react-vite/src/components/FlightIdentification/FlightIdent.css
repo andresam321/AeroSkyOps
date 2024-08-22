@@ -1,0 +1,67 @@
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    padding: 20px;
+    max-height: 80vh; 
+    max-width: 90%; 
+    overflow-y: auto;
+}
+
+.data-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.data-item {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    flex: 1 1 calc(45% - 40px); 
+    margin-bottom: 20px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.data-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.flight-info-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.flight-info-section {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.time-info {
+    margin-top: 10px;
+    font-style: italic;
+}
+
+.no-data {
+    font-size: 16px;
+    color: #666;
+    text-align: center;
+}

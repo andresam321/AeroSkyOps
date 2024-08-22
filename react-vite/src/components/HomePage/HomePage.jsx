@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetParkingSpotsByArea, } from '../../redux/parking_spot';
 import { thunkUnAssignAircraftFromParkingSpot,thunkGetAllAssignedAircrafts, thunkGetSingleAircraft } from '../../redux/aircraft';
 import CreateFuelOrder from '../Fueling/CreateFuelOrder';
+import FlightIdent from '../FlightIdentification/FlightIdent';
 import { thunkGetAssignParkingSpotsWithSpecificArea } from '../../redux/parking_spot';
 import { thunkGetAllAreasWithParkingSpots } from '../../redux/airport_area';
 import { NavLink, useParams } from 'react-router-dom';
@@ -91,6 +92,11 @@ return (
               buttonText="Create Fuel Order"
               className="primary-button"
               modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} />}
+          />
+          <OpenModalButton
+              buttonText="Aircraft Status"
+              className="primary-button"
+              modalComponent={<FlightIdent  aircraftId={eachVal.aircraft.id}/>}
           />
           <button className="secondary-button" onClick={() => handleRemoveAircraft(eachVal.aircraft.id)}>Remove from Parking</button>
         </div>
