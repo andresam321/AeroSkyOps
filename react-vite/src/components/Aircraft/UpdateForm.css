@@ -1,5 +1,5 @@
 .form-container {
-    max-width: 600px;
+    max-width: 1000px;
     margin: 0 auto;
     padding: 20px;
     background-color: #f9f9f9;
@@ -7,48 +7,46 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
 .form-group {
     margin-bottom: 20px;
 }
 
-.label {
+.form-group label {
+    display: block;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
-.input-field {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    
-}
-
-.textarea-field {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    resize: vertical;
-}
-
+.input-field,
+.textarea-field,
 .select-field {
     width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    appearance: none;
-    
+    font-size: 16px;
+}
+
+.textarea-field {
+    resize: vertical;
 }
 
 .error-message {
     color: red;
     font-size: 14px;
+    margin-top: 5px;
 }
 
 .button-container {
     display: flex;
     justify-content: space-between;
-    /* align-items: center; */
+    margin-top: 30px;
 }
 
 .submit-button,
@@ -64,9 +62,19 @@
     color: #fff;
 }
 
-.cancel-button {
-    background-color: #dc3545 !important;
-    color: #fff;
-    margin-left: 10px;
+.submit-button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
 
+.cancel-button {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.cancel-button:hover,
+.submit-button:hover:not(:disabled) {
+    opacity: 0.9;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
 }

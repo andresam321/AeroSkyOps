@@ -88,16 +88,18 @@ return (
               <p>Fuel Type: {eachVal.aircraft.fuel_type}</p>
             </div>
           </NavLink>
-          <OpenModalButton
+          <div className="button-group">
+            <OpenModalButton
               buttonText="Create Fuel Order"
               className="primary-button"
               modalComponent={<CreateFuelOrder aircraftId={eachVal.aircraft.id} />}
-          />
-          <OpenModalButton
+            />
+            <OpenModalButton
               buttonText="Aircraft Status"
               className="primary-button"
-              modalComponent={<FlightIdent  aircraftId={eachVal.aircraft.id}/>}
-          />
+              modalComponent={<FlightIdent aircraftId={eachVal.aircraft.id} />}
+            />
+          </div>
           <button className="secondary-button" onClick={() => handleRemoveAircraft(eachVal.aircraft.id)}>Remove from Parking</button>
         </div>
       )}

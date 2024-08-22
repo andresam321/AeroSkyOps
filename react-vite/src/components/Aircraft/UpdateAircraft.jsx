@@ -124,95 +124,146 @@ const UpdateAircraft = () => {
 
 
 return (
-    <div className="form-container">
-    <h2>Update Aircraft</h2>
-    <form onSubmit={handleSubmit} encType="multipart/form-data">
-        <div className='form-group'>
-            <label>Plane Image</label>
-            <input type="file" id="plane_image" onChange={handleFileChange} />
-            {showImage && <img src={showImage} alt="Preview" width="100" />}
-            {errors.plane_image && <p className='error-message'>{errors.plane_image}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Tail Number</label>
-            <input type="text" id="tail_number" value={tail_number} onChange={(e) => setTail_number(e.target.value.toUpperCase())} />
-            {errors.tail_number && <p className='error-message'>{errors.tail_number}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Manufacturer</label>
-            <input type="text" id="manufacturer" value={manufacturer} onChange={(e) => setManufacturer(e.target.value)} />
-            {errors.manufacturer && <p className='error-message'>{errors.manufacturer}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Model</label>
-            <input type="text" id="model" value={model} onChange={(e) => setModel(e.target.value)} />
-            {errors.model && <p className='error-message'>{errors.model}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Max Takeoff Weight</label>
-            <input type="number" id="max_takeoff_weight" value={max_takeoff_weight} 
-            onChange={(e) => setMax_takeoff_weight(e.target.value)} 
-            min="0"
-            max="100000"
-            />
-            {errors.max_takeoff_weight && <p className='error-message'>{errors.max_takeoff_weight}</p>}
-            </div>
-        <div className='form-group'>
-            <label>Seating Capacity</label>
-            <input type="number" id="seating_capacity" value={seating_capacity} 
-            onChange={(e) => setSeating_capacity(e.target.value)} 
-            min="0"
-            max="300"
-            />
-            {errors.seating_capacity && <p className='error-message'>{errors.seating_capacity}</p>}
-        </div>
-        <div className='form-group'>
-        <label>Operation Status</label>
-            <select id="operation_status" value={operation_status} onChange={(e) => setOperation_status(e.target.value)}>
-                <option value="">Select an option</option>
-                <option value="Operational">Operational</option>
-                <option value="Maintenance">Maintenance</option>
-                <option value="Decommissioned">Decommissioned</option>
-                </select>
-            {errors.operation_status && <p className='error-message'>{errors.operation_status}</p>}
-        </div>
-        <div className='form-group'>
-        <label>Fuel Type</label>
-            <select id="fuel_type" value={fuel_type} onChange={(e) => setFuel_type(e.target.value)}>
-                    <option value="">Select an option</option>
-                    <option value="100ll AvGas">100ll AvGas</option>
-                    <option value="94 unleaded">94 unleaded</option>
-                    <option value="Jet A">Jet A</option>
-                    <option value="100 unleaded">100 unleaded</option>
-            </select>
-            {errors.fuel_type && <p className='error-message'>{errors.fuel_type}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Active Owners</label>
-            <input type="number" id="active_owners" value={active_owners} 
-            onChange={(e) => setActive_owners(e.target.value)} 
-            min="1"
-            max="20"
-            />
-            {errors.active_owners && <p className='error-message'>{errors.active_owners}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Notes</label>
-            <textarea id="notes" value={notes} onChange={(e) => setNotes(e.target.value)}></textarea>
-            {errors.notes && <p className='error-message'>{errors.notes}</p>}
-        </div>
-        <div className='form-group'>
-            <label>Last Time Fueled</label>
-            <input type="date" id="last_time_fueled" value={last_time_fueled} 
-            onChange={(e) => setLast_time_fueled(e.target.value)}
-            max={today.toISOString().split('T')[0]}
-            />
-            {errors.last_time_fueled && <p className="error-message">{errors.last_time_fueled}</p>}
-        </div>
-        <div className="button-container">
-            <button disabled={Object.values(errors).length > 0} type="submit" className="submit-button">Yes (Update Aircraft)</button>
-            <button onClick={() => closeModal()} className="cancel-button">No (Dont Update Aircraft)</button>
-        </div>
+        <div className="form-container">
+            <h2>Update Aircraft</h2>
+            <form onSubmit={handleSubmit} encType="multipart/form-data">
+                <div className="form-grid">
+                    <div className='form-group'>
+                        <label htmlFor="plane_image">Plane Image</label>
+                        <input type="file" id="plane_image" onChange={handleFileChange} />
+                        {showImage && <img src={showImage} alt="Preview" width="150" />}
+                        {errors.plane_image && <p className='error-message'>{errors.plane_image}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="tail_number">Tail Number</label>
+                        <input 
+                            type="text" 
+                            id="tail_number" 
+                            value={tail_number} 
+                            onChange={(e) => setTail_number(e.target.value.toUpperCase())} 
+                        />
+                        {errors.tail_number && <p className='error-message'>{errors.tail_number}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="manufacturer">Manufacturer</label>
+                        <input 
+                            type="text" 
+                            id="manufacturer" 
+                            value={manufacturer} 
+                            onChange={(e) => setManufacturer(e.target.value)} 
+                        />
+                        {errors.manufacturer && <p className='error-message'>{errors.manufacturer}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="model">Model</label>
+                        <input 
+                            type="text" 
+                            id="model" 
+                            value={model} 
+                            onChange={(e) => setModel(e.target.value)} 
+                        />
+                        {errors.model && <p className='error-message'>{errors.model}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="max_takeoff_weight">Max Takeoff Weight</label>
+                        <input 
+                            type="number" 
+                            id="max_takeoff_weight" 
+                            value={max_takeoff_weight} 
+                            onChange={(e) => setMax_takeoff_weight(e.target.value)} 
+                            min="0" 
+                            max="100000"
+                        />
+                        {errors.max_takeoff_weight && <p className='error-message'>{errors.max_takeoff_weight}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="seating_capacity">Seating Capacity</label>
+                        <input 
+                            type="number" 
+                            id="seating_capacity" 
+                            value={seating_capacity} 
+                            onChange={(e) => setSeating_capacity(e.target.value)} 
+                            min="0" 
+                            max="300"
+                        />
+                        {errors.seating_capacity && <p className='error-message'>{errors.seating_capacity}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="operation_status">Operation Status</label>
+                        <select 
+                            id="operation_status" 
+                            value={operation_status} 
+                            onChange={(e) => setOperation_status(e.target.value)}
+                        >
+                            <option value="">Select an option</option>
+                            <option value="Operational">Operational</option>
+                            <option value="Maintenance">Maintenance</option>
+                            <option value="Decommissioned">Decommissioned</option>
+                        </select>
+                        {errors.operation_status && <p className='error-message'>{errors.operation_status}</p>}
+                    </div
+
+>
+                    <div className='form-group'>
+                        <label htmlFor="fuel_type">Fuel Type</label>
+                        <select 
+                            id="fuel_type" 
+                            value={fuel_type} 
+                            onChange={(e) => setFuel_type(e.target.value)}
+                        >
+                            <option value="">Select an option</option>
+                            <option value="100ll AvGas">100ll AvGas</option>
+                            <option value="94 unleaded">94 unleaded</option>
+                            <option value="Jet A">Jet A</option>
+                            <option value="100 unleaded">100 unleaded</option>
+                        </select>
+                        {errors.fuel_type && <p className='error-message'>{errors.fuel_type}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="active_owners">Active Owners</label>
+                        <input 
+                            type="number" 
+                            id="active_owners" 
+                            value={active_owners} 
+                            onChange={(e) => setActive_owners(e.target.value)} 
+                            min="1" 
+                            max="20"
+                        />
+                        {errors.active_owners && <p className='error-message'>{errors.active_owners}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="notes">Notes</label>
+                        <textarea 
+                            id="notes" 
+                            value={notes} 
+                            onChange={(e) => setNotes(e.target.value)}
+                        />
+                        {errors.notes && <p className='error-message'>{errors.notes}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="last_time_fueled">Last Time Fueled</label>
+                        <input 
+                            type="date" 
+                            id="last_time_fueled" 
+                            value={last_time_fueled} 
+                            onChange={(e) => setLast_time_fueled(e.target.value)}
+                            max={today.toISOString().split('T')[0]}
+                        />
+                        {errors.last_time_fueled && <p className="error-message">{errors.last_time_fueled}</p>}
+                    </div>
+                </div>
+                <div className="button-container">
+                    <button 
+                        disabled={Object.values(errors).length > 0} 
+                        type="submit" 
+                        className="submit-button"
+                    >
+                        Yes (Update Aircraft)
+                    </button>
+                    <button onClick={() => closeModal()} className="cancel-button">
+                        No (Don’t Update Aircraft)
+                    </button>
+                </div>
             </form>
         </div>
     );

@@ -43,17 +43,21 @@ const FlightIdent = ({aircraftId}) => {
     }
     }, [aircraft]);
 
-return (
+  const formatDate = (date) => {
+    return date ? new Date(date).toLocaleString() : "Not Available";
+  };
+
+  return (
     <div className="modal-container" onClick={handleOutsideClick}>
       <div className="modal-content">
-        <h1 className="heading">Aircraft Flight Status</h1>
+        <h1 className="heading">Aircraft Status</h1>
         <form onSubmit={handleSubmit} className="search-form">
           <label className="form-label">Tail Number Starting with N:</label>
           <input
             type="text"
             value={tail_number}
             onChange={(e) => setTail_number(e.target.value)}
-            placeholder="Enter tail number starting with N, e.g., N458MM"
+            placeholder="Enter tail number starting ex: N458MM"
             className="form-input"
           />
           <button type="submit" className="view-details-button">Get Info</button>
@@ -67,18 +71,30 @@ return (
                 <div className="flight-info-container">
                   <div className="flight-info-section">
                     <h3>Origin</h3>
-                    <p>City: {item.origin.city}</p>
-                    <p>Code: {item.origin.code}</p>
-                    <p>Name: {item.origin.name}</p>
+                    <p>City: {item?.origin?.city}</p>
+                    <p>Code: {item?.origin?.code}</p>
+                    <p>Name: {item?.origin?.name}</p>
                   </div>
                   <div className="flight-info-section">
                     <h3>Destination</h3>
-                    <p>City: {item.destination.city}</p>
-                    <p>Code: {item.destination.code}</p>
-                    <p>Name: {item.destination.name}</p>
+                    <p>City: {item?.destination?.city}</p>
+                    <p>Code: {item?.destination?.code}</p>
+                    <p>Name: {item?.destination?.name}</p>
                   </div>
                 </div>
-                <p className="time-info">Time: {item.time ? new Date(item.time).toLocaleString() : 'N/A'}</p>
+                <div className="flight-details">
+                  <p>Status: {item.status}</p>
+                  <p>registration: {item.registration}</p>
+                  <p>Departure Delay: {item.departure_delay} seconds</p>
+                  <p>Arrival Delay: {item.arrival_delay} seconds</p>
+                  <p>Scheduled Departure: {formatDate(item.scheduled_out)}</p>
+                  <p>Estimated Departure: {formatDate(item.estimated_out)}</p>
+                  <p>Scheduled Arrival: {formatDate(item.scheduled_on)}</p>
+                  <p>Estimated Arrival: {formatDate(item.estimated_on)}</p>
+                  <p>Aircraft Type: {item.aircraft_type}</p>
+                  <p>Route: {item.route}</p>
+                  <p>Route Distance: {item.route_distance} nm</p>
+                </div>
               </div>
             ))}
           </div>
@@ -89,7 +105,5 @@ return (
     </div>
   );
 };
-
-
 
 export default FlightIdent

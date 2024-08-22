@@ -55,13 +55,24 @@
     margin-right: 10px;
 }
 
-.time-info {
-    margin-top: 10px;
-    font-style: italic;
+.flight-details {
+    margin-top: 15px;
+    background-color: #e9ecef;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.flight-details p {
+    margin: 5px 0;
 }
 
 .no-data {
     font-size: 16px;
     color: #666;
     text-align: center;
+}
+
+.not-available {
+    color: #d9534f; 
+    font-style: italic;
 }

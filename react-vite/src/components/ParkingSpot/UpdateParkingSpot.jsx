@@ -75,52 +75,52 @@ const UpdateParkingSpot = () => {
     }
     
     return (
-        <div className="create-parking-spot">
+        <div className="update-parking-spot-container">
             <h2>Updating Parking Spot</h2>
             <form onSubmit={handleSubmit}>
-                <div>
-                    <label htmlFor="spot_number">Spot Number</label>
-                    <input
-                        type="text"
-                        id="spot_number"
-                        value={spot_number}
-                        onChange={(e) => setSpotNumber(e.target.value.toUpperCase())}
-                    />
-                {errors.spot_number && <p className='error-message'>{errors.spot_number}</p>}
+                <div className="form-grid">
+                    <div className='form-group'>
+                        <label htmlFor="spot_number">Spot Number</label>
+                        <input
+                            type="text"
+                            id="spot_number"
+                            value={spot_number}
+                            onChange={(e) => setSpotNumber(e.target.value.toUpperCase())}
+                        />
+                        {errors.spot_number && <p className='error-message'>{errors.spot_number}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="spot_size">Spot Size</label>
+                        <select
+                            id="spot_size"
+                            value={spot_size}
+                            onChange={(e) => setSpotSize(e.target.value)}
+                        >
+                            <option value="Small">Small</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Large">Large</option>
+                        </select>
+                        {errors.spot_size && <p className='error-message'>{errors.spot_size}</p>}
+                    </div>
+                    <div className='form-group'>
+                        <label htmlFor="is_reserved">Is Reserved</label>
+                        <select
+                            id="is_reserved"
+                            value={is_reserved}
+                            onChange={(e) => setIsReserved(e.target.value)}
+                        >
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                        {errors.is_reserved && <p className='error-message'>{errors.is_reserved}</p>}
+                    </div>
                 </div>
-                <div>
-                    <label htmlFor="spot_size">Spot Size</label>
-                    <select
-                        id="spot_size"
-                        value={spot_size}
-                        onChange={(e) => setSpotSize(e.target.value)}
-                    >  
-                        <option value="Small">Small</option>
-                        <option value="Medium">Medium</option>
-                        <option value="Large">Large</option>
-                    </select>
-                {errors.spot_size && <p className='error-message'>{errors.spot_size}</p>}
-                </div>
-                <div>
-                    <label htmlFor="is_reserved">Is Reserved</label>
-                    <select
-                        id="is_reserved"
-                        value={is_reserved}
-                        onChange={(e) => setIsReserved(e.target.value)}
-                    >
-                        <option value="Yes">Yes</option>
-                        <option value="No">No</option>
-                    </select>
-                {errors.is_reserved && <p className='error-message'>{errors.is_reserved}</p>}
-                </div>
-                <div className="delete-spot-buttons">
+                <div className="button-container">
                     <button disabled={Object.values(errors).length > 0} type="submit" className="update-button">Yes (Update Parking Spot)</button>
-                    <button onClick={() => closeModal()} className="delete-button">No (Do not Update)</button>
+                    <button onClick={() => closeModal()} className="cancel-button">No (Do not Update)</button>
                 </div>
-
             </form>
         </div>
     );
 };
-
 export default UpdateParkingSpot

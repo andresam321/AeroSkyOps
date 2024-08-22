@@ -5,7 +5,7 @@ import { thunkGetSingleParkingSpot } from '../../redux/parking_spot'
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import UpdateParkingSpot from './UpdateParkingSpot'
 import DeleteParkingSpot from './DeleteParkingSpot'
-import "./ParkingSpot.css"
+import "./ParkingSpotDetails.css"
 
 const ParkingSpotDetails = () => {
 
@@ -22,26 +22,29 @@ const ParkingSpotDetails = () => {
 
 return (
     <div className="parking-spot-details-container">
-    <h2>Parking Spot Details</h2>
-    <div className="parking-spot-card">
-        <div className="parking-spot-info">
-            <h3>Spot Number: {parkingSpotById?.spot_number}</h3>
-            <p>Spot Size:{parkingSpotById?.spot_size}</p>
-            <p>Is Reserved: {parkingSpotById?.is_reserved}</p>
+            <h2>Parking Spot Details</h2>
+            <div className="parking-spot-card">
+                <div className="parking-spot-info">
+                    <h3>Spot Number: {parkingSpotById?.spot_number}</h3>
+                    <p>Spot Size: {parkingSpotById?.spot_size}</p>
+                    <p>Is Reserved: {parkingSpotById?.is_reserved}</p>
+                </div>
+                <div className="button-container">
+                    <OpenModalButton 
+                        buttonText={"Update"} 
+                        className="update-button" 
+                        modalComponent={<UpdateParkingSpot spotId={parking_spotId} />} 
+                    />
+                    <OpenModalButton 
+                        buttonText={"Delete"} 
+                        className="delete-button" 
+                        modalComponent={<DeleteParkingSpot spotId={parking_spotId} />} 
+                    />
+                </div>
+            </div>
         </div>
-        <div className="button-container">
-            <OpenModalButton buttonText={"Update"} className="update-color" modalComponent={<UpdateParkingSpot spotId={parking_spotId.id} />} />
-        
-        <div type='button' className="">
-            <OpenModalButton 
-                buttonText="Delete" type='' className="" 
-                modalComponent={<DeleteParkingSpot 
-                spotId={parking_spotId.id} />}
-            /></div>
-        </div>
-    </div>
-</div>
-);
-}
+    );
+};
+
 
 export default ParkingSpotDetails

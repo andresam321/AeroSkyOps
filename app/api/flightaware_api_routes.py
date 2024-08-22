@@ -89,28 +89,58 @@ def get_flight_ident(tail_number):
     
 
 def process_flight_ident(data):
-    """Process and format flight data to extract origin and destination."""
+    """Process and format flight data to extract origin, destination, departure/arrival times, delays, and other relevant info."""
     if 'flights' in data:
         flights = data['flights']
         processed_data = [
             {
+                'flight_ident': flight['ident'],
+                'operator': flight.get('operator'),
+                'aircraft_type': flight.get('aircraft_type'),
                 'origin': {
                     'code': flight['origin'].get('code'),
                     'city': flight['origin'].get('city'),
                     'name': flight['origin'].get('name'),
+                    # 'scheduled_out': flight.get('scheduled_out'),
+                    # 'estimated_out': flight.get('estimated_out'),
+                    # 'actual_out': flight.get('actual_out'),
+                    # 'gate_origin': flight.get('gate_origin'),
+                    # 'terminal_origin': flight.get('terminal_origin'),
                 },
                 'destination': {
                     'code': flight['destination'].get('code'),
                     'city': flight['destination'].get('city'),
                     'name': flight['destination'].get('name'),
-                }
+                    # 'scheduled_on': flight.get('scheduled_on'),
+                    # 'estimated_on': flight.get('estimated_on'),
+                    # 'actual_on': flight.get('actual_on'),
+                    # 'gate_destination': flight.get('gate_destination'),
+                    # 'terminal_destination': flight.get('terminal_destination'),
+                },
+                'scheduled_out': flight.get('scheduled_out'),
+                'estimated_out': flight.get('estimated_out'),
+                'actual_out': flight.get('actual_out'),
+                'gate_origin': flight.get('gate_origin'),
+                'terminal_origin': flight.get('terminal_origin'),
+                'scheduled_on': flight.get('scheduled_on'),
+                'estimated_on': flight.get('estimated_on'),
+                'actual_on': flight.get('actual_on'),
+                'gate_destination': flight.get('gate_destination'),
+                'terminal_destination': flight.get('terminal_destination'),
+                'registration':flight.get('registration'),
+                'route': flight.get('route'),
+                'route_distance': flight.get('route_distance'),
+                'departure_delay': flight.get('departure_delay'),
+                'arrival_delay': flight.get('arrival_delay'),
+                'status': flight.get('status'),
+                'filed_ete': flight.get('filed_ete'),
+                'progress_percent': flight.get('progress_percent'),
             }
             for flight in flights
         ]
         return processed_data
     else:
         return {"error": "No flight data found in the provided data."}
-
 
 def fetch_and_process_fligth_ident(tail_number):
     """Fetch and process weather data for an airport."""

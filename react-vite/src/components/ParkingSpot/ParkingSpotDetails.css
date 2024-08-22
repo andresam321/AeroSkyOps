@@ -1,0 +1,69 @@
+.parking-spot-details-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.parking-spot-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.parking-spot-info {
+    margin-bottom: 20px;
+}
+
+.parking-spot-info h3 {
+    margin: 0;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+
+.parking-spot-info p {
+    margin: 5px 0;
+    color: #555;
+    font-size: 16px;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.update-button, .delete-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.update-button {
+    background-color: #007bff;
+    color: white;
+}
+
+.delete-button {
+    background-color: #dc3545;
+    color: white;
+}
+
+.update-button:hover, .delete-button:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}

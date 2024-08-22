@@ -154,6 +154,28 @@
   transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.button-group .primary-button {
+  flex: 1;
+  margin: 0 5px;
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group .primary-button {
+    margin: 10px 0;
+    width: 100%;
+  }
+}
+
 @media (max-width: 768px) {
   .parking-spot-container {
     flex-direction: column;

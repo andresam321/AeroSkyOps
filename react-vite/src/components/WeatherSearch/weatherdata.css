@@ -77,3 +77,9 @@
     font-size: 0.9rem; 
     color: #999;
 }
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
