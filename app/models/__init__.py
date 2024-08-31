@@ -8,3 +8,4 @@ from .fuel_order import FuelOrder
 from .airport_parking import AirportParking
 from .owner import Owner
 from .role import Role
+from .fuel_pricing import FuelPricing
