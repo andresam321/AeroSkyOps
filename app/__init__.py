@@ -13,6 +13,7 @@ from .api.airport_parking_routes import airport_routes
 from .api.owner_routes import owner_routes
 from .api.fueling_routes import fueling_routes
 from .api.flightaware_api_routes import flightaware_routes
+from .api.fuel_price_routes import fueling_price_routes
 from .seeds import seed_commands
 from .config import Config
 
@@ -39,6 +40,7 @@ app.register_blueprint(aircraft_routes, url_prefix='/api/aircrafts')
 app.register_blueprint(airport_routes, url_prefix='/api/airport_parkings')
 app.register_blueprint(owner_routes, url_prefix='/api/owners')
 app.register_blueprint(fueling_routes, url_prefix='/api/fuelings')
+app.register_blueprint(fueling_price_routes, url_prefix='/api/prices')
 app.register_blueprint(flightaware_routes, url_prefix='/api/flightaware')
 db.init_app(app)
 Migrate(app, db)

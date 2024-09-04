@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: 09c548804047
+Revision ID: 3dcc78b7962c
 Revises: 
-Create Date: 2024-08-19 20:21:36.010237
+Create Date: 2024-09-03 16:44:18.500273
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '09c548804047'
+revision = '3dcc78b7962c'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -43,6 +43,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('employee_id')
+    )
+    op.create_table('fuel_pricing',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_id', sa.Integer(), nullable=True),
+    sa.Column('fuel_price', sa.String(length=25), nullable=True),
+    sa.Column('type_of_fuel', sa.String(length=25), nullable=True),
+    sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('parking_spots',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -128,6 +136,7 @@ def downgrade():
     op.drop_table('fuel_orders')
     op.drop_table('aircrafts')
     op.drop_table('parking_spots')
+    op.drop_table('fuel_pricing')
     op.drop_table('users')
     op.drop_table('role')
     op.drop_table('airport_parkings')

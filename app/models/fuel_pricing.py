@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime, timezone
 
-class FuelPricing(db.model):
+class FuelPricing(db.Model):
     __tablename__ = "fuel_pricing"
     
     if environment == "production":
@@ -15,7 +15,7 @@ class FuelPricing(db.model):
     
 
 
-    user = db.relationship("User", back_populates = "fuel_pricing",cascade="all, delete-orphan")   
+    user = db.relationship("User", back_populates = "fuel_pricing")   
 
 
     def to_dict(self):
@@ -26,6 +26,6 @@ class FuelPricing(db.model):
             'fuel_price':self.fuel_price,
             'type_of_fuel':self.type_of_fuel            
 
-}
+        }
         
 

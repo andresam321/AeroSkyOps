@@ -50,7 +50,7 @@ class User(db.Model, UserMixin):
         cascade="all, delete-orphan",
     )
     
-    fuel_pricing = db.relationship("FuelPricing", back_populates = "user")
+    fuel_pricing = db.relationship("FuelPricing", back_populates = "user",cascade="all, delete-orphan")
 
     role = db.relationship("Role", back_populates="users")
 
