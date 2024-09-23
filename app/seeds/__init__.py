@@ -5,7 +5,7 @@ from .aircraft import seed_aircrafts, undo_aircrafts
 from .owner import seed_owners, undo_owners
 from .fuel_order import seed_fuelOrders, undo_fuelOrders
 from .airport_parking import seed_airport_parkings, undo_airport_parkings
-
+from .role import seed_roles, undo_roles
 
 from app.models.db import db, environment, SCHEMA
 
@@ -28,6 +28,8 @@ def seed():
         undo_parkingSpots()
         undo_aircrafts()
         undo_users()
+        undo_roles()
+    seed_roles()
     seed_users()
     seed_airport_parkings()
     seed_parkingSpots()
@@ -46,5 +48,6 @@ def undo():
     undo_parkingSpots()
     undo_aircrafts()
     undo_users()
+    undo_roles()
     
     # Add other undo functions here

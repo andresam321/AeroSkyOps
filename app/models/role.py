@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 class Role(db.Model):
-    __tablename__ = "role"
+    __tablename__ = "roles"
 
     if environment == "production":
         __table_args__ = {"schema": SCHEMA}
