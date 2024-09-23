@@ -19,7 +19,7 @@ class User(db.Model, UserMixin):
     # username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    role_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('role.id')))
+    role_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('role.id')), nullable=False, default=1)
 
     parking_spots = db.relationship(
         "ParkingSpot", back_populates="employee", cascade="all, delete-orphan"
