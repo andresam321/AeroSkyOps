@@ -11,6 +11,9 @@ class AirportParking(db.Model):
 
     parking_spots = db.relationship("ParkingSpot", back_populates="airport_parking", cascade='all, delete-orphan')
 
+    # one to many for parking history
+    parking_histories = db.relationship("ParkingHistory", back_populates="parking_spot", cascade='all, delete-orphan')
+
     def to_dict(self):
         return {
             "id": self.id,
