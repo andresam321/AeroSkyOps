@@ -17,3 +17,15 @@ class ParkingHistory(db.Model):
 
     aircraft = db.relationship("Aircraft", back_populates="parking_histories")
     parking_spot = db.relationship("ParkingSpot", back_populates="parking_histories")
+    
+
+    def to_dict(self):
+        return {
+        "id":self.id,
+        "aircraft_id":self.aircraft_id,
+        "parking_spot_id":self.parking_spot_id,
+        "start_time":self.start_time,
+        "end_time":self.end_time        
+
+
+    }
