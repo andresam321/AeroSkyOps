@@ -25,7 +25,13 @@ class ParkingHistory(db.Model):
         "aircraft_id":self.aircraft_id,
         "parking_spot_id":self.parking_spot_id,
         "start_time":self.start_time,
-        "end_time":self.end_time        
-
-
+        "end_time":self.end_time,
+        "aircraft": {
+                "id": self.aircraft.id,
+                "tail_number": self.aircraft.tail_number,
+                "manufacturer": self.aircraft.manufacturer,
+                "model": self.aircraft.model,
+                "operation_status": self.aircraft.operation_status,
+                
+            }        
     }
