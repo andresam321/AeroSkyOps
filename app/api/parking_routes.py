@@ -197,33 +197,33 @@ def get_parking_spots_with_aircraft(airport_parking_id):
 
 
 #assign aircraft to parking spot 
-@parking_routes.route("/assign_aircraft_to_parking_spot", methods=['POST'])
-@login_required
-def assign_aircraft_to_parking_spot():
-    data = request.get_json()
+# @parking_routes.route("/assign_aircraft_to_parking_spot", methods=['POST'])
+# @login_required
+# def assign_aircraft_to_parking_spot():
+#     data = request.get_json()
 
-    parking_spot_id = data.get('parking_spot_id')
-    aircraft_id = data.get('aircraft_id')
+#     parking_spot_id = data.get('parking_spot_id')
+#     aircraft_id = data.get('aircraft_id')
 
-    if not parking_spot_id or not aircraft_id:
-        return {"error": "Parking spot ID or aircraft ID missing"}, 400
+#     if not parking_spot_id or not aircraft_id:
+#         return {"error": "Parking spot ID or aircraft ID missing"}, 400
 
-    parking_spot = ParkingSpot.query.get(parking_spot_id)
-    if not parking_spot:
-        return {"error": "Parking spot not found"}, 404
+#     parking_spot = ParkingSpot.query.get(parking_spot_id)
+#     if not parking_spot:
+#         return {"error": "Parking spot not found"}, 404
     
-    aircraft = Aircraft.query.get(aircraft_id)
-    if not aircraft:
-        return {"error": "Aircraft not found"}, 404
+#     aircraft = Aircraft.query.get(aircraft_id)
+#     if not aircraft:
+#         return {"error": "Aircraft not found"}, 404
     
-    if parking_spot.aircraft_id:
-        return {"error": "Parking spot already occupied"}, 400
+#     if parking_spot.aircraft_id:
+#         return {"error": "Parking spot already occupied"}, 400
 
-    parking_spot.aircraft_id = aircraft_id
-    db.session.add()
-    db.session.commit()
+#     parking_spot.aircraft_id = aircraft_id
+#     db.session.add()
+#     db.session.commit()
 
-    return {"message": "Aircraft assigned to parking spot successfully"}, 201
+#     return {"message": "Aircraft assigned to parking spot successfully"}, 201
 
 
 

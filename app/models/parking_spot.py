@@ -27,6 +27,9 @@ class ParkingSpot(db.Model):
 
     #one to one 
     aircraft = db.relationship('Aircraft', back_populates = 'parking_spot', uselist=False,single_parent=True)
+    
+    # one to many for parking history
+    parking_histories = db.relationship("ParkingHistory", back_populates="parking_spot")
 
     def to_dict(self):
         return {

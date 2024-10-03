@@ -223,7 +223,7 @@ def unassign_aircraft_from_parking():
     if not aircraft:
         return {"errors": "Aircraft not found"}, 404
     
-    active_parking_history = ParkingHistory.query.filter_by(aircraft_id, end_time=None)
+    active_parking_history = ParkingHistory.query.filter_by(aircraft_id=aircraft_id, end_time=None).first()
     
     if not active_parking_history:
         return {"errors": "No active parking record found for this aircraft"}, 404
