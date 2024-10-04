@@ -1,4 +1,4 @@
-from app.models import db, environment, SCHEMA, Aircraft
+from app.models import db, environment, SCHEMA, Aircraft, ParkingHistory
 from sqlalchemy.sql import text
 from datetime import datetime, timezone
 
@@ -168,9 +168,23 @@ def seed_aircrafts():
         }
     ]
 
-    [db.session.add(Aircraft(**aircraft)) for aircraft in aircrafts]
-    print("Aircrafts seeded successfully.")
-    db.session.commit()
+    for aircraft_data in aircrafts:
+        # Create and add the aircraft
+        aircraft = Aircraft(**aircraft_data)
+        db.session.add(aircraft)
+        db.session.commit()  # Commit the aircraft to get the ID
+
+        # Automatically create ParkingHistory if the aircraft has a parking_spot_id
+        if aircraft.parking_spot_id:
+            parking_history = ParkingHistory(
+                aircraft_id=aircraft.id,
+                parking_spot_id=aircraft.parking_spot_id,
+                start_time=datetime.now(timezone.utc),
+                end_time=None  # Active parking history
+            )
+            db.session.add(parking_history)
+
+    db.session.commit() 
 
 def undo_aircrafts():
     if environment == "production":

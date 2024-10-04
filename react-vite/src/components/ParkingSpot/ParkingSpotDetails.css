@@ -67,3 +67,69 @@ h2 {
     opacity: 0.9;
     transform: scale(1.05);
 }
+
+.highlighted {
+    background-color: #f0f8ff; 
+    border: 2px solid #007bff; 
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.parking-spot-details-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+.parking-spot-card {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.parking-spot-info h3 {
+    font-size: 1.5rem;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.aircraft-history {
+    margin-top: 20px;
+}
+
+.aircraft-history-card {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.aircraft-history-card.highlighted {
+    background-color: #ffe8a1;
+    border: 2px solid #ffc107;
+}
+
+.aircraft-history-card:hover {
+    background-color: #fff8e1;
+    border-color: #ffeb3b;
+}
+
+.aircraft-history-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+
+.aircraft-history-card p {
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #555;
+}
