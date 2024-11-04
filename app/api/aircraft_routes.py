@@ -199,7 +199,7 @@ def assign_aircraft_to_parking():
     new_parking_history = ParkingHistory(
         aircraft_id=aircraft_id,
         parking_spot_id=spot_id,
-        start_time=datetime.now()  # Current time as the start of parking
+        start_time=datetime.now()  
     )
 
     db.session.add(new_parking_history)
