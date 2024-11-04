@@ -7,6 +7,7 @@ from .fuel_order import seed_fuelOrders, undo_fuelOrders
 from .airport_parking import seed_airport_parkings, undo_airport_parkings
 from .fuel_pricing import seed_fuelPricing, undo_fuelPricing
 from .parking_history import seed_parking_history, undo_parking_history
+from .fuel_tank import seed_fuel_tank, undo_fuel_tank
 
 
 from app.models.db import db, environment, SCHEMA
@@ -24,6 +25,7 @@ def seed():
         # command, which will  truncate all tables prefixed with 
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
+        undo_fuel_tank()
         undo_parking_history()
         undo_fuelPricing()
         undo_airport_parkings()
@@ -40,12 +42,14 @@ def seed():
     seed_fuelOrders()
     seed_fuelPricing()
     seed_parking_history()
+    seed_fuel_tank()
     # Add other seed functions here
 
 
 # Creates the `flask seed undo` command
 @seed_commands.command('undo')
 def undo():
+    undo_fuel_tank()
     undo_parking_history()
     undo_fuelPricing()
     undo_airport_parkings()
