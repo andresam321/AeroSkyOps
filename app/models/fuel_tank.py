@@ -8,6 +8,7 @@ class FuelTank(db.Model):
         __table_args__ = {'schema': SCHEMA}
     
     id = db.Column(db.Integer, primary_key=True)
+    created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
     tank_name = db.Column(db.String, nullable=False)
     fuel_type = db.Column(db.String, nullable=False)
     current_fuel_level = db.Column(db.Float, nullable=False)
@@ -24,6 +25,7 @@ class FuelTank(db.Model):
     def to_dict(self):
         return {
             "id":self.id,
+            'created_by_user_id':self.created_by_user_id,
             "tank_name":self.tank_name,
             "fuel_type":self.fuel_type,
             "current_fuel_level":self.current_fuel_level,

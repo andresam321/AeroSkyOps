@@ -31,7 +31,7 @@ def aircraft_by_id(id):
 @aircraft_routes.route("/<int:id>/aircraft/with_owners/parking_spot")
 @login_required
 def aircraft_with_owners_parking_spot(id):
-   
+    
     pass
 
 
