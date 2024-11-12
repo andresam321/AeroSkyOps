@@ -40,9 +40,20 @@ def create_fuel_tank():
 
     if form.validate_on_submit():
         new_fuel_tank = FuelTank(
-                    
-
+            created_by_user_id=current_user.id,
+            tank_name = form.data["tank_name"],
+            fuel_type = form.data["fuel_type"],
+            fuel_capacity = form.data['fuel_capactity'],
+            usable_fuel = form.data["usable_fuel"],
+            threshold_level= form.data["threshold_level"],
+            last_inspection_date = form.data['last_inspection_date'],
+            next_inspection_due = form.data['next_inspection_due'],
+            maintenance_status = form.data['maintenance_status']
+        )
+        db.session.add(new_fuel_tank)
+        db.session.commit()
+        
+        return new_fuel_tank.to_dict(), 201
+    else:
+        return {"errors":form.errors},400
     
-
-    )
-    pass

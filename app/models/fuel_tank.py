@@ -27,9 +27,9 @@ class FuelTank(db.Model):
             'created_by_user_id':self.created_by_user_id,
             "tank_name":self.tank_name,
             "fuel_type":self.fuel_type,
+            "fuel_capacity":self.fuel_capacity,
             "usable_fuel":self.usable_fuel,
             "threshold_level":self.threshold_level,
-            "fuel_capacity":self.fuel_capacity,
             "last_inspection_date":self.last_inspection_date,
             "next_inspection_due":self.next_inspection_due,
             "maintenance_status":self.maintenance_status        
