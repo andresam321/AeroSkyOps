@@ -11,8 +11,7 @@ class FuelTank(db.Model):
     created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
     tank_name = db.Column(db.String, nullable=False)
     fuel_type = db.Column(db.String, nullable=False)
-    current_fuel_level = db.Column(db.Float, nullable=False)
-    fuel_capactiy = db.Column(db.Float, nullable=False)
+    fuel_capacity = db.Column(db.Float, nullable=False)
     usable_fuel = db.Column(db.Float, nullable=False)
     threshold_level = db.Column(db.Float, nullable=False)
     last_inspection_date = db.Column(db.DateTime, nullable=False)
@@ -28,9 +27,9 @@ class FuelTank(db.Model):
             'created_by_user_id':self.created_by_user_id,
             "tank_name":self.tank_name,
             "fuel_type":self.fuel_type,
-            "current_fuel_level":self.current_fuel_level,
             "usable_fuel":self.usable_fuel,
             "threshold_level":self.threshold_level,
+            "fuel_capacity":self.fuel_capacity,
             "last_inspection_date":self.last_inspection_date,
             "next_inspection_due":self.next_inspection_due,
             "maintenance_status":self.maintenance_status        
