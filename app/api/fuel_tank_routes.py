@@ -8,8 +8,8 @@ fuel_tank_routes = Blueprint("fuel_tank",__name__)
 
 
 #display all tanks
-#untested
-@fuel_tank_routes("/all/tanks")
+
+@fuel_tank_routes.route("/all/tanks")
 @login_required
 def get_all_fuel_tanks():
     fuel_tanks = FuelTank.query.all()
@@ -17,8 +17,8 @@ def get_all_fuel_tanks():
 
 
 #display one fuel tank by ID
-#untested
-@fuel_tank_routes("/<int:id>")
+
+@fuel_tank_routes.route("/<int:id>")
 @login_required
 def fuel_tank_by_id(id):
     fuel_tank = FuelTank.query.get(id)
@@ -29,8 +29,8 @@ def fuel_tank_by_id(id):
 
 
 #creating a fuel_tank
-#untested
-@fuel_tank_routes("/new", methods = ['POST'])
+
+@fuel_tank_routes.route("/new", methods = ['POST'])
 @login_required
 def create_fuel_tank():
     
@@ -43,7 +43,7 @@ def create_fuel_tank():
             created_by_user_id=current_user.id,
             tank_name = form.data["tank_name"],
             fuel_type = form.data["fuel_type"],
-            fuel_capacity = form.data['fuel_capactity'],
+            fuel_capacity = form.data['fuel_capacity'],
             usable_fuel = form.data["usable_fuel"],
             threshold_level= form.data["threshold_level"],
             last_inspection_date = form.data['last_inspection_date'],
