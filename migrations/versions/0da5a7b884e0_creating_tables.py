@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: 77ed6049683f
+Revision ID: 0da5a7b884e0
 Revises: 
-Create Date: 2024-10-03 17:17:19.552029
+Create Date: 2024-11-12 09:13:08.757972
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '77ed6049683f'
+revision = '0da5a7b884e0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -50,6 +50,20 @@ def upgrade():
     sa.Column('fuel_price', sa.String(length=25), nullable=True),
     sa.Column('type_of_fuel', sa.String(length=25), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('fuel_tank',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('created_by_user_id', sa.Integer(), nullable=False),
+    sa.Column('tank_name', sa.String(), nullable=False),
+    sa.Column('fuel_type', sa.String(), nullable=False),
+    sa.Column('fuel_capacity', sa.Float(), nullable=False),
+    sa.Column('usable_fuel', sa.Float(), nullable=False),
+    sa.Column('threshold_level', sa.Float(), nullable=False),
+    sa.Column('last_inspection_date', sa.DateTime(), nullable=False),
+    sa.Column('next_inspection_due', sa.DateTime(), nullable=False),
+    sa.Column('maintenance_status', sa.String(), nullable=False),
+    sa.ForeignKeyConstraint(['created_by_user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('parking_spots',
@@ -147,6 +161,7 @@ def downgrade():
     op.drop_table('fuel_orders')
     op.drop_table('aircrafts')
     op.drop_table('parking_spots')
+    op.drop_table('fuel_tank')
     op.drop_table('fuel_pricing')
     op.drop_table('users')
     op.drop_table('role')

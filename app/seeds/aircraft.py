@@ -5,7 +5,6 @@ from datetime import datetime, timezone
 
 
 def seed_aircrafts():
-    
     plane_urls = [
         "https://skyhighimages.s3.us-west-1.amazonaws.com/skyhighops_images/Screenshot+2024-05-02+at+12.43.03%E2%80%AFPM.png",
         "https://skyhighimages.s3.us-west-1.amazonaws.com/skyhighops_images/Screenshot+2024-04-25+at+7.07.18%E2%80%AFPM.png",

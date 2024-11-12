@@ -140,13 +140,13 @@ const handleBlur = (field) => {
                 <button disabled={Object.values(errors).length > 0} className="btn login-btn-main" type="submit">
                   Log In
                 </button>
-                <button
+                {/* <button
                   type="button"
                   className="btn demo-btn"
                   onClick={handleDemoUserLogin}
                 >
                   Login as Demo User
-                </button>
+                </button> */}
                 {!showSignupModal && (
                   <button
                     type="button"

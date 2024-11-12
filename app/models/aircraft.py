@@ -40,7 +40,6 @@ class Aircraft(db.Model):
     parking_histories = db.relationship("ParkingHistory", back_populates ="aircraft",cascade='all, delete-orphan')
 
     def to_dict(self):
-
         return {
             "id":self.id,
             "user_id":self.user_id,
