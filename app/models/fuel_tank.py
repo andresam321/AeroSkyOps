@@ -35,5 +35,4 @@ class FuelTank(db.Model):
             "next_inspection_due":self.next_inspection_due,
             "maintenance_status":self.maintenance_status        
 
-
     }
