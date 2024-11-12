@@ -15,6 +15,7 @@ import fuelingReducer from "./fueling";
 import fuelPriceReducer from "./price";
 import parkingHistoryReducer from "./parking_history";
 import flightAwareReducer from "./flightaware";
+import fuelTankReducer from "./fuel_tank";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   fuelingReducer:fuelingReducer,
   fuelPriceReducer:fuelPriceReducer,
   flightAwareReducer:flightAwareReducer,
-  parkingHistoryReducer:parkingHistoryReducer
+  parkingHistoryReducer:parkingHistoryReducer,
+  fuelTankReducer:fuelTankReducer
 });
 
 let enhancer;

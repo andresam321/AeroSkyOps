@@ -74,3 +74,25 @@ export const thunkCreateTank = (tank) => async (dispatch) => {
     }
 
 }
+
+
+function fuelTankReducer(state = {}, action){
+    switch(action.type){
+        case LOAD_ALL_TANKS: {
+            return {...state, allTanks: action.payload}
+        }
+        case LOAD_ONE_TANK: {
+            const newState = { ...state, [action.payload.id]: action.payload };
+            return newState;
+        }
+        case CREATE_TANK: {
+            const newState = { ...state };
+            newState[action.payload.id] = action.payload;
+            return newState;
+        }
+        default:
+            return state;
+    }
+}
+
+export default fuelTankReducer
