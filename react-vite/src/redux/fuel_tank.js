@@ -27,9 +27,9 @@ export const thunkLoadAllTanks = (tank) => async (dispatch) => {
             throw new Error(errorData.message || "failed to fetch tanks")
         }        
 
-        const data = await res.jso()
+        const data = await res.json()
         if(!data.errors) {
-            await dispatch(getAllTanks(data))
+            await dispatch(getAllTanks(data.fuel_tanks))
         }
     } catch (error) {
         console.error('Error fetching tanks', error)

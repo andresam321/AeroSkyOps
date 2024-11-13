@@ -1,0 +1,15 @@
+.fuel-gauge-image {
+    position: relative;
+    /* width: 100%; */
+    height: 200px;
+    object-fit: fill;
+    background-image: url('https://res.cloudinary.com/djuzk5um3/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1731449755/fuel_tank_olipgu.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    border: 1px solid #333;
+}
+.fuel-gauge-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}

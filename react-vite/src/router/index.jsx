@@ -13,6 +13,7 @@ import AirportAreas from '../components/AirportPage/AirportAreas';
 import OwnerDetails from '../components/Owner/OwnerDetails';
 import FuelRequestList from '../components/Fueling/FuelRequestList';
 import WeatherSearch from '../components/WeatherSearch/WeatherSearch';
+import AllFuelTanks from '../components/FuelTank/AllFuelTanks';
 
 export const router = createBrowserRouter([
   {
@@ -69,6 +70,10 @@ export const router = createBrowserRouter([
       {
         path: "/fueling/request/list",
         element: <FuelRequestList />,  
+      },
+      {
+        path: "/all/fuel/tanks",
+        element: <AllFuelTanks />,  
       },
       // {
       //   path: "/parking_spots/:parking_spotId/update",
