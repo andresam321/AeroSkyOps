@@ -105,7 +105,7 @@ def delete_fuel_tank(id):
 
 ### update fuel level
 ### tested
-@fuel_tank_routes.route("/fuel/<int:id>/update", methods=["POST"])
+@fuel_tank_routes.route("/fuel/<int:id>/update_level", methods=["POST"])
 @login_required
 def update_fuel_level(id):
     data = request.get_json()

@@ -1,11 +1,14 @@
 const LOAD_ALL_TANKS = "loadAllTanks/LOAD_ALL_TANKS"
 const LOAD_ONE_TANK = "loadOneTank/LOAD_ONE_TANK"
 const CREATE_TANK = "createTank/CREATE_TANK"
+const UPDATE_TANK = "updateTank/CREATE_TANK"
+const DELETE_TANK_INFO = "deleteTankInfo/DELETE_TANK_INFO"
+const UPDATE_TANK_FUEL_LEVEL = "updateTankFuelLevel/UPDATE_TANK_FUEL_LEVEL"
+const LOW_FUEL_WARNING = "lowFuelWarning/LOW_FUEL_WARNING"
 
 const getAllTanks = (tank) => ({
     type:LOAD_ALL_TANKS,
     payload:tank
-
 })
 
 const loadOneTank = (tank) => ({
@@ -18,6 +21,25 @@ const createTank = (tank) => ({
     payload:tank
 })
 
+const updateTank = (tank) => ({
+    type:UPDATE_TANK,
+    payload:tank
+})
+
+const deleteTank = (tank) => ({
+    type:DELETE_TANK_INFO,
+    payload:tank
+})
+
+const updateTankFuelLevel = (tank) => ({
+    type:UPDATE_TANK_FUEL_LEVEL,
+    payload:tank
+})
+
+const lowFuelWarning = (tank) => ({
+    type:LOW_FUEL_WARNING,
+    payload:tank
+})
 
 export const thunkLoadAllTanks = (tank) => async (dispatch) => {
     try {
@@ -75,6 +97,83 @@ export const thunkCreateTank = (tank) => async (dispatch) => {
 
 }
 
+export const thunkUpdatFuelTank = (tank, id) => async (dispatch) => {
+
+    try {
+        const res = await fetch(`/api/fuel_tank/${id}/update`, {
+            method: "PUT",
+            body:tank
+        })
+        if (!res.ok) {
+            const  errorData = await res.json();
+            throw new Error(errorData.message || "failed to update tank")
+        }        
+
+        const data = await res.jso()
+        if(!data.errors) {
+            await dispatch(updateTank(data))
+        }
+    } catch (error) {
+        console.error('Error updating tank', error)
+    }
+}
+
+export const thunkDeleteTankInfo = (id) => async (dispatch) => {
+
+    try {
+        const res = await fetch(`/api/fuel_tank/${id}`, {
+            method: "DELETE"
+        })
+        if (!res.ok) {
+            const  errorData = await res.json();
+            throw new Error(errorData.message || "failed to delete tank")
+        }        
+
+        const data = await res.jso()
+        if(!data.errors) {
+            await dispatch(deleteTank(data))
+        }
+    } catch (error) {
+        console.error('Error deleting tank', error)
+    }
+}
+
+export const thunkUpdateTankFuelLevel = (tank, id) => async (dispatch) => {
+    try {
+        const res = await fetch(`/api/fuel_tank/${id}/update_level`, {
+            method: "PUT",
+            body:tank
+        })
+        if (!res.ok) {
+            const  errorData = await res.json();
+            throw new Error(errorData.message || "failed to update fuel tank level")
+        }        
+
+        const data = await res.jso()
+        if(!data.errors) {
+            await dispatch(updateTankFuelLevel(data))
+        }
+    } catch (error) {
+        console.error('Error updating fuel tank level', error)
+    }
+}
+
+export const thunkTankFuelLowFuelWarning = () => async (dispatch) => {
+    try {
+        const res = await fetch(`/api/fuel_tank/low-fuel-warning`)
+        if (!res.ok) {
+            const  errorData = await res.json();
+            throw new Error(errorData.message || "failed to display tank fuel level")
+        }        
+
+        const data = await res.jso()
+        if(!data.errors) {
+            await dispatch(lowFuelWarning(data))
+        }
+    } catch (error) {
+        console.error('Error displaying tanks level', error)
+    }
+}
 
 function fuelTankReducer(state = {}, action){
     switch(action.type){
