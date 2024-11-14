@@ -105,11 +105,12 @@ def delete_fuel_tank(id):
 
 ### update fuel level
 ### tested
-@fuel_tank_routes.route("/fuel/<int:id>/update_level", methods=["POST"])
+@fuel_tank_routes.route("/<int:id>/fuel", methods=["POST"])
 @login_required
 def update_fuel_level(id):
     data = request.get_json()
-    amount_to_change = data.get("amount_to_change")  
+    print("Received data:", data)
+    usable_fuel = data.get("usable_fuel")  
 
     tank = FuelTank.query.get(id)
     
@@ -117,14 +118,14 @@ def update_fuel_level(id):
         return {"message": "Tank not found"}, 404
 
 
-    if amount_to_change < 0 and tank.usable_fuel + amount_to_change < 2000:
+    if usable_fuel < 0 and tank.usable_fuel + usable_fuel < 2000:
         return {"message": "Can't go below the threshold"}, 400
     
-    if amount_to_change > 0 and tank.usable_fuel + amount_to_change > 10000:
+    if usable_fuel > 0 and tank.usable_fuel + usable_fuel > 10000:
         return {"message":"Can't go higher than tank capictiy"},400 
 
 
-    tank.usable_fuel += amount_to_change
+    tank.usable_fuel += usable_fuel
     db.session.commit()  
 
     return {"message": "Fuel level updated", "usable_fuel": tank.usable_fuel}
