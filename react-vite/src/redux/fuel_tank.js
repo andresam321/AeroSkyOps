@@ -189,6 +189,26 @@ function fuelTankReducer(state = {}, action){
             newState[action.payload.id] = action.payload;
             return newState;
         }
+        case UPDATE_TANK:{
+            return {
+                ...state,
+                [action.payload.id]: action.payload,
+            };
+        }
+        case DELETE_TANK_INFO:{
+            const newState = { ...state };
+            delete newState[action.payload];
+            return newState;
+        }
+        case UPDATE_TANK_FUEL_LEVEL:{
+            return {
+                ...state,
+                [action.payload.id]: action.payload,
+            };
+        }
+        case LOW_FUEL_WARNING:{
+            return {...state, FuelWarning: action.payload}
+        }
         default:
             return state;
     }
