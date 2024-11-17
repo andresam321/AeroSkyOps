@@ -40,6 +40,18 @@ const fuelColor = {
     "94 Unleaded": "rgba(173, 255, 47, 0.6)" // Yellow-greenish for 94 Unleaded
 }[fuel_type] || "rgba(100, 100, 100, 0.6)";   // Default: Gray
 
+
+const handleInputChange = (e) => {
+    let value = Number(e.target.value)
+
+    // Remove leading zero if it starts with "-0"
+    if (value === "-0") {
+        setUsableFuel("-");
+    } else {
+        setUsableFuel(value);
+    }
+};
+
     return (
     <div className="fuel-gauge-container">
         <h3>{tank_name}</h3>
@@ -60,7 +72,7 @@ const fuelColor = {
                 type="number"
                 step="any"
                 value={usableFuel}
-                onChange={(e) => setUsableFuel(Number(e.target.value))}
+                onChange={handleInputChange}
                 placeholder="Amount to add/subtract"
                 aria-label="Fuel amount adjustment" 
             />
