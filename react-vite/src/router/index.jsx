@@ -14,6 +14,7 @@ import OwnerDetails from '../components/Owner/OwnerDetails';
 import FuelRequestList from '../components/Fueling/FuelRequestList';
 import WeatherSearch from '../components/WeatherSearch/WeatherSearch';
 import AllFuelTanks from '../components/FuelTank/AllFuelTanks';
+import SingleFuelTank from '../components/FuelTank/SingleFuelTank';
 
 export const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ export const router = createBrowserRouter([
       {
         path: "/all/fuel/tanks",
         element: <AllFuelTanks />,  
+      },
+      {
+        path: "/tank/:id",
+        element: <SingleFuelTank   />,
       },
       // {
       //   path: "/parking_spots/:parking_spotId/update",
