@@ -4,6 +4,7 @@ import { thunkLoadAllTanks } from '../../redux/fuel_tank'
 import SingleFuelTank from './SingleFuelTank';
 import FuelGauge from './FuelGauge';
 import { NavLink } from 'react-router-dom';
+import "./AllFuelTanks.css"
 
 const AllFuelTanks = () => {
 
@@ -19,15 +20,16 @@ const AllFuelTanks = () => {
 
 return (
 
-    <div className="tank-dashboard-container">
-        {tanks && tanks.map((tank) => (
-        // <NavLink to={`/tank/${tank.id}`} className="nav-link">
-        <div key={tank.id} className="tank-item">
+<div className="tank-dashboard-container">
+    {tanks && tanks.map((tank) => (
+        <NavLink to={`/tank/${tank?.id}`} className="nav-link" key={tank.id}>
+            <div className="tank-item">
                 <FuelGauge tank={tank} />
             </div>
-            // </NavLink>
-            ))}
-    </div>
+        </NavLink>
+    ))}
+</div>
+
     );
 };
 

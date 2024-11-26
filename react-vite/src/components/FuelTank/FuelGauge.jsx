@@ -10,9 +10,9 @@ const FuelGauge = ({ tank }) => {
     const [usableFuel, setUsableFuel] = useState('')
     const {closeModal} = useModal()
     const { id = "", fuel_capacity = 1, usable_fuel = 0, tank_name = "Unknown Tank", fuel_type = "Unknown" } = tank;
-    console.log("line13",tank)
-    const singleTank = useSelector((state) => state.fuelTankReducer.allTanks[+id])
-    console.log("line 15", singleTank)
+    console.log("line13",fuel_capacity)
+    // const singleTank = useSelector((state) => state.fuelTankReducer.allTanks[+id])
+    // console.log("line 15", singleTank)
     // Calculate fuel percentage with a fallback of 0 if either value is missing
     const fuelPercentage = fuel_capacity ? (usable_fuel / fuel_capacity) * 100 : 0;
 
@@ -53,7 +53,9 @@ const handleInputChange = (e) => {
 };
 
     return (
-    <div className="fuel-gauge-container">
+<div className='display-flex'>
+<div className="fuel-gauge-container">
+    <div className='info-color'>
         <h3>{tank_name}</h3>
         <h4>{fuel_type}</h4>
         <p>{usable_fuel} gallons available</p>
@@ -66,6 +68,7 @@ const handleInputChange = (e) => {
                 }}
             />
         </div>
+    </div>
         <p>{fuelPercentage.toFixed(2)}% Full</p>
         <div>
             <input
@@ -79,6 +82,7 @@ const handleInputChange = (e) => {
             <button onClick={handleUpdateFuel}>Update Fuel</button>
         </div>
     </div>
+</div>
 );
 }
 export default FuelGauge;

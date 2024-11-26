@@ -10,7 +10,7 @@
 .fuel-gauge-container {
     width: 100%; 
     max-width: 300px; 
-    display: flex;
+    /* display: flex; */
     flex-direction: column; 
     align-items: center; 
     justify-content: center; 
@@ -81,4 +81,9 @@
 
 .fuel-gauge-container button:hover {
     background-color: #0056b3;
+}
+
+.info-color {
+
+    color: black;    
 }

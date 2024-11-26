@@ -18,6 +18,14 @@ import SingleFuelTank from '../components/FuelTank/SingleFuelTank';
 
 export const router = createBrowserRouter([
   {
+    future: {
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+        v7_fetcherPersist: true,
+        v7_normalizeFormMethod: true,
+        v7_partialHydration: true,
+        v7_skipActionErrorRevalidation: true,
+  },
     element: <Layout />,
     children: [
       {
@@ -77,7 +85,7 @@ export const router = createBrowserRouter([
         element: <AllFuelTanks />,  
       },
       {
-        path: "/tank/:id",
+        path: "/tank/:tankId",
         element: <SingleFuelTank   />,
       },
       // {

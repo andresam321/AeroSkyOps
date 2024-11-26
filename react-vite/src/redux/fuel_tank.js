@@ -41,7 +41,7 @@ const lowFuelWarning = (tank) => ({
     payload:tank
 })
 
-export const thunkLoadAllTanks = (tank) => async (dispatch) => {
+export const thunkLoadAllTanks = () => async (dispatch) => {
     try {
         const res = await fetch(`/api/fuel_tank/all/tanks`)
         if (!res.ok) {
@@ -59,22 +59,24 @@ export const thunkLoadAllTanks = (tank) => async (dispatch) => {
 
 }
 
-export const thunkLoadOneTank = (id) => async (dispatch) => {
+export const thunkLoadOneTank = (tankId) => async (dispatch) => {
+    console.log("Dispatching tankId:", tankId); // Debug tankId
     try {
-        const res = await fetch(`/api/fuel_tank/${id}`)
+        const res = await fetch(`/api/fuel_tank/${tankId}`);
         if (!res.ok) {
-            const  errorData = await res.json();
-            throw new Error(errorData.message || "failed to fetch tank")
-        }        
+            const errorData = await res.json();
+            throw new Error(errorData.message || "Failed to fetch tank");
+        }
 
-        const data = await res.jso()
-        if(!data.errors) {
-            await dispatch(loadOneTank(data))
+        const data = await res.json();
+        if (!data.errors) {
+            dispatch(loadOneTank(data));
         }
     } catch (error) {
-        console.error('Error fetching tank', error)
+        console.error("Error fetching tank:", error);
     }
-}
+};
+
 
 export const thunkCreateTank = (tank) => async (dispatch) => {
     try {

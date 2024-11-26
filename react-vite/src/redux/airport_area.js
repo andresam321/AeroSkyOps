@@ -1,3 +1,4 @@
+
 const LOAD_ALL_AREAS_WITH_PARKING_SPOTS = "loadAllAreasWithParkingSpots/LOAD_ALL_AREAS_WITH_PARKING_SPOTS"
 const LOAD_PARKING_SPOTS_BY_AREAS_ID = "loadParkingSpotsByAreasId/LoadParkingSpotsByAreasID"
 
@@ -10,6 +11,8 @@ const getParkingSpotsByAreasId = (areas) => ({
     type: LOAD_PARKING_SPOTS_BY_AREAS_ID,
     payload: areas
 })
+
+
 
 export const thunkGetAllAreasWithParkingSpots = () => async (dispatch) => {
     const res = await fetch("api/airport_parkings/all_places");

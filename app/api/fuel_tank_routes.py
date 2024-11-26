@@ -18,14 +18,14 @@ def get_all_fuel_tanks():
 
 #display one fuel tank by ID
 ### tested
-@fuel_tank_routes.route("/<int:id>")
+@fuel_tank_routes.route("/<int:tankId>")
 @login_required
-def fuel_tank_by_id(id):
-    fuel_tank = FuelTank.query.get(id)
+def fuel_tank_by_id(tankId):
+    fuel_tank = FuelTank.query.get(tankId)
+    print(fuel_tank)
     if not fuel_tank:
-        return {"message":"Fuel Tank Couldnt be found"},404
-    return fuel_tank.to_dict(), 200
-
+        return jsonify({"message":"Fuel Tank Couldnt be found"}),404
+    return jsonify(fuel_tank.to_dict()), 200
 
 #creating a fuel_tank
 ### tested
