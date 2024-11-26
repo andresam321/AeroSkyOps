@@ -70,7 +70,7 @@ export const thunkLoadOneTank = (tankId) => async (dispatch) => {
 
         const data = await res.json();
         if (!data.errors) {
-            dispatch(loadOneTank(data));
+           await dispatch(loadOneTank(data));
         }
     } catch (error) {
         console.error("Error fetching tank:", error);

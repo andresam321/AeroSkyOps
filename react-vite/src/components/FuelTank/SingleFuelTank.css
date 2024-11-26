@@ -1,0 +1,128 @@
+
+.single-fuel-tank {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 800px;
+    border: 1px solid #ddd;
+    border-radius: 12px;
+    background-color: #fff;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+
+.single-fuel-tank .fuel-gauge-container {
+    width: 100%;
+    max-width: 500px; 
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+    margin-bottom: 20px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+
+.single-fuel-tank .fuel-gauge-container:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+}
+
+
+.single-fuel-tank .fuel-gauge-image {
+    position: relative;
+    height: 400px; 
+    width: 100%; 
+    background-image: url('https://res.cloudinary.com/djuzk5um3/image/upload/w_1000,ar_16:9,c_fill,g_auto,e_sharpen/v1731449755/fuel_tank_olipgu.png'); 
+    background-size: contain; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+    border: 2px solid #444;
+    margin-bottom: 20px;
+    object-fit: contain;
+}
+
+
+.single-fuel-tank .fuel-gauge-fill {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-radius: 6px;
+    background-color: green;
+    transition: height 0.3s ease; 
+}
+
+
+.single-fuel-tank .fuel-gauge-container h3,
+.single-fuel-tank .fuel-gauge-container h4 {
+    font-size: 24px; 
+    margin: 10px 0;
+    text-align: center;
+    color: #333;
+}
+
+.single-fuel-tank .fuel-gauge-container p {
+    font-size: 18px; /* Slightly larger font for details */
+    margin: 8px 0;
+    text-align: center;
+    color: #555;
+}
+
+/* Input styling for adjustments */
+.single-fuel-tank .fuel-gauge-container input {
+    width: calc(100% - 40px); /* Larger input field */
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    text-align: center;
+}
+
+/* Styling for buttons */
+.single-fuel-tank .fuel-gauge-container button {
+    padding: 12px 25px;
+    font-size: 16px;
+    border: none;
+    border-radius: 6px;
+    background-color: #007bff;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Button hover effect */
+.single-fuel-tank .fuel-gauge-container button:hover {
+    background-color: #0056b3;
+}
+
+/* Optional extra spacing for the info container */
+.single-fuel-tank .info-color {
+    margin-top: 20px;
+    color: #222;
+}
+
+/* Additional details section styling */
+.single-fuel-tank-details {
+    width: 100%;
+    max-width: 700px; /* Ensure it's aligned with the container */
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.single-fuel-tank-details p {
+    margin: 10px 0;
+    font-size: 16px;
+    color: #444;
+}
+
+.single-fuel-tank-details p span {
+    font-weight: bold;
+    color: #222;
+}

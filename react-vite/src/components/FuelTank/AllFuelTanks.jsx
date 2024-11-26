@@ -1,7 +1,6 @@
 import {useEffect} from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkLoadAllTanks } from '../../redux/fuel_tank'
-import SingleFuelTank from './SingleFuelTank';
 import FuelGauge from './FuelGauge';
 import { NavLink } from 'react-router-dom';
 import "./AllFuelTanks.css"
@@ -22,11 +21,11 @@ return (
 
 <div className="tank-dashboard-container">
     {tanks && tanks.map((tank) => (
-        <NavLink to={`/tank/${tank?.id}`} className="nav-link" key={tank.id}>
+        // <NavLink to={`/tank/${tank?.id}`} className="nav-link" key={tank.id}>
             <div className="tank-item">
                 <FuelGauge tank={tank} />
             </div>
-        </NavLink>
+        // </NavLink>
     ))}
 </div>
 

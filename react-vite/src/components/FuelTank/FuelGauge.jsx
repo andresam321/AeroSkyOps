@@ -3,13 +3,15 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { thunkUpdateTankFuelLevel, thunkLoadAllTanks } from '../../redux/fuel_tank'
 import { useModal } from '../../context/Modal';
+import { useNavigate } from 'react-router-dom';
 
 
 const FuelGauge = ({ tank }) => {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const [usableFuel, setUsableFuel] = useState('')
     const {closeModal} = useModal()
-    const { id = "", fuel_capacity = 1, usable_fuel = 0, tank_name = "Unknown Tank", fuel_type = "Unknown" } = tank;
+    const {fuel_capacity = 1, usable_fuel = 0, tank_name = "Unknown Tank", fuel_type = "Unknown" } = tank || {}
     console.log("line13",fuel_capacity)
     // const singleTank = useSelector((state) => state.fuelTankReducer.allTanks[+id])
     // console.log("line 15", singleTank)
@@ -52,37 +54,54 @@ const handleInputChange = (e) => {
     }
 };
 
+const handleViewFuelTankClick = () => {
+    if (tank?.id) {
+        navigate(`/tank/${tank.id}`);
+    } else {
+        alert("Tank ID is missing!");
+    }
+};
+
     return (
-<div className='display-flex'>
-<div className="fuel-gauge-container">
-    <div className='info-color'>
-        <h3>{tank_name}</h3>
-        <h4>{fuel_type}</h4>
-        <p>{usable_fuel} gallons available</p>
-        <div className="fuel-gauge-image">
-            <div
-                className="fuel-gauge-fill"
-                style={{
-                    height: `${fuelPercentage}%`, // Dynamic height for fuel fill
-                    backgroundColor: fuelColor, // Color based on fuel type
-                }}
-            />
-        </div>
+    <div className="fuel-gauge-container">
+        {tank ? (
+            <>
+                <div className="info-color">
+                    <h3>{tank_name}</h3>
+                    <h4>{fuel_type}</h4>
+                    <p>{usable_fuel} gallons available</p>
+                    <div className="fuel-gauge-image">
+                        <div
+                            className="fuel-gauge-fill"
+                            style={{
+                                height: `${fuelPercentage}%`,
+                                backgroundColor: fuelColor,
+                            }}
+                        />
+                    </div>
+                </div>
+                <p>{fuelPercentage.toFixed(2)}% Full</p>
+                <div className="">
+                    <input
+                        type="number"
+                        step="any"
+                        value={usableFuel}
+                        onChange={handleInputChange}
+                        placeholder="Amount to add/subtract"
+                        aria-label="Fuel amount adjustment"
+                    />
+                    <div className='button-space'>
+                        <button onClick={handleUpdateFuel}>Update Fuel</button>
+                        <button onClick={handleViewFuelTankClick} className="view-fuel-button">
+                            View Tank Info
+                        </button>
+                    </div>
+                </div>
+            </>
+        ) : (
+            <p>Loading tank data...</p>
+        )}
     </div>
-        <p>{fuelPercentage.toFixed(2)}% Full</p>
-        <div>
-            <input
-                type="number"
-                step="any"
-                value={usableFuel}
-                onChange={handleInputChange}
-                placeholder="Amount to add/subtract"
-                aria-label="Fuel amount adjustment" 
-            />
-            <button onClick={handleUpdateFuel}>Update Fuel</button>
-        </div>
-    </div>
-</div>
 );
 }
 export default FuelGauge;
