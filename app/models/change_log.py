@@ -9,4 +9,8 @@ class ChangeLog(db.Model):
 
 id = db.Column(db.Integer, primary_key=True)
 login_user = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
-        
+target_model = db.Column(db.String, nullable=False)  
+target_id = db.Column(db.Integer, nullable=False)    
+initials = db.Column(db.String(5), nullable=False)   
+change_notes = db.Column(db.String, nullable=False)  
+timestamp = db.Column(db.DateTime, default=datetime.utcnow, nullable=False)        
