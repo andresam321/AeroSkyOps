@@ -7,22 +7,26 @@ def seed_fuelPricing():
         {
             'user_id': 1,  
             'fuel_price': '5.00',
-            'type_of_fuel': 'Jet A'
+            'type_of_fuel': 'Jet A',
+            'date_of_pricing':datetime(2024, 9, 23, 23, 45, 0)
         },
         {
             'user_id': 2,  
             'fuel_price': '4.50',
-            'type_of_fuel': 'Avgas 100LL'
+            'type_of_fuel': 'Avgas 100LL',
+            'date_of_pricing':datetime(2024, 9, 23, 23, 45, 0)
         },
         {
             'user_id': 3,  
             'fuel_price': '3.75',
-            'type_of_fuel': 'Unleaded 94'
+            'type_of_fuel': 'Unleaded 94',
+            'date_of_pricing':datetime(2024, 9, 23, 23, 45, 0)
         },
         {
             'user_id': 2,  
             'fuel_price': '4.25',
-            'type_of_fuel': 'Unleaded 100'
+            'type_of_fuel': 'Unleaded 100',
+            'date_of_pricing':datetime(2024, 9, 23, 23, 45, 0)
         }
     ]
     

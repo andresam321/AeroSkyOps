@@ -14,7 +14,7 @@ class FuelTank(db.Model):
     fuel_capacity = db.Column(db.Float, nullable=False)
     usable_fuel = db.Column(db.Float, nullable=False)
     threshold_level = db.Column(db.Float, nullable=False)
-    # notes = db.Column(db.String, nullable=False)
+    notes = db.Column(db.String, nullable=False)
     last_inspection_date = db.Column(db.DateTime, nullable=False)
     next_inspection_due = db.Column(db.DateTime, nullable=False)
     maintenance_status = db.Column(db.String, nullable=False)
@@ -31,7 +31,7 @@ class FuelTank(db.Model):
             "fuel_capacity":self.fuel_capacity,
             "usable_fuel":self.usable_fuel,
             "threshold_level":self.threshold_level,
-            # "notes":self.notes,
+            "notes":self.notes,
             "last_inspection_date":self.last_inspection_date,
             "next_inspection_due":self.next_inspection_due,
             "maintenance_status":self.maintenance_status        
