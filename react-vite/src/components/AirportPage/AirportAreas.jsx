@@ -57,21 +57,21 @@ const AirportAreas = () => {
                 className="view-details-button"
                 modalComponent={<WeatherSearch />}
             />
-            <div className="fuel-prices">
-                <h2>Fuel Prices</h2>
-            {fuelPrice?.map((fuel) => (
-            <div className="" key={fuel.id}>
-                    <p>{fuel?.date_of_pricing}</p>
-                {/* <ul>
-                    <li><span className="fuel-type jet-a">Jet A:</span> $5.50/gal</li>
-                    <li><span className="fuel-type unleaded-94">Unleaded 94:</span> $6.00/gal</li>
-                    <li><span className="fuel-type ll100">100LL:</span> $7.20/gal</li>
-                    <li><span className="fuel-type unleaded-100">100 Unleaded:</span> $5.80/gal</li>
-                </ul> */}
-                </div>
-            ))}
+    
+        <div className="fuel-prices">
+            <h2>Fuel Prices</h2>
+            <div className="display-flex">
+                {fuelPrice?.map((fuel) => (
+                    <div className="fuel-pricing" key={fuel.id}>
+                        <h3>Updated On</h3>
+                        <p>{fuel?.date_of_pricing}</p>
+                        <p>${fuel?.fuel_price} Gal</p>
+                        <p>{fuel?.type_of_fuel}</p>
+                    </div>
+                ))}
             </div>
         </div>
+    </div>
     );
 };
 
