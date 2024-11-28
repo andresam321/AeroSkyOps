@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { thunkGetAllAreasWithParkingSpots } from '../../redux/airport_area';
+import { thunkGetAllFuelPrices } from '../../redux/price';
 import { NavLink,useParams } from 'react-router-dom';
 import './AirportAreas.css';
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
@@ -11,10 +12,14 @@ const AirportAreas = () => {
     const {id} = useParams()
     const dispatch = useDispatch();
     const areas = useSelector(state => state.airportAreasReducer?.areasWithSpots?.airport || []);
+    const fuelPrice = useSelector((state) => state.fuelPriceReducer.fuelPrices || [])
+
+    console.log("line17",fuelPrice)
     // const areas = loadAreasWithSpots?.airport || [];
     
     useEffect(() => {
         dispatch(thunkGetAllAreasWithParkingSpots());
+        dispatch(thunkGetAllFuelPrices())
     }, [dispatch]);
 
 
@@ -54,13 +59,17 @@ const AirportAreas = () => {
             />
             <div className="fuel-prices">
                 <h2>Fuel Prices</h2>
-                <p>As of June 2024:</p>
-                <ul>
+            {fuelPrice?.map((fuel) => (
+            <div className="" key={fuel.id}>
+                    <p>{fuel?.date_of_pricing}</p>
+                {/* <ul>
                     <li><span className="fuel-type jet-a">Jet A:</span> $5.50/gal</li>
                     <li><span className="fuel-type unleaded-94">Unleaded 94:</span> $6.00/gal</li>
                     <li><span className="fuel-type ll100">100LL:</span> $7.20/gal</li>
                     <li><span className="fuel-type unleaded-100">100 Unleaded:</span> $5.80/gal</li>
-                </ul>
+                </ul> */}
+                </div>
+            ))}
             </div>
         </div>
     );

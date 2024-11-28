@@ -12,11 +12,11 @@ export const thunkGetAllFuelPrices = () => async (dispatch) => {
         const res = await fetch(`/api/prices/all_fuel_prices`)
         if (res.ok) {
         const data = await res.json()
-        console.log("line18", data)
         if (data.errors){
             return;
         }
-        await dispatch(getAllFuelPrices(data))
+        await dispatch(getAllFuelPrices(data.fuel_prices))
+        console.log("line19", data)
     }        
     } catch (error) {
         console.log(error)
@@ -32,7 +32,7 @@ function fuelPriceReducer(state = {}, action) {
         case LOAD_ALL_FUEL_PRICES: {
             return {
                 ...state,
-                allFuelRequest: action.payload
+                fuelPrices: action.payload
             }
 
         }
