@@ -42,7 +42,8 @@ const fuelColor = {
     "94 Unleaded": "rgba(173, 255, 47, 0.6)" // Yellow-greenish for 94 Unleaded
 }[fuel_type] || "rgba(100, 100, 100, 0.6)";   // Default: Gray
 
-
+ // need to work on validations before deploying  cant go below 2000 or threshold level cant go above capacity
+ 
 const handleInputChange = (e) => {
     let value = Number(e.target.value)
 
@@ -91,7 +92,7 @@ const handleViewFuelTankClick = () => {
                         aria-label="Fuel amount adjustment"
                     />
                     <div className='button-space'>
-                        <button onClick={handleUpdateFuel}>Update Fuel</button>
+                        <button onClick={handleUpdateFuel}>Update Fuel Amount</button>
                         <button onClick={handleViewFuelTankClick} className="view-fuel-button">
                             View Tank Info
                         </button>
