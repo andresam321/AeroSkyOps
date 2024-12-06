@@ -76,11 +76,10 @@ def update_fuel_tank(tank_id):
     if form.validate_on_submit():
         try:
             last_inspection_date = datetime.combine(
-            form.data["last_inspection_date"], datetime.min.time()
-            )
+            form.data["last_inspection_date"], datetime.min.time())
+            
             next_inspection_due = datetime.combine(
-                form.data["next_inspection_due"], datetime.min.time()
-            )
+                form.data["next_inspection_due"], datetime.min.time())
 
             fuel_tank.tank_name = form.data["tank_name"]
             fuel_tank.fuel_type = form.data["fuel_type"]
