@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { thunkLoadOneTank, thunkLoadAllTanks } from '../../redux/fuel_tank'
 import { useParams } from 'react-router-dom'
 import FuelGauge from './FuelGauge'
+import OpenModalButton from '../OpenModalButton/OpenModalButton'
+import UpdateTank from './UpdateTank'
 import "./SingleFuelTank.css"
 
 
@@ -27,6 +29,13 @@ const SingleFuelTank = () => {
         <FuelGauge tank={tank} className="tank" />
     </div>
     <div className="single-fuel-tank-details">
+        <div>     
+            <OpenModalButton 
+                buttonText={"Update Tank Info"}
+                className=""
+                modalComponent={<UpdateTank/>}            
+            />
+        </div>
         <p>
             <span>Next Inspection Date:</span> {tank?.next_inspection_due || 'N/A'}
         </p>

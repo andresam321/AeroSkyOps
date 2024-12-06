@@ -115,7 +115,7 @@ const UpdateAircraft = () => {
         navigate(`/aircraft/${aircraftId}`)
         setImageLoading(false)
         } catch (err) {
-            console.error("Failed to add aircraft:", err);
+            console.error("Failed to update aircraft:", err);
         }
     };
 
