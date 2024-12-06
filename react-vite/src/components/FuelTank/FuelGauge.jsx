@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { thunkUpdateTankFuelLevel, thunkLoadAllTanks } from '../../redux/fuel_tank'
 import { useModal } from '../../context/Modal';
 import { useNavigate } from 'react-router-dom';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import UpdateTank from './UpdateTank';
 
 
-const FuelGauge = ({ tank }) => {
+const FuelGauge = ({ tank, showViewButton = true, showUpdateButton = true }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
     const [usableFuel, setUsableFuel] = useState('')
@@ -93,9 +95,19 @@ const handleViewFuelTankClick = () => {
                     />
                     <div className='button-space'>
                         <button onClick={handleUpdateFuel}>Update Fuel Amount</button>
-                        <button onClick={handleViewFuelTankClick} className="view-fuel-button">
-                            View Tank Info
-                        </button>
+                        {showViewButton && (
+                                <button onClick={handleViewFuelTankClick} className="view-fuel-button">
+                                    View Tank Info
+                                </button>
+                            )}
+
+                    { showUpdateButton && (
+                        <OpenModalButton 
+                            buttonText={"Update Tank Info"}
+                            className=""
+                            modalComponent={<UpdateTank/>}            
+                        />
+                    )}
                     </div>
                 </div>
             </>

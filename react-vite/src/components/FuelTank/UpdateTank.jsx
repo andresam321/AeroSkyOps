@@ -13,6 +13,7 @@ const {tankId} = useParams()
 const[fuel_capacity, setFuel_capacity] = useState("")
 const[fuel_type, setFuel_type] = useState("")
 const[last_inspection_date, setLast_inspection_date] = useState("")
+const[next_inspection_due, setNext_inspection_due] = useState("")
 const[maintenance_status, setMaintenance_status] = useState("")
 const[notes, setNotes] = useState("")
 const[tank_name, setTank_name] = useState("")
@@ -28,6 +29,7 @@ useEffect(() => {
       setFuel_type(tankById.fuel_type || "")
       setMaintenance_status(tankById.maintenance_status || "")
       setLast_inspection_date(tankById.last_inspection_date || "")
+      setNext_inspection_due(tankById.next_inspection_due || "")
       setTank_name(tankById.tank_name || "")
       setThreshold_level(tankById.threshold_level || "")
       setNotes(tankById.notes || "")
@@ -42,6 +44,7 @@ const handleSubmit = async (e) => {
   formData.append("fuel_type", fuel_type)
   formData.append("maintenance_status", maintenance_status)
   formData.append("last_inspection_date", last_inspection_date)
+  formData.append("next_inspection_due", next_inspection_due)
   formData.append("tank_name", tank_name)
   formData.append("threshold_level", threshold_level)
   formData.append("notes", notes)
@@ -104,6 +107,16 @@ const handleSubmit = async (e) => {
         type="date"
         value={last_inspection_date}
         onChange={(e) => setLast_inspection_date(e.target.value)}
+        required
+      />
+    </label>
+
+    <label>
+      Next Inspection Date:
+      <input
+        type="date"
+        value={next_inspection_due}
+        onChange={(e) => setNext_inspection_due(e.target.value)}
         required
       />
     </label>

@@ -2,6 +2,7 @@ from flask import Blueprint, redirect, request, jsonify
 from flask_login import login_required,current_user
 from app.models import db, FuelTank
 from app.forms import FuelTankForm
+from datetime import datetime
 
 
 fuel_tank_routes = Blueprint("fuel_tank",__name__)
@@ -70,21 +71,35 @@ def update_fuel_tank(tank_id):
     form = FuelTankForm()
     
     form["csrf_token"].data = request.cookies["csrf_token"]
+
     
     if form.validate_on_submit():
-        fuel_tank.tank_name = form.data["tank_name"]
-        fuel_tank.fuel_type = form.data["fuel_type"]
-        fuel_tank.fuel_capacity = form.data['fuel_capacity']
-        fuel_tank.usable_fuel = form.data["usable_fuel"]
-        fuel_tank.threshold_level= form.data["threshold_level"]
-        fuel_tank.last_inspection_date = form.data['last_inspection_date']
-        fuel_tank.next_inspection_due = form.data['next_inspection_due']
-        fuel_tank.maintenance_status = form.data['maintenance_status']
-        
-        db.session.commit()
-        
-        return fuel_tank.to_dict()
+        try:
+            last_inspection_date = datetime.combine(
+            form.data["last_inspection_date"], datetime.min.time()
+            )
+            next_inspection_due = datetime.combine(
+                form.data["next_inspection_due"], datetime.min.time()
+            )
 
+            fuel_tank.tank_name = form.data["tank_name"]
+            fuel_tank.fuel_type = form.data["fuel_type"]
+            fuel_tank.fuel_capacity = form.data['fuel_capacity']
+            fuel_tank.usable_fuel = form.data["usable_fuel"]
+            fuel_tank.notes = form.data["notes"]
+            fuel_tank.threshold_level= form.data["threshold_level"]
+            fuel_tank.last_inspection_date = last_inspection_date
+            fuel_tank.next_inspection_due = next_inspection_due
+            fuel_tank.maintenance_status = form.data['maintenance_status']
+            
+            db.session.commit()
+            
+            return fuel_tank.to_dict()
+        except KeyError as e:
+            return {"message": f"Missing field: {str(e)}"}, 400
+        except ValueError as e:
+            return {"message": f"Invalid value: {str(e)}"}, 400
+    print(form.errors)
     return form. errors, 400
     
 

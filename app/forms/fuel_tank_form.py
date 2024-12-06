@@ -8,6 +8,7 @@ class FuelTankForm(FlaskForm):
     fuel_type = SelectField("Fuel Type", choices=[('100ll AvGas', '100ll AvGas'), ('94 unleaded', '94 unleaded'), ('Jet-A', 'Jet-A'),('100 unleaded', '100 unleaded')])
     fuel_capacity = FloatField("Fuel Capacity", validators=[DataRequired()])
     usable_fuel = FloatField("Usable Fuel", validators=[DataRequired()])
+    notes = StringField("Notes", validators=([DataRequired()]))
     threshold_level = FloatField("Threshold level", validators=[DataRequired()])
     last_inspection_date = DateField("Last Inspection Date", validators=[DataRequired()])
     next_inspection_due = DateField("Next Inspection due", validators=[DataRequired()])

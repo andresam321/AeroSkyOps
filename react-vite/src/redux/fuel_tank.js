@@ -111,7 +111,7 @@ export const thunkUpdatFuelTank = (tank, id) => async (dispatch) => {
             throw new Error(errorData.message || "failed to update tank")
         }        
 
-        const data = await res.jso()
+        const data = await res.json()
         if(!data.errors) {
             await dispatch(updateTank(data))
         }

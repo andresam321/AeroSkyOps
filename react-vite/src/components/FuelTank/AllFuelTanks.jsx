@@ -11,6 +11,8 @@ const AllFuelTanks = () => {
     const dispatch = useDispatch()
     const tanks = useSelector((state) => state.fuelTankReducer.allTanks);
 
+    // const {id} = tanks
+
     console.log("line11",tanks)
 
     useEffect(() => {
@@ -18,13 +20,21 @@ const AllFuelTanks = () => {
         // console.log("Tanks after dispatch:", tanks);
     }, [dispatch]);
 
+    const handleViewFuelTankClick = () => {
+        if (tanks?.id) {
+            navigate(`/tank/${tanks.id}`);
+        } else {
+            alert("Tank ID is missing!");
+        }
+    };
+
 return (
 
 <div className="tank-dashboard-container">
     {tanks && tanks.map((tank) => (
         // <NavLink to={`/tank/${tank?.id}`} className="nav-link" key={tank.id}>
             <div className="tank-item">
-                <FuelGauge tank={tank} />
+                <FuelGauge tank={tank} showUpdateButton={false}/>
             </div>
         // </NavLink>
     ))}
