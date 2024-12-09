@@ -54,7 +54,7 @@ const handleSubmit = async (e) => {
     await dispatch(thunkUpdatFuelTank(formData, tankId))
     closeModal()
   } catch (error) {
-    console.error("Failed to update tank:", err);
+    console.error("Failed to update tank:", error);
   }
 }
 

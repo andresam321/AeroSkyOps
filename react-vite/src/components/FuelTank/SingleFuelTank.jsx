@@ -46,6 +46,9 @@ const SingleFuelTank = () => {
             <span>Maintenance Status:</span> {tank?.maintenance_status || 'N/A'}
         </p>
         <p>
+            <span>Uable Fuel:</span> {tank?.usable_fuel || 'N/A'}
+        </p>
+        <p>
             <span>Threshold Level:</span> {tank?.threshold_level || 'N/A'}
         </p>
         <p>

@@ -1,7 +1,7 @@
 import './FuelGauge.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkUpdateTankFuelLevel, thunkLoadAllTanks } from '../../redux/fuel_tank'
+import { thunkUpdateTankFuelLevel, thunkLoadAllTanks, thunkLoadOneTank } from '../../redux/fuel_tank'
 import { useModal } from '../../context/Modal';
 import { useNavigate } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
@@ -28,6 +28,7 @@ const handleUpdateFuel = async (e) => {
     try {
         await dispatch(thunkUpdateTankFuelLevel(tank.id, usableFuel));
         await dispatch(thunkLoadAllTanks())
+        await dispatch(thunkLoadOneTank(tank.id, usableFuel))
         setUsableFuel('Amount to add/subtract')
         
         // // data test
@@ -46,14 +47,21 @@ const fuelColor = {
 
  // need to work on validations before deploying  cant go below 2000 or threshold level cant go above capacity
  
-const handleInputChange = (e) => {
-    let value = Number(e.target.value)
+ const handleInputChange = (e) => {
+    let value = e.target.value; // Get the raw input value as a string
 
-    // Remove leading zero if it starts with "-0"
-    if (value === "-0") {
-        setUsableFuel("-");
-    } else {
-        setUsableFuel(value);
+    // Handle special cases for "0" and "-0"
+    if (value === "0" || value ==="-0") {
+        setUsableFuel("-"); // Set "-" if value is "0" or "-0"
+        return;
+    }
+
+    // Convert valid inputs to a number
+    const numericValue = Number(value);
+
+    // Check if the converted value is a valid number
+    if (!isNaN(numericValue)) {
+        setUsableFuel(numericValue); // Update usableFuel with the number
     }
 };
 
