@@ -75,11 +75,6 @@ def update_fuel_tank(tank_id):
     
     if form.validate_on_submit():
         try:
-            last_inspection_date = date.combine(
-            form.data["last_inspection_date"], date.min.time())
-            
-            next_inspection_due = date.combine(
-                form.data["next_inspection_due"], date.min.time())
 
             fuel_tank.tank_name = form.data["tank_name"]
             fuel_tank.fuel_type = form.data["fuel_type"]
@@ -87,8 +82,8 @@ def update_fuel_tank(tank_id):
             fuel_tank.usable_fuel = form.data["usable_fuel"]
             fuel_tank.notes = form.data["notes"]
             fuel_tank.threshold_level= form.data["threshold_level"]
-            fuel_tank.last_inspection_date = last_inspection_date
-            fuel_tank.next_inspection_due = next_inspection_due
+            fuel_tank.last_inspection_date = form.data["last_inspection_date"]
+            fuel_tank.next_inspection_due = form.data["next_inspection_due"]
             fuel_tank.maintenance_status = form.data['maintenance_status']
             
             db.session.commit()
