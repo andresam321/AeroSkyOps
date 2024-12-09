@@ -1,6 +1,6 @@
 from app.models import db, environment, SCHEMA, FuelTank, ParkingHistory
 from sqlalchemy.sql import text
-from datetime import datetime, timezone
+from datetime import date, timezone
 
 
 
@@ -14,8 +14,8 @@ def seed_fuel_tank():
             "usable_fuel":5000.0,
             "threshold_level": 2000.0,  # Example threshold for notification (20%)
             "notes":"Dirty Tank needs to be clean asap",
-            "last_inspection_date": datetime(2024, 1, 15, tzinfo=timezone.utc), 
-            "next_inspection_due": datetime(2024, 6, 15, tzinfo=timezone.utc),  
+            "last_inspection_date": date(2024, 1, 15), 
+            "next_inspection_due": date(2024, 6, 15),  
             "maintenance_status": "operational"
         },
         {
@@ -26,8 +26,8 @@ def seed_fuel_tank():
             "usable_fuel":9000.0,
             "threshold_level": 2000.0,  # Example threshold for notification (20%)
             "notes":"Dirty Tank needs to be clean asap",
-            "last_inspection_date": datetime(2024, 2, 10, tzinfo=timezone.utc), 
-            "next_inspection_due": datetime(2024, 7, 10, tzinfo=timezone.utc),  
+            "last_inspection_date": date(2024, 2, 10), 
+            "next_inspection_due": date(2024, 7, 10),  
             "maintenance_status": "operational"
         },
         {
@@ -38,8 +38,8 @@ def seed_fuel_tank():
             "usable_fuel":2000.0,
             "threshold_level": 2000.0,  # Example threshold for notification (20%)
             "notes":"Dirty Tank needs to be clean asap",
-            "last_inspection_date": datetime(2024, 3, 5, tzinfo=timezone.utc), 
-            "next_inspection_due": datetime(2024, 8, 5, tzinfo=timezone.utc),  
+            "last_inspection_date": date(2024, 3, 5), 
+            "next_inspection_due": date(2024, 8, 5),  
             "maintenance_status": "operational"
         }
 

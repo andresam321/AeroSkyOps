@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, request, jsonify
 from flask_login import login_required,current_user
 from app.models import db, FuelTank
 from app.forms import FuelTankForm
-from datetime import datetime
+from datetime import date
 
 
 fuel_tank_routes = Blueprint("fuel_tank",__name__)
@@ -75,11 +75,11 @@ def update_fuel_tank(tank_id):
     
     if form.validate_on_submit():
         try:
-            last_inspection_date = datetime.combine(
-            form.data["last_inspection_date"], datetime.min.time())
+            last_inspection_date = date.combine(
+            form.data["last_inspection_date"], date.min.time())
             
-            next_inspection_due = datetime.combine(
-                form.data["next_inspection_due"], datetime.min.time())
+            next_inspection_due = date.combine(
+                form.data["next_inspection_due"], date.min.time())
 
             fuel_tank.tank_name = form.data["tank_name"]
             fuel_tank.fuel_type = form.data["fuel_type"]
