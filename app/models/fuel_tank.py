@@ -14,7 +14,7 @@ class FuelTank(db.Model):
     fuel_capacity = db.Column(db.Float, nullable=False)
     usable_fuel = db.Column(db.Float, nullable=False)
     threshold_level = db.Column(db.Float, nullable=False)
-    notes = db.Column(db.String, nullable=False)
+    notes = db.Column(db.String, nullable=True)
     last_inspection_date = db.Column(db.Date, nullable=False)
     next_inspection_due = db.Column(db.Date, nullable=False)
     maintenance_status = db.Column(db.String(50), nullable=False)

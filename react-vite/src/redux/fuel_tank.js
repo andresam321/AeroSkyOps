@@ -131,7 +131,7 @@ export const thunkDeleteTankInfo = (id) => async (dispatch) => {
             throw new Error(errorData.message || "failed to delete tank")
         }        
 
-        const data = await res.jso()
+        const data = await res.json()
         if(!data.errors) {
             await dispatch(deleteTank(data))
         }

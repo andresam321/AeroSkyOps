@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { thunkLoadAllTanks } from '../../redux/fuel_tank'
 import FuelGauge from './FuelGauge';
 import { NavLink } from 'react-router-dom';
+import CreateTank from './CreateTank';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
 
 import "./AllFuelTanks.css"
 
@@ -32,12 +34,17 @@ return (
 
 <div className="tank-dashboard-container">
     {tanks && tanks.map((tank) => (
-        // <NavLink to={`/tank/${tank?.id}`} className="nav-link" key={tank.id}>
             <div className="tank-item">
                 <FuelGauge tank={tank} showUpdateButton={false}/>
             </div>
-        // </NavLink>
     ))}
+            <div>
+                <OpenModalButton
+                    buttonText={'Create Tank'}
+                    className=""
+                    modalComponent={<CreateTank/>}
+                />
+            </div>
 </div>
 
     );

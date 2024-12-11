@@ -6,6 +6,7 @@ import { useModal } from '../../context/Modal';
 import { useNavigate } from 'react-router-dom';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import UpdateTank from './UpdateTank';
+import DeleteTank from './DeleteTank';
 
 
 const FuelGauge = ({ tank, showViewButton = true, showUpdateButton = true }) => {
@@ -13,7 +14,7 @@ const FuelGauge = ({ tank, showViewButton = true, showUpdateButton = true }) => 
     const navigate = useNavigate()
     const [usableFuel, setUsableFuel] = useState('')
     const {closeModal} = useModal()
-    const {fuel_capacity = 1, usable_fuel = 0, tank_name = "Unknown Tank", fuel_type = "Unknown" } = tank || {}
+    const { maintenance_status = "Status Not Detected", fuel_capacity = 1, usable_fuel = 0, tank_name = "Unknown Tank", fuel_type = "Unknown" } = tank || {}
     console.log("line13",fuel_capacity)
     // const singleTank = useSelector((state) => state.fuelTankReducer.allTanks[+id])
     // console.log("line 15", singleTank)
@@ -80,6 +81,7 @@ const handleViewFuelTankClick = () => {
                 <div className="info-color">
                     <h3>{tank_name}</h3>
                     <h4>{fuel_type}</h4>
+                    <h4>Status: {maintenance_status}</h4>
                     <p>{usable_fuel} gallons available</p>
                     <div className="fuel-gauge-image">
                         <div
@@ -114,6 +116,13 @@ const handleViewFuelTankClick = () => {
                             buttonText={"Update Tank Info"}
                             className=""
                             modalComponent={<UpdateTank/>}            
+                        />
+                    )}
+                    { showUpdateButton && (
+                        <OpenModalButton 
+                            buttonText={"Delete Tank"}
+                            className=""
+                            modalComponent={<DeleteTank/>}            
                         />
                     )}
                     </div>

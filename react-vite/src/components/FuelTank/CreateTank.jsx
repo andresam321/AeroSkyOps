@@ -1,62 +1,48 @@
-import {useState,useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { thunkUpdatFuelTank } from '../../redux/fuel_tank'
+import { thunkCreateTank, thunkLoadAllTanks } from '../../redux/fuel_tank'
+import { useNavigate } from 'react-router-dom'
 import { useModal } from '../../context/Modal'
-import { useParams } from 'react-router-dom'
 
+const CreateTank = () => {
 
-const UpdateTank = () => {
+    const dispatch = useDispatch()
+    
+    const fuelTank = useSelector((state) => state.fuelTankReducer)
 
-const dispatch = useDispatch()
-const {closeModal} = useModal()
-const {tankId} = useParams()
-const[fuel_capacity, setFuel_capacity] = useState("")
-const[fuel_type, setFuel_type] = useState("")
-const[last_inspection_date, setLast_inspection_date] = useState("")
-const[next_inspection_due, setNext_inspection_due] = useState("")
-const[maintenance_status, setMaintenance_status] = useState("")
-const[notes, setNotes] = useState("")
-const[tank_name, setTank_name] = useState("")
-const[threshold_level, setThreshold_level] = useState("")
-const[usable_fuel, setUsable_fuel ] = useState("")
+    const[fuel_capacity, setFuel_capacity] = useState("")
+    const[fuel_type, setFuel_type] = useState("")
+    const[last_inspection_date, setLast_inspection_date] = useState("")
+    const[next_inspection_due, setNext_inspection_due] = useState("")
+    const[maintenance_status, setMaintenance_status] = useState("")
+    const[notes, setNotes] = useState("")
+    const[tank_name, setTank_name] = useState("")
+    const[threshold_level, setThreshold_level] = useState("")
+    const[usable_fuel, setUsable_fuel ] = useState("")
+    const {closeModal} = useModal()
 
+    const handleSubmit = async (e) => {
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("fuel_capacity", fuel_capacity)
+        formData.append("fuel_type", fuel_type)
+        formData.append("maintenance_status", maintenance_status)
+        formData.append("last_inspection_date", last_inspection_date)
+        formData.append("next_inspection_due", next_inspection_due)
+        formData.append("tank_name", tank_name)
+        formData.append("threshold_level", threshold_level)
+        formData.append("notes", notes)
+        formData.append("usable_fuel", usable_fuel)
 
-const tankById = useSelector((state) => state.fuelTankReducer[+tankId])
-
-useEffect(() => {
-    if(tankById){
-      setFuel_capacity(tankById.fuel_capacity || "")    
-      setFuel_type(tankById.fuel_type || "")
-      setMaintenance_status(tankById.maintenance_status || "")
-      setLast_inspection_date(tankById.last_inspection_date || "")
-      setNext_inspection_due(tankById.next_inspection_due || "")
-      setTank_name(tankById.tank_name || "")
-      setThreshold_level(tankById.threshold_level || "")
-      setNotes(tankById.notes || "")
-      setUsable_fuel(tankById.usable_fuel || "")
+        try {
+            await dispatch(thunkCreateTank(formData))
+            await dispatch(thunkLoadAllTanks())
+            // navigate('/all/fuel/tanks')
+            closeModal()     
+        } catch (error) {
+            console.log("error")
+        }
     }
-}, [tankById])
-
-const handleSubmit = async (e) => {
-  e.preventDefault()
-  const formData = new FormData()
-  formData.append("fuel_capacity", fuel_capacity)
-  formData.append("fuel_type", fuel_type)
-  formData.append("maintenance_status", maintenance_status)
-  formData.append("last_inspection_date", last_inspection_date)
-  formData.append("next_inspection_due", next_inspection_due)
-  formData.append("tank_name", tank_name)
-  formData.append("threshold_level", threshold_level)
-  formData.append("notes", notes)
-  formData.append("usable_fuel", usable_fuel)
-
-  try {
-    await dispatch(thunkUpdatFuelTank(formData, tankId))
-    closeModal()
-  } catch (error) {
-    console.error("Failed to update tank:", error);
-  }
-}
 
   return (
     <div>
@@ -147,4 +133,4 @@ const handleSubmit = async (e) => {
   )
 }
 
-export default UpdateTank
+export default CreateTank

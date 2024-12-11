@@ -55,6 +55,7 @@ def create_fuel_tank():
         
         return new_fuel_tank.to_dict(), 201
     else:
+        print(form.errors)
         return {"errors":form.errors},400
     
 

@@ -71,15 +71,15 @@ return (
             <h1>Create a Fuel Order</h1>
             <form className="create-fuel-form" onSubmit={handleSubmit}>
                 <div className="form-group">
-                    <label htmlFor="tail_number">Tail Number:</label>
+                    <label>Tail Number:</label>
                     <input type="text" id="tail_number" value={tail_number} readOnly />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="fuel_type">Fuel Type:</label>
+                    <label>Fuel Type:</label>
                     <input type="text" id="fuel_type" value={fuel_type} readOnly />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="request_by">Requested By:</label>
+                    <label>Requested By:</label>
                     <input
                         type="text"
                         id="request_by"
@@ -89,7 +89,7 @@ return (
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="positive_prist">Positive Prist:</label>
+                    <label>Positive Prist:</label>
                     <select
                         id="positive_prist"
                         value={positive_prist}
@@ -103,7 +103,7 @@ return (
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="quantity">Quantity of Fuel (Gallons):</label>
+                    <label>Quantity of Fuel (Gallons):</label>
                     <input
                         type="number"
                         id="quantity"
@@ -113,7 +113,7 @@ return (
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="paid">Service Paid?</label>
+                    <label>Service Paid?</label>
                     <select
                         id="paid"
                         value={paid}
@@ -126,7 +126,7 @@ return (
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="is_completed">Status:</label>
+                    <label>Status:</label>
                     <select
                         id="is_completed"
                         value={is_completed}
@@ -140,7 +140,7 @@ return (
                     </select>
                 </div>
                 <div className="form-group">
-                    <label htmlFor="service_date_deadline_by">Service Date Deadline:</label>
+                    <label>Service Date Deadline:</label>
                     <input
                         type="date"
                         id="service_date_deadline_by"
@@ -150,7 +150,7 @@ return (
                     />
                 </div>
                 <div className="form-group">
-                    <label htmlFor="service_time_deadline_by">Service Time Deadline:</label>
+                    <label>Service Time Deadline:</label>
                     <input
                         type="time"
                         id="service_time_deadline_by"
