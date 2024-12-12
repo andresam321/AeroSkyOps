@@ -22,14 +22,7 @@ const AllFuelTanks = () => {
         // console.log("Tanks after dispatch:", tanks);
     }, [dispatch]);
 
-    const handleViewFuelTankClick = () => {
-        if (tanks?.id) {
-            navigate(`/tank/${tanks.id}`);
-        } else {
-            alert("Tank ID is missing!");
-        }
-    };
-
+    
 return (
 
 <div className="tank-dashboard-container">
