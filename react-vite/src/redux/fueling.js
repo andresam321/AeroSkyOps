@@ -39,30 +39,27 @@ export const thunkGetAllFuelRequest = () => async (dispatch) => {
     }
 }
 
-export const thunkUpdateFuelRequest = (id, statusData) => async (dispatch) => {
+export const thunkUpdateFuelRequest = (fuelId, statusData) => async (dispatch) => {
     try {
-        const res = await fetch(`/api/fuelings/${id}/update/status`, {
-            method: 'PUT',
+        const response = await fetch(`/api/fuelings/${fuelId}/update/status`, {
+            method: "PUT",
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(statusData),
         });
-        
-        if (res.ok) {
-            const data = await res.json();
-            if (data.error) {
-                // Handle any errors from the API
-                return;
-            }
-            // Dispatch an action to update the store with the new fuel request status
-            await dispatch(updateFuelRequestStatus(data.fuel_order));
+
+        if (response.ok) {
+            const updatedFuelOrder = await response.json();
+            dispatch(updateFuelRequestStatus(updatedFuelOrder.fuel_order));
+            return { ok: true, fuelOrder: updatedFuelOrder.fuel_order };
         } else {
-            throw new Error('Failed to update fuel request status');
+            console.error("Failed to update fuel request:", response.status);
+            return { ok: false };
         }
     } catch (error) {
-        console.error('Error updating fuel request status:', error);
-        // Handle any errors from the fetch operation or dispatching actions
+        console.error("Error in thunkUpdateFuelRequest:", error);
+        return { ok: false };
     }
 };
 

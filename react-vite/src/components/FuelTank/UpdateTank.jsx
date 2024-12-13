@@ -62,7 +62,7 @@ const handleSubmit = async (e) => {
 
 useEffect(() => {
   const errorObj = {}
-  if (tank_name.length < 1) errorObj.tank_name = "Tank name is too Short"
+  if (tank_name.length < 1) errorObj.tank_name = "Tank name is to o Short"
   if (!fuel_capacity || isNaN(fuel_capacity) || fuel_capacity <= 0) {
     errorObj.fuel_capacity = "Fuel capacity must be a positive number";
 }
