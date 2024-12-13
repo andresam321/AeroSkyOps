@@ -24,22 +24,22 @@ const AllFuelTanks = () => {
 
     
 return (
-
-<div className="tank-dashboard-container">
+<div className=''>
+    <div className='create_tank_button'>
+        <OpenModalButton
+            buttonText={'Create Tank'}
+            className=""
+            modalComponent={<CreateTank/>}
+        />
+    </div>
+    <div className="tank-dashboard-container">
     {tanks && tanks.map((tank) => (
-            <div className="tank-item">
+            <div className="tank-item" key={tank.id}>
                 <FuelGauge tank={tank} showUpdateButton={false}/>
             </div>
     ))}
-            <div>
-                <OpenModalButton
-                    buttonText={'Create Tank'}
-                    className=""
-                    modalComponent={<CreateTank/>}
-                />
-            </div>
 </div>
-
+</div>
     );
 };
 

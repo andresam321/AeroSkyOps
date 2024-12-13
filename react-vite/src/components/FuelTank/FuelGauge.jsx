@@ -80,7 +80,7 @@ const handleViewFuelTankClick = () => {
             <>
                 <div className="info-color">
                     <h3>{tank_name}</h3>
-                    <h4>{fuel_type}</h4>
+                    <h4>Fuel Type: {fuel_type}</h4>
                     <h4>Status: {maintenance_status}</h4>
                     <p>{usable_fuel} gallons available</p>
                     <div className="fuel-gauge-image">
