@@ -95,7 +95,7 @@ def update_fuel_tank(tank_id):
         except ValueError as e:
             return {"message": f"Invalid value: {str(e)}"}, 400
     print(form.errors)
-    return form. errors, 400
+    return form.errors, 400
     
 
 ### delete fuel tank
