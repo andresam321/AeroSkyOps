@@ -1,21 +1,25 @@
 import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import { thunkEditFuelPrice } from '../../redux/price'
+import { thunkEditFuelPrice,thunkGetFuelPriceById, thunkGetAllFuelPrices } from '../../redux/price'
 import { useModal } from '../../context/Modal'
 import { useSelector, useDispatch } from 'react-redux'
 
 const EditFuelPrice = ({ fuel }) => {
 
   console.log("fuel destructured", fuel.id)
-
+  const {closeModal} = useModal()
   const dispatch = useDispatch();
   const [date_of_pricing, setDate_of_Pricing] = useState("")
   const [fuel_price, setFuel_price] = useState("")
   const [type_of_fuel, setType_of_fuel] = useState("")
 
-  const fuelPriceById = useSelector((state) => state.fuelPriceReducer.fuelPrices[fuel?.id]);
+  const fuelPriceById = useSelector((state) => state.fuelPriceReducer[fuel.id]); 
 
-
+  useEffect(() => {
+    if (!fuelPriceById) {
+      dispatch(thunkGetFuelPriceById(fuel.id));
+    }
+  }, [dispatch, fuel.id, fuelPriceById]);
   console.log("fuelPriceById:", fuelPriceById);
   
   useEffect(() => {
@@ -37,6 +41,8 @@ const EditFuelPrice = ({ fuel }) => {
       console.log("FuelPrice ID:", fuelPriceById); 
     try {
       await dispatch(thunkEditFuelPrice(fuel.id,formData))
+      await dispatch(thunkGetAllFuelPrices())
+      closeModal()
     } catch (error) {
       console.log(error)
     }
@@ -74,7 +80,9 @@ const EditFuelPrice = ({ fuel }) => {
           >
             <option value="">Select fuel type</option>
             <option value="Jet-A">Jet-A</option>
-            <option value="100LL Avgas">100LL Avgas</option>
+            <option value="100LL AvGas">100LL AvGas</option>
+            <option value="94 Unleaded">94 Unleaded</option>
+            <option value="100 Unleaded">94 Unleaded</option>
             <option value="Diesel">Diesel</option>
           </select>
         </div>
