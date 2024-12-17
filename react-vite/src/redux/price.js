@@ -30,7 +30,7 @@ export const thunkGetAllFuelPrices = () => async (dispatch) => {
 function fuelPriceReducer(state = {}, action) {
 
     switch(action.type){
-        case LOAD_ALL_FUEL_PRICES: {
+        case LOAD_ALL_FUEL_PRICE: {
             return {
                 ...state,
                 fuelPrices: action.payload
