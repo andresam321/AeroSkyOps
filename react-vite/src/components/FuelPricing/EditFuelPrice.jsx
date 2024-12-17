@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react'
 import { useParams } from 'react-router-dom'
-import { thunkGetAllFuelPrices } from '../../redux/price'
+import { thunkGetAllFuelPrices,thunkEdit } from '../../redux/price'
 import { useModal } from '../../context/Modal'
 
 const EditFuelPrice = () => {
@@ -29,6 +29,11 @@ const EditFuelPrice = () => {
     formData.append("date_of_pricing",date_of_pricing)
     formData.append("fuel_price",fuel_price)
     formData.append("type_of_fuel",type_of_fuel)
+    try {
+      await dispatch(thunkEdit)
+    } catch (error) {
+      
+    }
   }
 
   return (

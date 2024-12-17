@@ -1,7 +1,8 @@
-const LOAD_ALL_FUEL_PRICES = "loadAllFuelPrices/LOAD_ALL_FUEL_PRICES"
+const LOAD_ALL_FUEL_PRICE = "loadAllFuelPrices/LOAD_ALL_FUEL_PRICE"
+const EDIT_FUEL_PRICE = "editFuelPrice/EDIT_FUEL_PRICE"
 
 const getAllFuelPrices = (price) => ({
-    type:LOAD_ALL_FUEL_PRICES,
+    type:LOAD_ALL_FUEL_PRICE,
     payload:price
 })
 
