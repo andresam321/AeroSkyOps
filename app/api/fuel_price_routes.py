@@ -16,7 +16,7 @@ def all_fueling_price():
 
 
 ##edit fuel price 
-##Untested
+##tested
 @fueling_price_routes.route("/<int:id>",  methods = ["PUT"])
 @login_required
 def edit_fuel_price(id):
@@ -35,6 +35,7 @@ def edit_fuel_price(id):
 
         db.session.commit()
         return fuel_price.to_dict()
-    print(form.errors)
+    print("Form Data:", form.data)
+    print("Form Errors:", form.errors)
     return form.errors,400
     

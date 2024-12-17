@@ -6,10 +6,11 @@ import { NavLink,useParams } from 'react-router-dom';
 import './AirportAreas.css';
 import OpenModalButton from "../OpenModalButton/OpenModalButton"
 import WeatherSearch from '../WeatherSearch/WeatherSearch';
+import EditFuelPrice from '../FuelPricing/EditFuelPrice';
 
 
 const AirportAreas = () => {
-    const {id} = useParams()
+    // const {id} = useParams()
     const dispatch = useDispatch();
     const areas = useSelector(state => state.airportAreasReducer?.areasWithSpots?.airport || []);
     const fuelPrice = useSelector((state) => state.fuelPriceReducer.fuelPrices || [])
@@ -63,10 +64,23 @@ const AirportAreas = () => {
             <div className="display-flex">
                 {fuelPrice?.map((fuel) => (
                     <div className="fuel-pricing" key={fuel.id}>
-                        <h3>Updated On</h3>
-                        <p>{fuel?.date_of_pricing}</p>
-                        <p>${fuel?.fuel_price} Gal</p>
-                        <p>{fuel?.type_of_fuel}</p>
+                            <div className='fuel-pricing'>
+                                <h3>Updated On</h3>
+                                <p>{fuel?.date_of_pricing}</p>
+                                <p>${fuel?.fuel_price} Gal</p>
+                                <p>{fuel?.type_of_fuel}</p>
+                            </div>
+                            <div key={fuel.id}>
+                            <OpenModalButton
+                                buttonText={"Edit Fuel Price"}
+                                className=""
+                                
+                                modalComponent={
+                                <EditFuelPrice  fuel={fuel} />}
+                                
+                             />
+                             
+                            </div>
                     </div>
                 ))}
             </div>
