@@ -10,9 +10,9 @@ class FuelPricing(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
-    fuel_price = db.Column(db.String(25))
-    type_of_fuel = db.Column(db.String(25))
-    date_of_pricing = db.Column(db.DateTime)
+    fuel_price = db.Column(db.String(25), nullable=False)
+    type_of_fuel = db.Column(db.String(25), nullable=False)
+    date_of_pricing = db.Column(db.Date, nullable=False)
     
 
 

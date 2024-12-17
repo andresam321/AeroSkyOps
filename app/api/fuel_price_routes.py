@@ -17,26 +17,23 @@ def all_fueling_price():
 
 ##edit fuel price 
 ##Untested
-@fueling_price_routes.route("/<int:id>")
+@fueling_price_routes.route("/<int:id>",  methods = ["PUT"])
 @login_required
 def edit_fuel_price(id):
-    fuel_price =FuelPricing.query.get(id)
+    fuel_price = FuelPricing.query.get(id)
     if not fuel_price:
         return {"message":"Fuel Price Couldnt be Found"},404
     
-    form = FuelPricingForm
+    form = FuelPricingForm()
 
-    form["crsf_token"].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
- 
-        fuel_price.type_of_fuel = form.data["date_of_pricing"]
+        fuel_price.type_of_fuel = form.data["type_of_fuel"]
         fuel_price.fuel_price = form.data["fuel_price"]
         fuel_price.date_of_pricing = form.data["date_of_pricing"]
 
         db.session.commit()
-
-
         return fuel_price.to_dict()
     print(form.errors)
     return form.errors,400
