@@ -74,11 +74,12 @@ const HomePage = () => {
   };
 
 
-
+ 
 return (
-<div className="parking-spot-container">
-  <h1>{areaName?.parking_name} Area  </h1>
-  {loadSpotWithPlanesAndWithout.map((eachVal, index) => (
+<div className=''>
+  <h1>{areaName?.parking_name} Area </h1>
+  <div className="parking-spot-container">
+    {loadSpotWithPlanesAndWithout.map((eachVal, index) => (
     <div key={index} className={`card-container ${eachVal.aircraft ? 'occupied' : 'empty'}`}>
       {eachVal.aircraft && (
         <div className="aircraft-info-container">
@@ -127,6 +128,7 @@ return (
       </div>
     </div>
   ))}
+</div>
 </div>
 );
 }

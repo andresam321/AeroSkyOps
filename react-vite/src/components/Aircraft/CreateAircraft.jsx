@@ -164,7 +164,7 @@ return (
                         {errors.last_time_fueled && <p className="error-message">{errors.last_time_fueled}</p>}
                     </div>
                 </div>
-                <button disabled={Object.values(errors).length > 0} className='submit-button' type="submit">Add Aircraft</button>
+                <button disabled={Object.values(errors).length > 0} className='submit-create-button' type="submit">Add Aircraft</button>
             </form>
         </div>
     );
