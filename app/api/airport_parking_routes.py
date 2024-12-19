@@ -5,7 +5,7 @@ from app.forms import AirportParkingForm
 
 
 
-airport_routes = Blueprint("airport_parkings", __name__)
+airport_routes = Blueprint("airport_area", __name__)
 
 
 @airport_routes.route("/all_places/with_parking_spots")
@@ -32,3 +32,15 @@ def get_parking_spots(parking_id):
     parking_spots = ParkingSpot.query.filter_by(airport_parking_id=parking_id).all()
     print(f"Found parking spots: {[spot.to_dict() for spot in parking_spots]}")
     return [spot.to_dict() for spot in parking_spots], 200
+
+
+#display one parking area by ID
+### tested
+@airport_routes.route("/<int:id>")
+@login_required
+def fuel_tank_by_id(id):
+    airport_area = AirportParking.query.get(id)
+    print(airport_area)
+    if not airport_area:
+        return {"message":"Airport Area Couldnt be found"},404
+    return airport_area.to_dict(), 200

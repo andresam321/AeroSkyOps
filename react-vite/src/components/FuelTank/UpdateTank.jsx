@@ -112,7 +112,7 @@ useEffect(() => {
         <option value="">Select an option</option>
         <option value="100LL AvGas">100LL AvGas</option>
         <option value="94 Unleaded">94 Unleaded</option>
-        <option va Ue="Jet-A">Jet-A</option>
+        <option value="Jet-A">Jet-A</option>
         <option value="100 Unleaded">100 Unleaded</option>
         <option value="Diesel">Diesel</option>
       </select>

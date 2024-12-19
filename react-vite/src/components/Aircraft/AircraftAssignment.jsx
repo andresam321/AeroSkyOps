@@ -28,13 +28,11 @@ const AircraftAssignment = ({ spotId, areaId }) => {
                     parking_spot_id: spotId
                 };
                 const res = await dispatch(thunkAssignAircraftToParkingSpot(payload));
-                closeModal(); // Close the modal
-                await dispatch(thunkGetParkingSpotsByArea(areaId)); // Fetch parking spots for the area
-                // console.log("THUNKGETTINGDISPATCH")
-                if (!res.errors) {
-                    // console.log("line32",areaId)
+                if (res?.errors) {
+                    console.log(res.errors); 
                 } else {
-                    console.log(res.errors);
+                    closeModal(); 
+                    await dispatch(thunkGetParkingSpotsByArea(areaId));
                 }
             } catch (error) {
                 console.error(error);
