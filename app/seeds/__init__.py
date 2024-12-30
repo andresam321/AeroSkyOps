@@ -4,7 +4,7 @@ from .parking_spot import seed_parkingSpots, undo_parkingSpots
 from .aircraft import seed_aircrafts, undo_aircrafts
 from .owner import seed_owners, undo_owners
 from .fuel_order import seed_fuelOrders, undo_fuelOrders
-from .airport_parking import seed_airport_parkings, undo_airport_parkings
+from .airport_area import seed_airport_area, undo_airport_area
 from .fuel_pricing import seed_fuelPricing, undo_fuelPricing
 from .parking_history import seed_parking_history, undo_parking_history
 from .fuel_tank import seed_fuel_tank, undo_fuel_tank
@@ -28,14 +28,14 @@ def seed():
         undo_fuel_tank()
         undo_parking_history()
         undo_fuelPricing()
-        undo_airport_parkings()
+        undo_airport_area()
         undo_fuelOrders()
         undo_owners()
         undo_parkingSpots()
         undo_aircrafts()
         undo_users()
     seed_users()
-    seed_airport_parkings()
+    seed_airport_area()
     seed_parkingSpots()
     seed_aircrafts()
     seed_owners()
@@ -52,7 +52,7 @@ def undo():
     undo_fuel_tank()
     undo_parking_history()
     undo_fuelPricing()
-    undo_airport_parkings()
+    undo_airport_area()
     undo_fuelOrders()
     undo_owners()
     undo_parkingSpots()

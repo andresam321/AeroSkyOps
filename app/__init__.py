@@ -9,7 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.parking_routes import parking_routes
 from .api.aircraft_routes import aircraft_routes
-from .api.airport_parking_routes import airport_routes
+from .api.airport_area_routes import airport_routes
 from .api.owner_routes import owner_routes
 from .api.fueling_routes import fueling_routes
 from .api.flightaware_api_routes import flightaware_routes
