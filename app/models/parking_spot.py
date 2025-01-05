@@ -9,7 +9,7 @@ class ParkingSpot(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
-    airport_parking_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('airport_parkings.id')), nullable=False)
+    airport_parking_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('airport_area.id')), nullable=False)
     spot_number = db.Column(db.String(50), nullable = False)
     spot_size = db.Column(db.String(50),nullable = False)
     is_reserved = db.Column(db.String(10), nullable = False)
@@ -21,7 +21,7 @@ class ParkingSpot(db.Model):
     #one to many 
     employee = db.relationship('User', back_populates ='parking_spots')
 
-    airport_parking = db.relationship("AirportParking", back_populates = 'parking_spots')
+    airport_parking = db.relationship("AirportArea", back_populates = 'parking_spots')
 
     fuel_orders = db.relationship("FuelOrder", back_populates="parking_spot")
 

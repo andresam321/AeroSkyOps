@@ -7,11 +7,19 @@ def seed_airport_area():
         {   
             "id":1,
             "area_name": "North"
-            
         },
-        {"area_name": "East"},
-        {"area_name": "West"},
-        {"area_name": "South"}
+        {
+            "id":2,
+            "area_name": "East"
+        },
+        {
+            "id":3,
+            "area_name": "West" 
+        },
+        {
+            "id":4,
+            "area_name": "South"    
+        }
     ]
 
     [db.session.add(AirportArea(**airport_parking)) for airport_parking in airport_area]

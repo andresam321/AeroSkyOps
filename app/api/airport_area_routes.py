@@ -37,8 +37,8 @@ def get_parking_spots(parking_id):
 #display one parking area by ID
 ### tested
 @airport_area.route("/<int:id>")
-@login_required
-def fuel_tank_by_id(id):
+# @login_required
+def area_by_id(id):
     airport_area = AirportArea.query.get(id)
     print(airport_area)
     if not airport_area:

@@ -9,7 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.parking_routes import parking_routes
 from .api.aircraft_routes import aircraft_routes
-from .api.airport_area_routes import airport_routes
+from .api.airport_area_routes import airport_area
 from .api.owner_routes import owner_routes
 from .api.fueling_routes import fueling_routes
 from .api.flightaware_api_routes import flightaware_routes
@@ -39,7 +39,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(parking_routes, url_prefix='/api/parking_spots')
 app.register_blueprint(aircraft_routes, url_prefix='/api/aircrafts')
-app.register_blueprint(airport_routes, url_prefix='/api/airport_area')
+app.register_blueprint(airport_area, url_prefix='/api/airport_area')
 app.register_blueprint(owner_routes, url_prefix='/api/owners')
 app.register_blueprint(fueling_routes, url_prefix='/api/fuelings')
 app.register_blueprint(fueling_price_routes, url_prefix='/api/prices')
