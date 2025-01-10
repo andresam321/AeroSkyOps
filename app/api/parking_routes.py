@@ -107,13 +107,13 @@ def delete_parking_spot(id):
     if not parkingSpot:
         return {"message": "Parking spot couldn't be found"}, 404
 
-    if aircraft:
-        return {"message": "Parking spot is assigned to an aircraft and cannot be deleted"}, 400
-    else:
-        db.session.delete(parkingSpot)
-        db.session.commit()
+    # if aircraft:
+        # return {"message": "Parking spot is assigned to an aircraft and cannot be deleted"}, 400
+    # else:
+    db.session.delete(parkingSpot)
+    db.session.commit()
 
-        return {"message": "Successfully deleted parkingSpot"}, 200
+    return {"message": "Successfully deleted parkingSpot"}, 200
 
 
 #add an aircraft to a parking spot

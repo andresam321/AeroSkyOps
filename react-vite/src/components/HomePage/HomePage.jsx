@@ -23,9 +23,9 @@ const HomePage = () => {
 
   const areaName = useSelector((state) => state.airportAreasReducer?.[+id])
 
-  // const {parking_name} = areaName
+  // const {area_name} = areaName
     
-  // console.log("line26", areaName?.parking_name)
+  // console.log("line26", areaName?.area_name)
 
   const loadSpotWithPlanesAndWithout = useSelector((state) => {
       const area = state.parkingSpotReducer[+id];
@@ -77,7 +77,7 @@ const HomePage = () => {
  
 return (
 <div className=''>
-  <h1>{areaName?.parking_name} Area </h1>
+  <h1>{areaName?.area_name} Area </h1>
   <div className="parking-spot-container">
     {loadSpotWithPlanesAndWithout.map((eachVal, index) => (
     <div key={index} className={`card-container ${eachVal.aircraft ? 'occupied' : 'empty'}`}>

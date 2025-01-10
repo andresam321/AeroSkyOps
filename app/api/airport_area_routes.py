@@ -11,7 +11,7 @@ airport_area = Blueprint("airport_area", __name__)
 @airport_area.route("/all_places/with_parking_spots")
 def all_places():
     airport_parkings = AirportArea.query.all()
-    return {"airport": [airport_parking.parking_name for airport_parking in airport_parkings]},200
+    return {"airport": [airport_parking.area_name for airport_parking in airport_parkings]},200
 
 
 @airport_area.route("/all_places")

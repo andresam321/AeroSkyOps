@@ -4,4 +4,4 @@ from wtforms.validators import DataRequired, ValidationError
 from ..models import AirportArea
 
 class AirportAreaForm(FlaskForm):
-    parking_name = SelectField("parking name",choices=[('North','North'), ('East','East'), ('West','West'),('South','South')], validators=[DataRequired()])
+    area_name = SelectField("parking name",choices=[('North','North'), ('East','East'), ('West','West'),('South','South')], validators=[DataRequired()])

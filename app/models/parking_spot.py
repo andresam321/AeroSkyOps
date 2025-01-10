@@ -9,7 +9,7 @@ class ParkingSpot(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
-    airport_parking_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('airport_area.id')), nullable=False)
+    airport_area_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('airport_area.id')), nullable=False)
     spot_number = db.Column(db.String(50), nullable = False)
     spot_size = db.Column(db.String(50),nullable = False)
     is_reserved = db.Column(db.String(10), nullable = False)
@@ -35,7 +35,7 @@ class ParkingSpot(db.Model):
         return {
             "id": self.id,
             "user_id":self.user_id,
-            "airport_parking_id": self.airport_parking_id,
+            "airport_area_id": self.airport_area_id,
             "spot_number": self.spot_number,
             "spot_size": self.spot_size,
             "is_reserved": self.is_reserved

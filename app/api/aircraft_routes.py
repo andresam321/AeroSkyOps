@@ -133,8 +133,8 @@ def delete_parking_spot(id):
     if not aircraft:
         return {"message": "aircraft couldn't be found"}, 404
     
-    if aircraft.parking_spot:
-        return {"message": "Aircraft is parked at a parking spot and cannot be deleted"}, 400
+    # if aircraft.parking_spot:
+    #     return {"message": "Aircraft is parked at a parking spot and cannot be deleted"}, 400
 
 
     db.session.delete(aircraft)

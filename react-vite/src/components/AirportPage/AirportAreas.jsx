@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { thunkGetAllAreasWithParkingSpots } from '../../redux/airport_area';
+import { thunkGetAllAreasWithParkingSpots,thunkAirportAreaById } from '../../redux/airport_area';
 import { thunkGetAllFuelPrices } from '../../redux/price';
 import { NavLink,useParams } from 'react-router-dom';
 import './AirportAreas.css';
@@ -15,11 +15,13 @@ const AirportAreas = () => {
     const areas = useSelector(state => state.airportAreasReducer?.areasWithSpots?.airport || []);
     const fuelPrice = useSelector((state) => state.fuelPriceReducer.fuelPrices || [])
 
-    console.log("line17",fuelPrice)
+    
+    console.log("line17",areas)
     // const areas = loadAreasWithSpots?.airport || [];
     
     useEffect(() => {
         dispatch(thunkGetAllAreasWithParkingSpots());
+        dispatch(thunkAirportAreaById())
         dispatch(thunkGetAllFuelPrices())
     }, [dispatch]);
 
@@ -48,7 +50,7 @@ const AirportAreas = () => {
                 {areas?.slice(0, 4).map(area => (
                     <div key={area?.id} className="area" style={{ backgroundImage: `url(${cloudinaryUrl})` }}>
                         <NavLink to={`/area/parking_spot/${area?.id}`} className="area-link">
-                            <h3>{area?.parking_name}</h3>
+                            <h3>{area?.area_name}</h3>
                         </NavLink>
                     </div>
                 ))}

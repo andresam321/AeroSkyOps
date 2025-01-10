@@ -86,7 +86,7 @@ https://skyhighops.onrender.com
     "airport": [
         {
             "id": 1,
-            "parking_name": "North",
+            "area_name": "North",
             "parking_spots": [
                 {
                     "airport_parking_id": 1,
@@ -124,7 +124,7 @@ https://skyhighops.onrender.com
         },
         {
             "id": 2,
-            "parking_name": "East",
+            "area_name": "East",
             "parking_spots": [
                 {
                     "airport_parking_id": 2,
@@ -162,7 +162,7 @@ https://skyhighops.onrender.com
         },
         {
             "id": 3,
-            "parking_name": "West",
+            "area_name": "West",
             "parking_spots": [
                 {
                     "airport_parking_id": 3,
@@ -184,7 +184,7 @@ https://skyhighops.onrender.com
         },
         {
             "id": 4,
-            "parking_name": "South",
+            "area_name": "South",
             "parking_spots": [
                 {
                     "airport_parking_id": 4,

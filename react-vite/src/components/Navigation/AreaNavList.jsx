@@ -58,7 +58,7 @@ return (
         <option value="">Select a Parking Area</option>
         {areas.map((val) => (
             <option key={val?.id} value={val?.id}>
-                {val?.parking_name}
+                {val?.area_name}
             </option>
         ))}
     </select>
