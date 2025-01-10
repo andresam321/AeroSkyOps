@@ -99,10 +99,10 @@ def update_parking_spot(id):
 
 #delete parking spot
 @parking_routes.route("/<int:id>", methods = ["DELETE"])
-@login_required
+# @login_required
 def delete_parking_spot(id):
     parkingSpot = ParkingSpot.query.get(id)
-    aircraft = Aircraft.query.filter_by(parking_spot_id=id).first()
+    # aircraft = Aircraft.query.filter_by(parking_spot_id=id).first()
 
     if not parkingSpot:
         return {"message": "Parking spot couldn't be found"}, 404
@@ -142,7 +142,7 @@ def delete_parking_spot(id):
 @parking_routes.route("/with_aircraft/<int:airport_parking_id>")
 @login_required
 def get_parking_spots_with_aircraft(airport_parking_id):
-    parking_spots = ParkingSpot.query.outerjoin(Aircraft).filter(ParkingSpot.airport_parking_id == airport_parking_id).all()
+    parking_spots = ParkingSpot.query.outerjoin(Aircraft).filter(ParkingSpot.airport_area_id == airport_parking_id).all()
     return {
         "parkingSpots": [
             {**parking_spot.to_dict(), "aircraft": parking_spot.aircraft.to_dict() if parking_spot.aircraft else None}

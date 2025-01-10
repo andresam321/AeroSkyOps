@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: c8a23b625419
+Revision ID: 413a5ba054f1
 Revises: 
-Create Date: 2025-01-09 17:42:29.156094
+Create Date: 2025-01-09 18:17:55.858496
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'c8a23b625419'
+revision = '413a5ba054f1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -107,7 +107,7 @@ def upgrade():
     sa.Column('aircraft_id', sa.Integer(), nullable=False),
     sa.Column('completed_by_user_id', sa.Integer(), nullable=True),
     sa.Column('created_by_user_id', sa.Integer(), nullable=True),
-    sa.Column('parking_spot_id', sa.Integer(), nullable=False),
+    sa.Column('parking_spot_id', sa.Integer(), nullable=True),
     sa.Column('fuel_type', sa.String(length=25), nullable=True),
     sa.Column('request_by', sa.String(length=25), nullable=False),
     sa.Column('positive_prist', sa.String(length=10), nullable=False),
@@ -146,7 +146,7 @@ def upgrade():
     op.create_table('parking_histories',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('aircraft_id', sa.Integer(), nullable=False),
-    sa.Column('parking_spot_id', sa.Integer(), nullable=False),
+    sa.Column('parking_spot_id', sa.Integer(), nullable=True),
     sa.Column('start_time', sa.DateTime(), nullable=False),
     sa.Column('end_time', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ),
