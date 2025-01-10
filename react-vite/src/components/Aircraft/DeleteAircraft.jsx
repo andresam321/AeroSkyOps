@@ -30,9 +30,9 @@ return (
         <div className="delete-message">
             <p>Are you sure you want to delete this aircraft?</p>
         </div>
-        <div className="disclaimer">
+        {/* <div className="disclaimer">
             <p>Disclaimer: If an aircraft is assigned, it won&apos;t be deleted but will still navigate to the home page. Aircraft must be unassigned from parking before being completely deleted.</p>
-        </div>
+        </div> */}
         <div className="delete-buttons">
             <button type="submit" className="delete-button">Delete</button>
             <button onClick={() => closeModal()} className="cancel-button">Cancel</button>
