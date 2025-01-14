@@ -17,3 +17,4 @@ class Config:
     # Debug mode
     DEBUG = os.environ.get('DEBUG', 'False').lower() == 'true'
 
+ 

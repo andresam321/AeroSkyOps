@@ -105,7 +105,7 @@ const handleBlur = (field) => {
     <div>
       <div className="login-page">
         <div className={`login-container ${showSignupModal ? "blur-background" : ""}`}>
-          <div className="login-forms">
+          {/* <div className="login-forms"> */}
             <div className="login-form">
               <h1>Employee Login</h1>
               <form onSubmit={handleSubmit} className="form">
@@ -147,7 +147,7 @@ const handleBlur = (field) => {
                 >
                   Login as Demo User
                 </button> */}
-                {!showSignupModal && (
+                {/* {!showSignupModal && (
                   <button
                     type="button"
                     className="btn signup-btn"
@@ -155,7 +155,7 @@ const handleBlur = (field) => {
                   >
                     Sign Up
                   </button>
-                )}
+                )} */}
               </form>
             </div>
             {showSignupModal && (
@@ -165,7 +165,7 @@ const handleBlur = (field) => {
             )}
           </div>
         </div>
-      </div>
+      {/* </div> */}
     </div>
   );
 }

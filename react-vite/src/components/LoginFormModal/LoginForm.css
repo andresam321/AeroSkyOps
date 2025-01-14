@@ -24,7 +24,7 @@ body, html {
 }
 
 .login-page::before {
-    content: '';
+    /* content: ''; */
     position: absolute;
     width: 100%;
     height: 100%;
@@ -40,11 +40,13 @@ body, html {
     width: 100%;
     text-align: center;
     z-index: 1;
-    height: 550px; 
+    /* height: 550px;  */
     overflow-y: auto; 
+   
 }
 
 h1 {
+    text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
     color: #333;
@@ -57,6 +59,7 @@ h1 {
 
 .form-control label {
     display: block;
+    text-align: center;
     margin-bottom: 5px;
     font-weight: bold;
     color: #333;
@@ -68,6 +71,7 @@ h1 {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
+    
 }
 
 .form-errors-login {
@@ -117,17 +121,20 @@ h1 {
     color: #0056b3;
 }
 
-.login-forms {
+/* .login-forms {
     display: flex;
+    align-items: center;
     justify-content: space-between;
-}
+} */
 
 .login-form {
-    width: 50%;
+    /* width: 50%;
+    align-items: center; */
 }
 
 .signup-form {
     width: 50%;
+
 }
 .form-control input {
     width: 100%; 
