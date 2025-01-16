@@ -38,7 +38,7 @@ export const thunkAirportAreaById = (id) => async (dispatch) => {
 }
 
 export const thunkGetAllAreasWithParkingSpots = () => async (dispatch) => {
-    const res = await fetch("api/airport_area/all_places");
+    const res = await fetch("api/airport_area/all_areas");
     if (res.ok) {
         const data = await res.json();
         // console.log("line13,action",data)

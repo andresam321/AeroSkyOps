@@ -130,8 +130,8 @@ export const thunkGetSingleParkingSpot = (parking_spotId) => async (dispatch) =>
     }
 };
 
-export const thunkCreateParkingSpot = (parkingSpot) => async (dispatch) => {
-    const res = await fetch("/api/parking_spots/new", {
+export const thunkCreateParkingSpot = (parkingSpot, area_id) => async (dispatch) => {
+    const res = await fetch(`/api/parking_spots/${area_id}`, {
         method: "POST",
         body: parkingSpot
     });

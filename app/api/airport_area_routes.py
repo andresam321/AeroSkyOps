@@ -14,7 +14,7 @@ def all_places():
     return {"airport": [airport_parking.area_name for airport_parking in airport_parkings]},200
 
 
-@airport_area.route("/all_places")
+@airport_area.route("/all_areas")
 @login_required
 def all_places_with_parking_spots():
     airport_spots = AirportArea.query.all()

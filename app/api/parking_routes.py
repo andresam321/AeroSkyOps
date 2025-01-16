@@ -37,9 +37,9 @@ def parking_spot_by_id(id):
 
 
 #creating a parking spot
-@parking_routes.route("/new", methods=["POST"])
+@parking_routes.route("/<int:airport_area_id>", methods=["POST"])
 @login_required
-def create_parking_spot():
+def create_parking_spot(airport_area_id):
     print("In create form =>")
     
     form = ParkingSpotForm()
@@ -49,7 +49,7 @@ def create_parking_spot():
         try:
             new = ParkingSpot(
                 user_id=current_user.id,
-                airport_parking_id=int(form.data["airport_parking_id"]),
+                airport_area_id=airport_area_id,
                 spot_number=form.data["spot_number"],
                 spot_size=form.data["spot_size"],
                 is_reserved=form.data["is_reserved"]
@@ -68,7 +68,7 @@ def create_parking_spot():
             # print("Error adding parking spot:", str(e))
             return {"message": "An error occurred while adding the parking spot.", "error": str(e)}, 500
     else:
-        # print("Form validation errors:", form.errors)
+        print("Form validation errors:", form.errors)
         return form.errors, 400
 
 
@@ -254,9 +254,9 @@ def get_parking_spots_with_aircraft_by_area(area_id):
 def check_spot_exist():
     data = request.get_json()
     spot_number = data.get('spot_number')
-    airport_parking_id = data.get("airport_parking_id")
+    airport_area_id = data.get("airport_area_id")
 
-    existing_spot = ParkingSpot.query.filter_by(spot_number=spot_number, airport_parking_id=airport_parking_id).first()
+    existing_spot = ParkingSpot.query.filter_by(spot_number=spot_number, airport_area_id=airport_area_id).first()
     if existing_spot:
         return {"exists": True}, 200
     else:
