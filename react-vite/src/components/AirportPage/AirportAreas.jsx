@@ -45,7 +45,7 @@ const AirportAreas = () => {
 
     return (
         <div className="airport-areas">
-            <h1 className="header">SkyHighOps Aviation Parking</h1>
+            <h1 className="header">AeroSkyOps Parking</h1>
             <div className="airport-areas-container">
                 {areas?.slice(0, 4).map(area => (
                     <div key={area?.id} className="area" style={{ backgroundImage: `url(${cloudinaryUrl})` }}>
