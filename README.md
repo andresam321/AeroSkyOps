@@ -14,7 +14,7 @@ https://www.aeroskyops.com/
 
 ![AeroSkyOps]
 
-[Home]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319339/SkyHighOps/01_eho9t4.png
+[Home]: [https://res.cloudinary.com/djuzk5um3/image/upload/v1737319339/SkyHighOps/01_eho9t4.png]
 
 ##
 
