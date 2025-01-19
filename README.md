@@ -14,43 +14,19 @@ https://www.aeroskyops.com/
 
 ![AeroSkyOps]
 
-[Home]: [https://res.cloudinary.com/djuzk5um3/image/upload/v1737319339/SkyHighOps/01_eho9t4.png]
+![Home](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319339/SkyHighOps/01_eho9t4.png)
 
-##
+![Area Parking Spots](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319344/SkyHighOps/02_Airport_Areas_mxlstm.png)
 
-![AeroSkyOps]
+![Aircraft Details](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319350/SkyHighOps/03_Aircraft_Details_p9teof.png)
 
-[Area_Parking_Spots]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319344/SkyHighOps/02_Airport_Areas_mxlstm.png
+![Aircraft Status](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319371/SkyHighOps/04_Aircraft_Status_a9femd.png)
 
-##
+![Airport Weather Status](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319376/SkyHighOps/05_Airport_Weather_Status_yjio9v.png)
 
-![AeroSkyOps]
+![Fuel Request](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319386/SkyHighOps/06_FueL_Request_Order_jdsz94.png)
 
-[Aircraft_Details]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319350/SkyHighOps/03_Aircraft_Details_p9teof.png
-
-##
-
-![AeroSkyOps]
-
-[Aircraft_Status]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319371/SkyHighOps/04_Aircraft_Status_a9femd.png
-
-##
-
-![AeroSkyOps]
-
-[Airport_Weather_Stautus]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319376/SkyHighOps/05_Airport_Weather_Status_yjio9v.png
-
-##
-
-![AeroSkyOps]
-
-[Fuel_Request]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319386/SkyHighOps/06_FueL_Request_Order_jdsz94.png
-
-##
-
-![AeroSkyOps]
-
-[Tank_Levels]: https://res.cloudinary.com/djuzk5um3/image/upload/v1737319390/SkyHighOps/07_All_Tanks_hd58go.png
+![Tank Levels](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319390/SkyHighOps/07_All_Tanks_hd58go.png)
 
 ##
 
