@@ -6,27 +6,27 @@ SkyHighOps Aviation is an advanced airplane management system designed to enhanc
 
 ### Live Link
 
-https://skyhighops.onrender.com
+https://www.aeroskyops.com/
 
 ##
 
 ### SkyhighOps Images 
 
-![skyhighops]
+![AeroSkyOps]
 
-[skyhighops]: https://res.cloudinary.com/djuzk5um3/image/upload/v1719611399/SkyHighOps/cloud01_yvcq2y.png
+![Home](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319339/SkyHighOps/01_eho9t4.png)
 
-##
+![Area Parking Spots](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319344/SkyHighOps/02_Airport_Areas_mxlstm.png)
 
-![sky]
+![Aircraft Details](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319350/SkyHighOps/03_Aircraft_Details_p9teof.png)
 
-[sky]: https://res.cloudinary.com/djuzk5um3/image/upload/v1719611680/SkyHighOps/cloud02_mzsrkl.png
+![Aircraft Status](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319371/SkyHighOps/04_Aircraft_Status_a9femd.png)
 
-##
+![Airport Weather Status](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319376/SkyHighOps/05_Airport_Weather_Status_yjio9v.png)
 
-![skyhigh]
+![Fuel Request](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319386/SkyHighOps/06_FueL_Request_Order_jdsz94.png)
 
-[skyhigh]: https://res.cloudinary.com/djuzk5um3/image/upload/v1719611695/SkyHighOps/cloud05_bghywy.png
+![Tank Levels](https://res.cloudinary.com/djuzk5um3/image/upload/v1737319390/SkyHighOps/07_All_Tanks_hd58go.png)
 
 ##
 
@@ -86,7 +86,7 @@ https://skyhighops.onrender.com
     "airport": [
         {
             "id": 1,
-            "parking_name": "North",
+            "area_name": "North",
             "parking_spots": [
                 {
                     "airport_parking_id": 1,
@@ -124,7 +124,7 @@ https://skyhighops.onrender.com
         },
         {
             "id": 2,
-            "parking_name": "East",
+            "area_name": "East",
             "parking_spots": [
                 {
                     "airport_parking_id": 2,
@@ -162,7 +162,7 @@ https://skyhighops.onrender.com
         },
         {
             "id": 3,
-            "parking_name": "West",
+            "area_name": "West",
             "parking_spots": [
                 {
                     "airport_parking_id": 3,
@@ -184,7 +184,7 @@ https://skyhighops.onrender.com
         },
         {
             "id": 4,
-            "parking_name": "South",
+            "area_name": "South",
             "parking_spots": [
                 {
                     "airport_parking_id": 4,

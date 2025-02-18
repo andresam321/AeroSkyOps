@@ -31,12 +31,11 @@ def update_fuel_status(id):
         return jsonify({"error": "Invalid status value"}), 400
     
     fuel_order.is_completed = new_status
-    fuel_order.completed_by_user_id = current_user.id  # Record the user who completes the request
+    fuel_order.completed_by_user_id = current_user.id 
     db.session.commit()
 
     return jsonify({
         "message": f"Fuel order status updated to '{new_status}'",
-        "completed_by_user_id": fuel_order.completed_by_user_id,
         "fuel_order": fuel_order.to_dict()
     })
 

@@ -37,9 +37,9 @@ def parking_spot_by_id(id):
 
 
 #creating a parking spot
-@parking_routes.route("/new", methods=["POST"])
+@parking_routes.route("/<int:airport_area_id>", methods=["POST"])
 @login_required
-def create_parking_spot():
+def create_parking_spot(airport_area_id):
     print("In create form =>")
     
     form = ParkingSpotForm()
@@ -49,7 +49,7 @@ def create_parking_spot():
         try:
             new = ParkingSpot(
                 user_id=current_user.id,
-                airport_parking_id=int(form.data["airport_parking_id"]),
+                airport_area_id=airport_area_id,
                 spot_number=form.data["spot_number"],
                 spot_size=form.data["spot_size"],
                 is_reserved=form.data["is_reserved"]
@@ -68,7 +68,7 @@ def create_parking_spot():
             # print("Error adding parking spot:", str(e))
             return {"message": "An error occurred while adding the parking spot.", "error": str(e)}, 500
     else:
-        # print("Form validation errors:", form.errors)
+        print("Form validation errors:", form.errors)
         return form.errors, 400
 
 
@@ -99,21 +99,21 @@ def update_parking_spot(id):
 
 #delete parking spot
 @parking_routes.route("/<int:id>", methods = ["DELETE"])
-@login_required
+# @login_required
 def delete_parking_spot(id):
     parkingSpot = ParkingSpot.query.get(id)
-    aircraft = Aircraft.query.filter_by(parking_spot_id=id).first()
+    # aircraft = Aircraft.query.filter_by(parking_spot_id=id).first()
 
     if not parkingSpot:
         return {"message": "Parking spot couldn't be found"}, 404
 
-    if aircraft:
-        return {"message": "Parking spot is assigned to an aircraft and cannot be deleted"}, 400
-    else:
-        db.session.delete(parkingSpot)
-        db.session.commit()
+    # if aircraft:
+        # return {"message": "Parking spot is assigned to an aircraft and cannot be deleted"}, 400
+    # else:
+    db.session.delete(parkingSpot)
+    db.session.commit()
 
-        return {"message": "Successfully deleted parkingSpot"}, 200
+    return {"message": "Successfully deleted parkingSpot"}, 200
 
 
 #add an aircraft to a parking spot
@@ -142,7 +142,7 @@ def delete_parking_spot(id):
 @parking_routes.route("/with_aircraft/<int:airport_parking_id>")
 @login_required
 def get_parking_spots_with_aircraft(airport_parking_id):
-    parking_spots = ParkingSpot.query.outerjoin(Aircraft).filter(ParkingSpot.airport_parking_id == airport_parking_id).all()
+    parking_spots = ParkingSpot.query.outerjoin(Aircraft).filter(ParkingSpot.airport_area_id == airport_parking_id).all()
     return {
         "parkingSpots": [
             {**parking_spot.to_dict(), "aircraft": parking_spot.aircraft.to_dict() if parking_spot.aircraft else None}
@@ -197,33 +197,33 @@ def get_parking_spots_with_aircraft(airport_parking_id):
 
 
 #assign aircraft to parking spot 
-@parking_routes.route("/assign_aircraft_to_parking_spot", methods=['POST'])
-@login_required
-def assign_aircraft_to_parking_spot():
-    data = request.get_json()
+# @parking_routes.route("/assign_aircraft_to_parking_spot", methods=['POST'])
+# @login_required
+# def assign_aircraft_to_parking_spot():
+#     data = request.get_json()
 
-    parking_spot_id = data.get('parking_spot_id')
-    aircraft_id = data.get('aircraft_id')
+#     parking_spot_id = data.get('parking_spot_id')
+#     aircraft_id = data.get('aircraft_id')
 
-    if not parking_spot_id or not aircraft_id:
-        return {"error": "Parking spot ID or aircraft ID missing"}, 400
+#     if not parking_spot_id or not aircraft_id:
+#         return {"error": "Parking spot ID or aircraft ID missing"}, 400
 
-    parking_spot = ParkingSpot.query.get(parking_spot_id)
-    if not parking_spot:
-        return {"error": "Parking spot not found"}, 404
+#     parking_spot = ParkingSpot.query.get(parking_spot_id)
+#     if not parking_spot:
+#         return {"error": "Parking spot not found"}, 404
     
-    aircraft = Aircraft.query.get(aircraft_id)
-    if not aircraft:
-        return {"error": "Aircraft not found"}, 404
+#     aircraft = Aircraft.query.get(aircraft_id)
+#     if not aircraft:
+#         return {"error": "Aircraft not found"}, 404
     
-    if parking_spot.aircraft_id:
-        return {"error": "Parking spot already occupied"}, 400
+#     if parking_spot.aircraft_id:
+#         return {"error": "Parking spot already occupied"}, 400
 
-    parking_spot.aircraft_id = aircraft_id
-    db.session.add()
-    db.session.commit()
+#     parking_spot.aircraft_id = aircraft_id
+#     db.session.add()
+#     db.session.commit()
 
-    return {"message": "Aircraft assigned to parking spot successfully"}, 201
+#     return {"message": "Aircraft assigned to parking spot successfully"}, 201
 
 
 
@@ -254,9 +254,9 @@ def get_parking_spots_with_aircraft_by_area(area_id):
 def check_spot_exist():
     data = request.get_json()
     spot_number = data.get('spot_number')
-    airport_parking_id = data.get("airport_parking_id")
+    airport_area_id = data.get("airport_area_id")
 
-    existing_spot = ParkingSpot.query.filter_by(spot_number=spot_number, airport_parking_id=airport_parking_id).first()
+    existing_spot = ParkingSpot.query.filter_by(spot_number=spot_number, airport_area_id=airport_area_id).first()
     if existing_spot:
         return {"exists": True}, 200
     else:

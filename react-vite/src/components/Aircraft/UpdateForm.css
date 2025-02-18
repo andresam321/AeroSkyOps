@@ -6,11 +6,15 @@
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
+.align-center{
+    text-align: center;
+    margin-top: 20px;
+}
 .form-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 20px;
+    text-align: center;
 }
 
 .form-group {

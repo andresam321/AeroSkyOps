@@ -104,13 +104,13 @@ export const thunkAssignAircraftToParkingSpot = (aircraft) => async (dispatch) =
         }
         const data = await res.json();
         await dispatch(assignAircraftToParking(data));
-        await dispatch(thunkGetParkingSpotsByArea(data.aircraft.parking_spot_id)); 
-        // console.log("line108fromAssigningThunk",data.aircraft.parking_spot_id)
+        await dispatch(thunkGetParkingSpotsByArea(data?.aircraft.parking_spot_id));
+        return data; 
     } catch (error) {
-        return { errors: error.message };
+        console.log(error);
+        return { errors: error.message }; 
     }
 };
-
 export const thunkUpdateAircraft = (aircraft, aircraftId) => async (dispatch) => {
     const res = await fetch(`/api/aircrafts/${aircraftId}`, {
         method: "PUT", 

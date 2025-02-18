@@ -13,7 +13,7 @@ class FuelOrder(db.Model):
     aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('aircrafts.id')), nullable = False)
     completed_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
     created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
-    parking_spot_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parking_spots.id')), nullable=False)
+    parking_spot_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parking_spots.id')), nullable=True)
     fuel_type = db.Column(db.String(25))
     request_by = db.Column(db.String(25), nullable = False)
     positive_prist = db.Column(db.String(10), nullable = False)

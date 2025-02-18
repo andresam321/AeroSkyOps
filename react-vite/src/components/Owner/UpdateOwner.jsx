@@ -8,7 +8,7 @@ const UpdateOwner = ({ owner }) => {
     const dispatch = useDispatch();
     const { closeModal } = useModal();
 
-    let ownerById = useSelector((state) => state.ownerReducer[owner.id]);
+    const ownerById = useSelector((state) => state.ownerReducer[owner.id]);
 
     // useEffect(() => {
     //     dispatch(thunkGetAllOwnersThatCorrespondToAircraft(owner.id));

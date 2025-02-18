@@ -1,27 +1,39 @@
 .form-container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px; 
+    max-width: 800px; 
+    margin: auto; 
 }
 
 .form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); /* Two-column layout */
     gap: 20px;
 }
 
 .form-field {
     display: flex;
-    flex-direction: column;
+    flex-direction: column; 
+    gap: 5px;
 }
 
-.form-field label {
-    margin-bottom: 5px;
-    color: #333;
+.submit-create-button {
+    display: inline-block; 
+    grid-column: 1 / -1;
+    margin: 20px auto; 
+    padding: 10px 20px; 
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center; 
+}
+
+.submit-create-button:hover {
+    background-color: #0056b3;
 }
 
 input, select, textarea {
@@ -39,20 +51,4 @@ textarea {
     color: red;
     font-size: 12px;
     margin-top: 5px;
-}
-
-.submit-button {
-    width: 100%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-    background-color: #0056b3;
 }

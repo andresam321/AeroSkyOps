@@ -7,6 +7,7 @@ import FlightIdent from '../FlightIdentification/FlightIdent';
 import { thunkGetAssignParkingSpotsWithSpecificArea } from '../../redux/parking_spot';
 import { thunkGetAllAreasWithParkingSpots } from '../../redux/airport_area';
 import { NavLink, useParams } from 'react-router-dom';
+import { thunkAirportAreaById } from '../../redux/airport_area';
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import AircraftAssignment from '../Aircraft/AircraftAssignment';
 import "./HomePage.css";
@@ -20,9 +21,11 @@ const HomePage = () => {
 
   // const parkingArea = useSelector((state) => state.parkingSpotReducer[+id]);
 
-  // const areaName = useSelector((state) => state.airportAreasReducer.areasWithSpots)
+  const areaName = useSelector((state) => state.airportAreasReducer?.[+id])
+
+  // const {area_name} = areaName
     
-  // console.log("line22", areaName)
+  // console.log("line26", areaName?.area_name)
 
   const loadSpotWithPlanesAndWithout = useSelector((state) => {
       const area = state.parkingSpotReducer[+id];
@@ -38,6 +41,7 @@ const HomePage = () => {
       const fetchParkingSpots = async () => {
           try {
               await dispatch(thunkGetParkingSpotsByArea(id));
+              await dispatch(thunkAirportAreaById(id))
               // await dispatch(thunkGetAllAreasWithParkingSpots(id));
               // await dispatch(thunkGetParkingSpotsByArea(id));
           } catch (error) {
@@ -70,10 +74,12 @@ const HomePage = () => {
   };
 
 
-
+ 
 return (
-<div className="parking-spot-container">
-  {loadSpotWithPlanesAndWithout.map((eachVal, index) => (
+<div className=''>
+  <h1>{areaName?.area_name} Area </h1>
+  <div className="parking-spot-container">
+    {loadSpotWithPlanesAndWithout.map((eachVal, index) => (
     <div key={index} className={`card-container ${eachVal.aircraft ? 'occupied' : 'empty'}`}>
       {eachVal.aircraft && (
         <div className="aircraft-info-container">
@@ -122,6 +128,7 @@ return (
       </div>
     </div>
   ))}
+</div>
 </div>
 );
 }

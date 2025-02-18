@@ -9,12 +9,19 @@ const dispatch = useDispatch()
 
 const allFuelRequest = useSelector((state) => state.fuelingReducer.allFuelRequest)
 const [activeButtonId, setActiveButtonId] = useState({});
-// console.log("line11", allFuelRequest)
+console.log("line11", allFuelRequest)
 
+// useEffect(() => {
+//     const intervalId = setInterval(() => {
+//       dispatch(thunkGetAllFuelRequest());
+//     }, 5000); // Poll every 5 seconds
+  
+//     return () => clearInterval(intervalId); // Cleanup on unmount
+//   }, [dispatch]);
 
 useEffect(() => {
     dispatch(thunkGetAllFuelRequest())  
-    dispatch(thunkUpdateFuelRequest())
+    // dispatch(thunkUpdateFuelRequest())
 }, [dispatch])
 
 useEffect(() => {
@@ -31,6 +38,7 @@ useEffect(() => {
                 }
             });
             setActiveButtonId(initialButtonStates);
+     
         }
     }, [allFuelRequest]);
 
@@ -49,13 +57,31 @@ const sortedFuelRequests = [...allFuelRequest].sort((a, b) => {
     });
 
 
-const handleUpdateStatus = (fuelId, newStatus, buttonType) => {
-        setActiveButtonId(prev => ({ ...prev, [fuelId]: buttonType })); 
-        dispatch(thunkUpdateFuelRequest(fuelId, { is_completed: newStatus }));
+// const handleUpdateStatus = (fuelId, newStatus, buttonType) => {
+//         setActiveButtonId(prev => ({ ...prev, [fuelId]: buttonType })); 
+//         dispatch(thunkUpdateFuelRequest(fuelId, { is_completed: newStatus }));
+//         dispatch(thunkGetAllFuelRequest())
+// };
+
+
+const handleUpdateStatus = async (fuelId, newStatus, buttonType) => {
+    try {
+     
+        setActiveButtonId((prev) => ({ ...prev, [fuelId]: buttonType }));
+
+      
+        const updateResult = await dispatch(thunkUpdateFuelRequest(fuelId, { is_completed: newStatus }));
+
+        if (updateResult.ok) {
+           
+            await dispatch(thunkGetAllFuelRequest());
+        } else {
+            console.error("Failed to update fuel order status.");
+        }
+    } catch (error) {
+        console.error("Error in handleUpdateStatus:", error);
+    }
 };
-
-
-
 
 
 return (

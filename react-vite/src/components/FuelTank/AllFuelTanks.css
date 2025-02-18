@@ -1,0 +1,9 @@
+.tank-dashboard-container{
+    display: flex;
+    justify-content: space-evenly;
+}
+.create_tank_button{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}

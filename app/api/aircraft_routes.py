@@ -1,6 +1,6 @@
 from flask import Blueprint, redirect, request
 from flask_login import login_required,current_user
-from app.models import db, Aircraft, ParkingSpot
+from app.models import db, Aircraft, ParkingSpot, ParkingHistory
 from app.forms import AircraftForm, ParkingSpotForm
 from .aws_helpers import upload_file_to_s3, get_unique_filename
 from datetime import datetime
@@ -31,7 +31,7 @@ def aircraft_by_id(id):
 @aircraft_routes.route("/<int:id>/aircraft/with_owners/parking_spot")
 @login_required
 def aircraft_with_owners_parking_spot(id):
-   
+    
     pass
 
 
@@ -133,8 +133,8 @@ def delete_parking_spot(id):
     if not aircraft:
         return {"message": "aircraft couldn't be found"}, 404
     
-    if aircraft.parking_spot:
-        return {"message": "Aircraft is parked at a parking spot and cannot be deleted"}, 400
+    # if aircraft.parking_spot:
+    #     return {"message": "Aircraft is parked at a parking spot and cannot be deleted"}, 400
 
 
     db.session.delete(aircraft)
@@ -195,6 +195,15 @@ def assign_aircraft_to_parking():
 
     aircraft.parking_spot_id = spot_id  
     db.session.commit()
+    
+    new_parking_history = ParkingHistory(
+        aircraft_id=aircraft_id,
+        parking_spot_id=spot_id,
+        start_time=datetime.now()  
+    )
+
+    db.session.add(new_parking_history)
+    db.session.commit()
 
     # print(f"Aircraft {aircraft.id} assigned to Parking Spot {aircraft.parking_spot_id}")
     return {"message": "Aircraft assigned to parking spot successfully", "aircraft": aircraft.to_dict()}, 200
@@ -213,19 +222,27 @@ def unassign_aircraft_from_parking():
     aircraft = Aircraft.query.get(aircraft_id)
     if not aircraft:
         return {"errors": "Aircraft not found"}, 404
+    
+    active_parking_history = ParkingHistory.query.filter_by(aircraft_id=aircraft_id, end_time=None).first()
+    
+    if not active_parking_history:
+        return {"errors": "No active parking record found for this aircraft"}, 404
+    
+    active_parking_history.end_time = datetime.now()
 
     aircraft.parking_spot_id = None  
     db.session.commit()
 
-    return {"message": "Aircraft unassigned from parking spot successfully", "aircraft": aircraft.to_dict()}, 200
+    return {"message": "Aircraft unassigned from parking spot successfully", "aircraft": aircraft.to_dict(),
+            "parking_history":active_parking_history.to_dict()}, 200
 
 
 #assigned_aircrafts
-@aircraft_routes.route("/assigned_aircrafts")
-@login_required
-def get_assigned_aircrafts():
-    assigned_aircrafts = Aircraft.query.filter(Aircraft.parking_spot_id.isnot(None)).all()
-    return {"assigned_aircrafts": [aircraft.to_dict() for aircraft in assigned_aircrafts]}, 200
+# @aircraft_routes.route("/assigned_aircrafts")
+# @login_required
+# def get_assigned_aircrafts():
+#     assigned_aircrafts = Aircraft.query.filter(Aircraft.parking_spot_id.isnot(None)).all()
+#     return {"assigned_aircrafts": [aircraft.to_dict() for aircraft in assigned_aircrafts]}, 200
 
 
 @aircraft_routes.route("/all_aircrafts_with_parking_spots")
