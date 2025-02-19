@@ -6,9 +6,9 @@ from datetime import datetime, date
 aircraft_fuel_log_routes = Blueprint('aircraft_fuel_logs', __name__)
 
 #display all the fuel logs that correspond to that aircraft ID
-#untested
+#tested
 @aircraft_fuel_log_routes.route("/aircrafts/<int:aircraft_id>")
-@login_required
+# @login_required
 def get_fuel_logs_by_aircraft(aircraft_id):
     fuel_logs = AircraftFuelLog.query.filter_by(aircraft_id=aircraft_id).all()
 
@@ -17,12 +17,12 @@ def get_fuel_logs_by_aircraft(aircraft_id):
 
     data = [fuel_log.to_dict() for fuel_log in fuel_logs]
 
-    return jsonify({"fuel_logs": data}),
+    return jsonify({"fuel_logs": data})
 
 ## get all fuel logs of the day
 #untested
 @aircraft_fuel_log_routes.route("/<int:aircraft_id>/daily")
-@login_required
+# @login_required
 def get_fuel_logs_by_day(aircraft_id):
 
     today = date.today()
@@ -40,4 +40,4 @@ def get_fuel_logs_by_day(aircraft_id):
 
     data = [fuel_log.to_dict() for fuel_log in fuel_logs]
 
-    return jsonify({"fuel_logs": data}),
+    return jsonify({"fuel_logs": data})

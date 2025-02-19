@@ -105,7 +105,7 @@ def upgrade():
     op.create_table('aircraft_fuel_log',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('aircraft_id', sa.Integer(), nullable=False),
-    sa.Column('amount', sa.DECIMAL(precision=10, scale=2), nullable=False),
+    sa.Column('amount', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ),
