@@ -96,6 +96,7 @@ const handleViewFuelTankClick = () => {
                 <p>{fuelPercentage.toFixed(2)}% Full</p>
                 <div className="">
                     <input
+                        className='input_bar'
                         type="number"
                         step="any"
                         value={usableFuel}
