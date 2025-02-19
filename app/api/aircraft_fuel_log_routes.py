@@ -31,8 +31,8 @@ def get_fuel_logs_by_day(aircraft_id):
 
     fuel_logs = AircraftFuelLog.query.filter(
         AircraftFuelLog.aircraft_id == aircraft_id,
-        AircraftFuelLog.timestamp >= start_of_day,
-        AircraftFuelLog.timestamp <= end_of_day
+        AircraftFuelLog.created_at  >= start_of_day,
+        AircraftFuelLog.created_at  <= end_of_day
     ).all()
 
     if not fuel_logs:
