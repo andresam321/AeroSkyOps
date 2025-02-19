@@ -1,15 +1,16 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
+from sqlalchemy.types import DECIMAL
 
-class AircraftFuelLogForm(db.Model):
+class AircraftFuelLog(db.Model):
     __tablename__ = "aircraft_fuel_log"
 
     if environment == "production":
         __table_args__ = {"schema":SCHEMA}
 
-    id = db.Column(db.integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True)
     aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("aircrafts.id")), nullable= False)
-    amount = db.Column(db.Decimal(10,2), nullable =False)
+    amount = db.Column(db.DECIMAL(10,2), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
