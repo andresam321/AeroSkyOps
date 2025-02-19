@@ -1,7 +1,7 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from datetime import datetime
 
-class AircraftFuelLog(db.Model):
+class AircraftFuelLogForm(db.Model):
     __tablename__ = "aircraft_fuel_log"
 
     if environment == "production":
@@ -13,7 +13,7 @@ class AircraftFuelLog(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-    
+
     aircraft = db.relationship("Aircraft", back_populates="aircraft_fuel_log")
 
     def to_dict(self):
