@@ -13,7 +13,7 @@ class AircraftFuelLog(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
 
-
+    
     aircraft = db.relationship("Aircraft", back_populates="aircraft_fuel_log")
 
     def to_dict(self):
