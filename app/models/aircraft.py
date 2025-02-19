@@ -37,6 +37,8 @@ class Aircraft(db.Model):
     #one to many
     fuel_order = db.relationship("FuelOrder", back_populates = "aircraft",cascade='all, delete-orphan')
     
+    aircraft_fuel_log = db.relationship("AircraftFuelLog", back_populates = "aircraft")
+
     parking_histories = db.relationship("ParkingHistory", back_populates ="aircraft",cascade='all, delete-orphan')
 
     def to_dict(self):
