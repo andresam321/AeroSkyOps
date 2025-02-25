@@ -20,7 +20,7 @@ def get_fuel_logs_by_aircraft(aircraft_id):
     return jsonify({"fuel_logs": data})
 
 ## get all fuel logs of the day
-#untested
+#tested
 @aircraft_fuel_log_routes.route("/<int:aircraft_id>/daily")
 # @login_required
 def get_fuel_logs_by_day(aircraft_id):
