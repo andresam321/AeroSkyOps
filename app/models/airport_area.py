@@ -11,7 +11,7 @@ class AirportArea(db.Model):
 
     parking_spots = db.relationship("ParkingSpot", back_populates="airport_parking", cascade='all, delete-orphan')
 
-    
+    qr_codes = db.relationship("QRCode", back_populates="area", cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
