@@ -51,10 +51,11 @@ def seed_aircrafts():
     db.session.commit()  # ✅ Commit aircrafts first so IDs exist
 
     # **Step 2: Now Create Parking Histories**
+    batch_size = 5000
     parking_histories = []
 
     for aircraft in Aircraft.query.all():  # ✅ Retrieve committed aircrafts
-        num_entries = random.randint(1, 5)  # Each aircraft gets 1-5 parking history records
+        num_entries = random.randint(1, 1000)  # Each aircraft gets 1-5 parking history records
         for _ in range(num_entries):
             start_time = datetime.now(timezone.utc) - timedelta(days=random.randint(1, 90))  # Random within last 90 days
             end_time = start_time + timedelta(hours=random.randint(1, 48)) if random.random() > 0.3 else None  # 30% chance of still being parked
@@ -66,10 +67,12 @@ def seed_aircrafts():
                 end_time=end_time
             ))
 
-    # **Step 3: Commit Parking Histories**
-    db.session.bulk_save_objects(parking_histories)
-    db.session.commit()
-    print(f"✅ Seeded {len(parking_histories)} parking history records successfully.")
+            
+    for i in range(0, len(parking_histories), batch_size):
+        db.session.bulk_save_objects(parking_histories[i:i+batch_size])
+        db.session.commit()
+        print(f"✅ Seeded {i + batch_size} parking history records successfully.")
+
 
 def undo_aircrafts():
     if environment == "production":
