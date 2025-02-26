@@ -11,3 +11,5 @@ from .role import Role
 from .fuel_pricing import FuelPricing
 from .parking_history import ParkingHistory
 from .fuel_tank import FuelTank
+from .aircraft_fuel_log import AircraftFuelLog
+from .QR_code import QRCode

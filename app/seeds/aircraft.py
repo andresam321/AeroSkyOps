@@ -1,8 +1,15 @@
 from app.models import db, environment, SCHEMA, Aircraft, ParkingHistory
 from sqlalchemy.sql import text
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
+import random
+import string
+from faker import Faker
 
+def generate_tail_number():
+    """Generate a random FAA-style tail number starting with 'N'."""
+    return f"N{random.randint(1, 9)}{random.choice(string.ascii_uppercase)}{random.randint(100, 999)}"
 
+fake = Faker()
 
 def seed_aircrafts():
     plane_urls = [
@@ -14,181 +21,63 @@ def seed_aircrafts():
         "https://skyhighimages.s3.us-west-1.amazonaws.com/skyhighops_images/Screenshot+2024-05-06+at+4.55.06%E2%80%AFPM.png"
     ]
 
-    aircrafts = [
-        {
-            "user_id": 1,
-            "parking_spot_id":11,
-            "plane_image": plane_urls[0],
-            "tail_number": "A1-12345",
-            "manufacturer": "Boeing",
-            "model": "737",
-            "max_takeoff_weight": "80000",
-            "seating_capacity": "180",
-            "operation_status": "Operational",
-            "fuel_type": "Jet A",
-            "active_owners": "3",
-            "notes": "Recently serviced and ready for flight.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 2,
-            "parking_spot_id":2,
-            "plane_image": plane_urls[1],
-            "tail_number": "B2-67890",
-            "manufacturer": "Airbus",
-            "model": "A320",
-            "max_takeoff_weight": "75000",
-            "seating_capacity": "160",
-            "operation_status": "Maintenance",
-            "fuel_type": "100ll AvGas",
-            "active_owners": "2",
-            "notes": "Undergoing routine maintenance.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 3,
-            "parking_spot_id":3,
-            "plane_image": plane_urls[2],
-            "tail_number": "C3-54321",
-            "manufacturer": "Cessna",
-            "model": "172",
-            "max_takeoff_weight": "1100",
-            "seating_capacity": "4",
-            "operation_status": "Operational",
-            "fuel_type": "94 unleaded",
-            "active_owners": "1",
-            "notes": "Used for training flights.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 4,
-            "parking_spot_id":4,
-            "plane_image": plane_urls[3],
-            "tail_number": "D4-98765",
-            "manufacturer": "Gulfstream",
-            "model": "G650",
-            "max_takeoff_weight": "99000",
-            "seating_capacity": "18",
-            "operation_status": "Decommissioned",
-            "fuel_type": "Jet A",
-            "active_owners": "1",
-            "notes": "No longer in service.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 1,
-            "parking_spot_id":5,
-            "plane_image": plane_urls[4],
-            "tail_number": "E5-11223",
-            "manufacturer": "Bombardier",
-            "model": "CRJ700",
-            "max_takeoff_weight": "67000",
-            "seating_capacity": "78",
-            "operation_status": "Operational",
-            "fuel_type": "100ll AvGas",
-            "active_owners": "2",
-            "notes": "Used for regional flights.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 2,
-            "parking_spot_id":6,
-            "plane_image": plane_urls[5],
-            "tail_number": "F6-33445",
-            "manufacturer": "Embraer",
-            "model": "E190",
-            "max_takeoff_weight": "57000",
-            "seating_capacity": "100",
-            "operation_status": "Operational",
-            "fuel_type": "94 unleaded",
-            "active_owners": "1",
-            "notes": "Currently on standby.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 3,
-            "parking_spot_id":7,
-            "plane_image": plane_urls[0],
-            "tail_number": "G7-55667",
-            "manufacturer": "Dassault",
-            "model": "Falcon 7X",
-            "max_takeoff_weight": "70000",
-            "seating_capacity": "14",
-            "operation_status": "Maintenance",
-            "fuel_type": "Jet A",
-            "active_owners": "3",
-            "notes": "Scheduled for avionics upgrade.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 4,
-            "parking_spot_id":8,
-            "plane_image": plane_urls[1],
-            "tail_number": "H8-77889",
-            "manufacturer": "Piper",
-            "model": "PA-28",
-            "max_takeoff_weight": "2400",
-            "seating_capacity": "4",
-            "operation_status": "Operational",
-            "fuel_type": "100 unleaded",
-            "active_owners": "1",
-            "notes": "Perfect condition for private use.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 1,
-            "parking_spot_id":9,
-            "plane_image": plane_urls[2],
-            "tail_number": "I9-99001",
-            "manufacturer": "Beechcraft",
-            "model": "King Air 350",
-            "max_takeoff_weight": "15000",
-            "seating_capacity": "11",
-            "operation_status": "Operational",
-            "fuel_type": "Jet A",
-            "active_owners": "2",
-            "notes": "Ideal for business travel.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        },
-        {
-            "user_id": 2,
-            "parking_spot_id":10,
-            "plane_image": plane_urls[3],
-            "tail_number": "J0-12312",
-            "manufacturer": "Mooney",
-            "model": "M20",
-            "max_takeoff_weight": "3000",
-            "seating_capacity": "4",
-            "operation_status": "Operational",
-            "fuel_type": "100ll AvGas",
-            "active_owners": "1",
-            "notes": "Recently overhauled engine.",
-            "last_time_fueled": datetime.now(timezone.utc),
-        }
-    ]
+    manufacturers = ["Boeing", "Airbus", "Cessna", "Gulfstream", "Piper", "Mooney", "Beechcraft", "Bombardier"]
+    models = ["737", "A320", "172", "G650", "PA-28", "M20", "King Air 350", "CRJ700"]
+    fuel_types = ["Jet A", "100LL AvGas", "94 Unleaded"]
+    operation_statuses = ["Operational", "Maintenance", "Decommissioned"]
 
-    for aircraft_data in aircrafts:
-        # Create and add the aircraft
-        aircraft = Aircraft(**aircraft_data)
-        db.session.add(aircraft)
-        db.session.commit()  # Commit the aircraft to get the ID
+    aircrafts = []
 
-        # Automatically create ParkingHistory if the aircraft has a parking_spot_id
-        if aircraft.parking_spot_id:
-            parking_history = ParkingHistory(
-                aircraft_id=aircraft.id,
-                parking_spot_id=aircraft.parking_spot_id,
-                start_time=datetime.now(timezone.utc),
-                end_time=None  # Active parking history
-            )
-            db.session.add(parking_history)
+    for _ in range(1000):  # Generating 1,000 aircraft records
+        aircraft = Aircraft(
+            user_id=random.randint(1, 10),
+            parking_spot_id=random.randint(1, 50),  # Assuming 50 parking spots
+            plane_image=random.choice(plane_urls),
+            tail_number=generate_tail_number(),
+            manufacturer=random.choice(manufacturers),
+            model=random.choice(models),
+            max_takeoff_weight=str(random.randint(500, 100000)),
+            seating_capacity=str(random.randint(2, 400)),
+            operation_status=random.choice(operation_statuses),
+            fuel_type=random.choice(fuel_types),
+            active_owners=str(random.randint(1, 5)),
+            notes=fake.sentence(),
+            last_time_fueled=datetime.now(timezone.utc),
+        )
+        aircrafts.append(aircraft)
 
-    db.session.commit() 
+    # **Step 1: Commit Aircrafts First**
+    db.session.bulk_save_objects(aircrafts)
+    db.session.commit()  # ✅ Commit aircrafts first so IDs exist
+
+    # **Step 2: Now Create Parking Histories**
+    batch_size = 5000
+    parking_histories = []
+
+    for aircraft in Aircraft.query.all():  # ✅ Retrieve committed aircrafts
+        num_entries = random.randint(1, 1000)  # Each aircraft gets 1-5 parking history records
+        for _ in range(num_entries):
+            start_time = datetime.now(timezone.utc) - timedelta(days=random.randint(1, 90))  # Random within last 90 days
+            end_time = start_time + timedelta(hours=random.randint(1, 48)) if random.random() > 0.3 else None  # 30% chance of still being parked
+            
+            parking_histories.append(ParkingHistory(
+                aircraft_id=aircraft.id,  # ✅ Now aircraft.id exists
+                parking_spot_id=random.randint(1, 50),
+                start_time=start_time,
+                end_time=end_time
+            ))
+
+            
+    for i in range(0, len(parking_histories), batch_size):
+        db.session.bulk_save_objects(parking_histories[i:i+batch_size])
+        db.session.commit()
+        print(f"✅ Seeded {i + batch_size} parking history records successfully.")
+
 
 def undo_aircrafts():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.aircrafts RESTART IDENTITY CASCADE;")
     else:
         db.session.execute(text("DELETE FROM aircrafts"))
-    
+
     db.session.commit()

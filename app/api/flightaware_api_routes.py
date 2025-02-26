@@ -3,7 +3,7 @@ import os
 from flask import Blueprint, request, jsonify
 
 # API Key and Endpoint
-FLIGHTAWARE_API_KEY = os.environ.get('x-apikey')
+FLIGHTAWARE_API_KEY = os.environ.get('X_API_KEY')
 BASE_URL = "https://aeroapi.flightaware.com/aeroapi"
 
 ### 24hour weather api
