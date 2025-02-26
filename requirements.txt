@@ -31,3 +31,4 @@ Werkzeug==2.2.2
 WTForms==3.0.1
 zipp==3.17.0
 Faker==9.0.2
+qrcode==7.3
