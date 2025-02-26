@@ -17,6 +17,7 @@ from .api.fuel_price_routes import fueling_price_routes
 from .api.parking_history_routes import parking_history_routes
 from .api.fuel_tank_routes import fuel_tank_routes
 from .api.aircraft_fuel_log_routes import aircraft_fuel_log_routes
+
 from .seeds import seed_commands
 from .config import Config
 

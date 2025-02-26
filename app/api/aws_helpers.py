@@ -23,22 +23,22 @@ qr code functions
 """
 
 
-def upload_qrcode_to_s3(file, acl="public-read"):
+def upload_qrcode_to_s3(file, filename, acl="public-read"):
     try:
         s3.upload_fileobj(
             file,
             QRCODE_BUCKET_NAME,
-            file.filename,
+            filename,
             ExtraArgs={
                 # "ACL": acl,
-                "ContentType": file.content_type
+                "ContentType": "image/png" 
             }
         )
     except Exception as e:
         # in case the our s3 upload fails
         print(f"❌ S3 Upload Error: {e}")
         return {"errors": str(e)}
-    return {"url": f"{QRCODE_S3_LOCATION}{file.filename}"}
+    return {"url": f"{QRCODE_S3_LOCATION}{filename}"}
 
 def remove_qrcode_from_s3(image_url):
     # AWS needs the image file name, not the URL, 

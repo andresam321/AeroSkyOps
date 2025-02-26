@@ -11,6 +11,7 @@ class QRCode(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     area_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('airport_area.id')), nullable = False)
     qr_code_data = db.Column(db.String(255), nullable = False)
+    qr_code_url = db.Column(db.String, nullable=False) 
     created_at = db.Column(db.DateTime, default=datetime.now)
 
 

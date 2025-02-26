@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: 6dc6e92e5cf0
+Revision ID: 13ad10a95169
 Revises: 
-Create Date: 2025-02-24 17:07:23.472337
+Create Date: 2025-02-26 15:40:00.286630
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6dc6e92e5cf0'
+revision = '13ad10a95169'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,6 +29,15 @@ def upgrade():
     sa.Column('role', sa.String(length=50), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_table('qr_code',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('area_id', sa.Integer(), nullable=False),
+    sa.Column('qr_code_data', sa.String(length=255), nullable=False),
+    sa.Column('qr_code_url', sa.String(), nullable=False),
+    sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.ForeignKeyConstraint(['area_id'], ['airport_area.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('users',
@@ -176,6 +185,7 @@ def downgrade():
     op.drop_table('fuel_tank')
     op.drop_table('fuel_pricing')
     op.drop_table('users')
+    op.drop_table('qr_code')
     op.drop_table('role')
     op.drop_table('airport_area')
     # ### end Alembic commands ###
