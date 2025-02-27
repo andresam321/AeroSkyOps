@@ -10,3 +10,4 @@ from .fuel_price_form import FuelPricingForm
 from .parking_history_form import ParkingHistoryForm
 from .fuel_tank_form import FuelTankForm
 from .aircraft_fuel_log_form import AircraftFuelLogForm
+from .QRCode_form import QRCodeForm
