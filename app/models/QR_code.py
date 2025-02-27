@@ -21,5 +21,6 @@ class QRCode(db.Model):
         return {
             "id":self.id,
             "area_id":self.area_id,
-            "qr_code_data":self.qr_code_data
+            "qr_code_data":self.qr_code_data,
+            "qr_code_url":self.qr_code_url,
         }
