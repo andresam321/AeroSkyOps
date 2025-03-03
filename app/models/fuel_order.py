@@ -14,6 +14,7 @@ class FuelOrder(db.Model):
     completed_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
     created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=True)
     parking_spot_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parking_spots.id')), nullable=True)
+    qr_code_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('qr_code.id')), nullable=True)
     fuel_type = db.Column(db.String(25))
     request_by = db.Column(db.String(25), nullable = False)
     positive_prist = db.Column(db.String(10), nullable = False)
@@ -31,6 +32,7 @@ class FuelOrder(db.Model):
     completed_by = db.relationship("User", foreign_keys=[completed_by_user_id], back_populates="completed_fuel_orders")
     created_by = db.relationship("User", foreign_keys=[created_by_user_id], back_populates="created_fuel_orders")
     parking_spot = db.relationship("ParkingSpot", back_populates="fuel_orders")
+    qr_code = db.relationship("QRCode", back_populates="fuel_order")
 
     def to_dict(self):
 
@@ -40,6 +42,7 @@ class FuelOrder(db.Model):
             'created_by_user_id':self.created_by_user_id,
             'aircraft_id':self.aircraft_id,
             'parking_spot_id':self.parking_spot_id,
+            'qr_code_id':self.qr_code,
             'fuel_type':self.fuel_type,
             'request_by':self.request_by,
             'positive_prist':self.positive_prist,

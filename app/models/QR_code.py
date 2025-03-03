@@ -16,6 +16,7 @@ class QRCode(db.Model):
 
 
     area = db.relationship("AirportArea", back_populates = "qr_codes")
+    fuel_orders = db.relationship("FuelOrder", back_populates="qr_code", cascade='all, delete-orphan')
 
     def to_dict(self):
         return {
