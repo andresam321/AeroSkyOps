@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: 2bc7d802c4db
+Revision ID: 6e87b4d7a5bc
 Revises: 
-Create Date: 2025-03-03 16:08:55.105645
+Create Date: 2025-03-03 17:56:19.480741
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '2bc7d802c4db'
+revision = '6e87b4d7a5bc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -74,7 +74,7 @@ def upgrade():
     sa.Column('last_inspection_date', sa.Date(), nullable=False),
     sa.Column('next_inspection_due', sa.Date(), nullable=False),
     sa.Column('maintenance_status', sa.String(length=50), nullable=False),
-    sa.ForeignKeyConstraint(['created_by_user_id'], ['users.id'], ),
+    sa.ForeignKeyConstraint(['created_by_user_id'], ['users.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('parking_spots',
@@ -107,7 +107,7 @@ def upgrade():
     sa.Column('last_time_fueled', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['parking_spot_id'], ['parking_spots.id'], ),
+    sa.ForeignKeyConstraint(['parking_spot_id'], ['parking_spots.id'], ondelete='SET NULL'),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -117,7 +117,7 @@ def upgrade():
     sa.Column('amount', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ),
+    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ondelete='CASCADE'),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('fuel_orders',
@@ -138,7 +138,7 @@ def upgrade():
     sa.Column('order_date', sa.String(), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ),
+    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['completed_by_user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['created_by_user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['parking_spot_id'], ['parking_spots.id'], ),
@@ -159,7 +159,7 @@ def upgrade():
     sa.Column('notes', sa.String(length=255), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
     sa.Column('updated_at', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ),
+    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['created_by_user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
@@ -169,7 +169,7 @@ def upgrade():
     sa.Column('parking_spot_id', sa.Integer(), nullable=True),
     sa.Column('start_time', sa.DateTime(), nullable=False),
     sa.Column('end_time', sa.DateTime(), nullable=True),
-    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ),
+    sa.ForeignKeyConstraint(['aircraft_id'], ['aircrafts.id'], ondelete='CASCADE'),
     sa.ForeignKeyConstraint(['parking_spot_id'], ['parking_spots.id'], ),
     sa.PrimaryKeyConstraint('id')
     )

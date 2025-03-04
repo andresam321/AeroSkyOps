@@ -9,7 +9,7 @@ class Aircraft(db.Model):
     
     id = db.Column(db.Integer, primary_key = True)
     user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
-    parking_spot_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parking_spots.id')))
+    parking_spot_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parking_spots.id'),ondelete="SET NULL"))
     plane_image = db.Column(db.String,nullable = False)
     tail_number = db.Column(db.String(10), nullable = False)
     manufacturer = db.Column(db.String(255))
