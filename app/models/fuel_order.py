@@ -42,7 +42,7 @@ class FuelOrder(db.Model):
             'created_by_user_id':self.created_by_user_id,
             'aircraft_id':self.aircraft_id,
             'parking_spot_id':self.parking_spot_id,
-            'qr_code_id':self.qr_code,
+            'qr_code_id':self.qr_code_id,
             'fuel_type':self.fuel_type,
             'request_by':self.request_by,
             'positive_prist':self.positive_prist,

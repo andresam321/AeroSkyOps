@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: 13ad10a95169
+Revision ID: 2bc7d802c4db
 Revises: 
-Create Date: 2025-02-26 15:40:00.286630
+Create Date: 2025-03-03 16:08:55.105645
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '13ad10a95169'
+revision = '2bc7d802c4db'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -126,6 +126,7 @@ def upgrade():
     sa.Column('completed_by_user_id', sa.Integer(), nullable=True),
     sa.Column('created_by_user_id', sa.Integer(), nullable=True),
     sa.Column('parking_spot_id', sa.Integer(), nullable=True),
+    sa.Column('qr_code_id', sa.Integer(), nullable=True),
     sa.Column('fuel_type', sa.String(length=25), nullable=True),
     sa.Column('request_by', sa.String(length=25), nullable=False),
     sa.Column('positive_prist', sa.String(length=10), nullable=False),
@@ -141,6 +142,7 @@ def upgrade():
     sa.ForeignKeyConstraint(['completed_by_user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['created_by_user_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['parking_spot_id'], ['parking_spots.id'], ),
+    sa.ForeignKeyConstraint(['qr_code_id'], ['qr_code.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('owners',
