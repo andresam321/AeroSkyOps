@@ -23,8 +23,12 @@ def login():
     Logs a user in
     """
     form = LoginForm()
+    print("Login route hit ✅")
     # Get the csrf_token from the request cookie and put it into the
     # form manually to validate_on_submit can be used
+    print("incoming Email:", request.form.get('email'))
+    print("incoming Password:", request.form.get('password'))
+    print("incoming CSRF Token:", request.cookies.get('csrf_token'))
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
         # Add the user to the session, we are logged in!

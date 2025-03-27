@@ -1,4 +1,5 @@
 import { thunkGetParkingSpotsByArea } from "./parking_spot"
+import { fetchWithCSRF } from "../utils/fetchWithCSRF"
 
 
 const LOAD_SINGLE_AIRCRAFT_BY_ID = "loadSingleAircraftById/LOAD_SINGLE_AIRCRAFT_BY_ID"
@@ -67,14 +68,15 @@ const getAssignAndUnassignAircraft = (assignAircraft) => ({
     payload: assignAircraft
 })
 
+
 export const thunkUnAssignAircraftFromParkingSpot = (aircraftId) => async (dispatch) => {
     try {
-        const res = await fetch(`/api/aircrafts/unassign_aircraft_from_parking_spot`, {
+        const res = await fetchWithCSRF(`/api/aircrafts/unassign_aircraft_from_parking_spot`, {
             method: "POST", 
             body: JSON.stringify({ aircraft_id: aircraftId }),
             headers: {
-                "Content-Type": "application/json" 
-            }
+                "Content-Type": "application/json",
+            },
         });
         if (!res.ok) {
             throw new Error("Failed to unassign aircraft from parking spot");
