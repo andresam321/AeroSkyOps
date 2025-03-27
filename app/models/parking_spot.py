@@ -26,7 +26,7 @@ class ParkingSpot(db.Model):
     fuel_orders = db.relationship("FuelOrder", back_populates="parking_spot")
 
     #one to one 
-    aircraft = db.relationship('Aircraft', back_populates = 'parking_spot', uselist=False,single_parent=True)
+    aircraft = db.relationship('Aircraft', back_populates = 'parking_spot', uselist=False,single_parent=True, cascade="all, delete-orphan")
     
     # one to many for parking history
     parking_histories = db.relationship("ParkingHistory", back_populates="parking_spot")

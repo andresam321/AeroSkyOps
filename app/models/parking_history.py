@@ -9,7 +9,7 @@ class ParkingHistory(db.Model):
         
 
     id = db.Column(db.Integer, primary_key=True)
-    aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('aircrafts.id')), nullable=False)
+    aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('aircrafts.id'), ondelete = "CASCADE"), nullable=False)
     parking_spot_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('parking_spots.id')), nullable=True) 
     start_time = db.Column(db.DateTime, nullable=False, default=datetime.now)
     end_time = db.Column(db.DateTime)

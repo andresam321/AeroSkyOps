@@ -10,7 +10,7 @@ class Owner(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
-    aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('aircrafts.id')))
+    aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('aircrafts.id'), ondelete = "CASCADE"))
     firstname = db.Column(db.String(25), nullable=False)
     lastname = db.Column(db.String(25), nullable=False)
     username = db.Column(db.String(25))

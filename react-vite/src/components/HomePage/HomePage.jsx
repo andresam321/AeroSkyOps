@@ -64,6 +64,7 @@ const HomePage = () => {
   const handleRemoveAircraft = async (aircraftId) => {
     try {
       // Unassign aircraft from parking spot
+      // console.log("line 67", aircraftId)
       await dispatch(thunkUnAssignAircraftFromParkingSpot(aircraftId));
       
       // Fetch updated parking spots after removal

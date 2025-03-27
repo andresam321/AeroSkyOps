@@ -2,101 +2,36 @@ from app.models import db, environment, SCHEMA, ParkingSpot
 from sqlalchemy.sql import text
 
 
-
 def seed_parkingSpots():
-    spots = [
-        {
-            "id":1,
-            "user_id": 1,
-            "airport_area_id":1,
-            "spot_number": "A1",
-            "spot_size": "Large",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":2,
-            "user_id": 2,
-            "airport_area_id":1,
-            "spot_number": "A2",
-            "spot_size": "Medium",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":3,
-            "user_id": 3,
-            "airport_area_id":2,
-            "spot_number": "B1",
-            "spot_size": "Small",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":4,
-            "user_id": 4,
-            "airport_area_id":2,
-            "spot_number": "B2",
-            "spot_size": "Large",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":5,
-            "user_id": 4,
-            "airport_area_id":3,
-            "spot_number": "C1",
-            "spot_size": "Medium",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":6,
-            "user_id": 1,
-            "airport_area_id":3,
-            "spot_number": "C2",
-            "spot_size": "Small",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":7,
-            "user_id": 2,
-            "airport_area_id":4,
-            "spot_number": "D1",
-            "spot_size": "Large",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":8,
-            "user_id": 3,
-            "airport_area_id":4,
-            "spot_number": "D2",
-            "spot_size": "Medium",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":9,
-            "user_id": 4,
-            "airport_area_id":1,
-            "spot_number": "E1",
-            "spot_size": "Small",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":10,
-            "user_id": 1,
-            "airport_area_id":1,
-            "spot_number": "E2",
-            "spot_size": "Large",
-            "is_reserved": "Yes"
-        },
-        {
-            "id":11,
-            "user_id": 1,
-            "airport_area_id":2,
-            "spot_number": "E4",
-            "spot_size": "Large",
-            "is_reserved": "Yes"
-        },
-    ]
+    spots = []
+    areas = {
+        "N": 1,
+        "E": 2,
+        "W": 3,
+        "S": 4
+    }
 
+    spot_sizes = ["Small", "Medium", "Large"]
+    user_ids = [1, 2, 3, 4]  # Rotating user assignments
+
+    spot_number = 1
+    for area_name, area_id in areas.items():
+        for i in range(1, 13):  # 12 spots per area
+            spot = {
+                "id": spot_number,
+                "user_id": user_ids[i % len(user_ids)],  # Rotate user IDs
+                "airport_area_id": area_id,
+                "spot_number": f"{area_name}{i}",
+                "spot_size": spot_sizes[i % len(spot_sizes)],  # Rotate sizes
+                "is_reserved": "Yes"
+            }
+            spots.append(spot)
+            spot_number += 1  # Increment spot ID
+
+    # Add spots to the database
     [db.session.add(ParkingSpot(**spot)) for spot in spots]
     db.session.commit()
+
 
 def undo_parkingSpots():
     if environment == "production":
@@ -104,6 +39,4 @@ def undo_parkingSpots():
     else:
         db.session.execute(text("DELETE FROM parking_spots"))
 
-
     db.session.commit()
-

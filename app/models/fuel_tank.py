@@ -8,7 +8,7 @@ class FuelTank(db.Model):
         __table_args__ = {'schema': SCHEMA}
     
     id = db.Column(db.Integer, primary_key=True)
-    created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable = False)
+    created_by_user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id'), ondelete = "CASCADE"), nullable = False)
     tank_name = db.Column(db.String, nullable=False)
     fuel_type = db.Column(db.String, nullable=False)
     fuel_capacity = db.Column(db.Float, nullable=False)

@@ -215,17 +215,19 @@ def assign_aircraft_to_parking():
 def unassign_aircraft_from_parking():
     # if current_user.role != "manager":
     #     return {"errors": "Forbidden"}, 403
-    print(current_user)
+    # print(current_user)
     
     aircraft_id = request.json.get('aircraft_id')
 
     aircraft = Aircraft.query.get(aircraft_id)
+    print(f"DEBUG: Aircraft query ReSULT {aircraft}")
     if not aircraft:
         return {"errors": "Aircraft not found"}, 404
     
     active_parking_history = ParkingHistory.query.filter_by(aircraft_id=aircraft_id, end_time=None).first()
     
     if not active_parking_history:
+        print(f"⚠️ No active parking record found for Aircraft {aircraft_id}")
         return {"errors": "No active parking record found for this aircraft"}, 404
     
     active_parking_history.end_time = datetime.now()

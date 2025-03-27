@@ -9,7 +9,7 @@ class AircraftFuelLog(db.Model):
         __table_args__ = {"schema":SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("aircrafts.id")), nullable= False)
+    aircraft_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("aircrafts.id"), ondelete = "CASCADE"), nullable= False)
     amount = db.Column(db.String(255), nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.now)
     updated_at = db.Column(db.DateTime, default=datetime.now, onupdate=datetime.now)
