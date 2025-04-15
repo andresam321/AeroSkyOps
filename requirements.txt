@@ -30,6 +30,6 @@ urllib3==1.26.18
 Werkzeug==2.2.2
 WTForms==3.0.1
 zipp==3.17.0
-Faker==9.0.2
+Faker==9.2.0
 qrcode==7.3
 pytest==7.0.1
