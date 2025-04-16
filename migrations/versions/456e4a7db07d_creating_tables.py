@@ -1,8 +1,8 @@
 """creating tables
 
-Revision ID: 6e87b4d7a5bc
+Revision ID: 456e4a7db07d
 Revises: 
-Create Date: 2025-03-03 17:56:19.480741
+Create Date: 2025-04-15 16:58:21.890839
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6e87b4d7a5bc'
+revision = '456e4a7db07d'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,7 +24,7 @@ def upgrade():
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('area_name')
     )
-    op.create_table('role',
+    op.create_table('roles',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('role', sa.String(length=50), nullable=True),
     sa.Column('created_at', sa.DateTime(), nullable=True),
@@ -47,8 +47,8 @@ def upgrade():
     sa.Column('lastname', sa.String(length=40), nullable=False),
     sa.Column('email', sa.String(length=255), nullable=False),
     sa.Column('hashed_password', sa.String(length=255), nullable=False),
-    sa.Column('role_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['role_id'], ['role.id'], ),
+    sa.Column('role_id', sa.Integer(), nullable=False),
+    sa.ForeignKeyConstraint(['role_id'], ['roles.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('employee_id')
@@ -188,6 +188,6 @@ def downgrade():
     op.drop_table('fuel_pricing')
     op.drop_table('users')
     op.drop_table('qr_code')
-    op.drop_table('role')
+    op.drop_table('roles')
     op.drop_table('airport_area')
     # ### end Alembic commands ###
