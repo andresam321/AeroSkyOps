@@ -41,4 +41,5 @@ RUN flask db upgrade && flask seed all
 EXPOSE 8000
 
 # Start Gunicorn to serve the Flask app
-CMD ["gunicorn", "app:app", "--bind", "0.0.0.0:8000", "--workers", "3"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "app:create_app()"]
+
