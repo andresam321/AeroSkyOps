@@ -1,8 +1,13 @@
-## SkyHighOps Aviation
+✈️ AeroSkyOps Aviation
+AeroSkyOps is a full-stack aircraft operations management platform designed to modernize airport workflows. Originally developed while working in aviation, the system replaces outdated manual processes with a structured, real-time dashboard for managing aircraft parking, fuel requests, and owner tracking.
 
-SkyHighOps Aviation is an advanced airplane management system designed to enhance airport efficiency. This system enables precise management of airport spaces by allowing users to add and manage parking spots and dynamically assign or unassign aircraft to these spots for optimal space utilization. It also supports the registration of aircraft owners, maintaining clear ownership records. A forthcoming feature will handle fuel requests, enabling employees to view, accept, or mark requests as pending, thereby improving operational response times. Built with Flask, React, Redux, PostgreSQL, Cloudinary, AWS, and Docker, SkyHighOps offers robustness, scalability, and a user-friendly interface, ensuring reliability and adaptability to evolving airport needs.
+The platform is actively deployed for internal use at a private airport and integrates features like live flight tracking, weather data, and dynamic aircraft assignments.
 
-##
+Built with Flask, React, Redux, PostgreSQL, Docker, AWS (S3 + EC2), Cloudinary, and Nginx, AeroSkyOps is designed for operational efficiency, high availability, and user-friendly performance.
+
+🔄 Project Status
+✅ Actively deployed and in use for internal operations.
+No new feature updates are currently being pushed — the platform is in a stable, production-ready state.
 
 ### Live Link
 
