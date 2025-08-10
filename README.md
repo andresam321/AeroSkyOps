@@ -6,12 +6,7 @@ The platform is actively deployed for internal use at a private airport and inte
 Built with Flask, React, Redux, PostgreSQL, Docker, AWS (S3 + EC2), Cloudinary, and Nginx, AeroSkyOps is designed for operational efficiency, high availability, and user-friendly performance.
 
 ## 🔄 Project Status
-✅ Actively deployed and in use for internal operations.
-No new feature updates are currently being pushed — the platform is in a stable, production-ready state.
-
-### Live Link
-
-https://www.aeroskyops.com/
+❌ No longer active — development and deployment ended following my time at Rabbit Aviation.
 
 ##
 
