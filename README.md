@@ -1,12 +1,13 @@
-## ✈️ AeroSkyOps Aviation
-AeroSkyOps is a full-stack aircraft operations management platform designed to modernize airport workflows. Originally developed while working in aviation, the system replaces outdated manual processes with a structured, real-time dashboard for managing aircraft parking, fuel requests, and owner tracking.
+## ✈️ AeroSkyOps
 
-The platform is actively deployed for internal use at a private airport and integrates features like live flight tracking, weather data, and dynamic aircraft assignments.
+AeroSkyOps is a full-stack aircraft operations management platform designed to modernize airport workflows. Originally developed while working in aviation, the system was inspired by real-world processes and translates them into a structured, real-time dashboard for managing aircraft parking, fuel requests, and owner tracking.
 
-Built with Flask, React, Redux, PostgreSQL, Docker, AWS (S3 + EC2), Cloudinary, and Nginx, AeroSkyOps is designed for operational efficiency, high availability, and user-friendly performance.
+The platform included integrations for live flight tracking and weather data, supporting real-world operational workflows at a private airport during its active use.
+
+Built with Flask, React, Redux, PostgreSQL, Docker, AWS (S3 + EC2), Cloudinary, and Nginx, AeroSkyOps was designed for operational efficiency and reliability.
 
 ## 🔄 Project Status
-❌ No longer active — development and deployment ended following my time at Rabbit Aviation.
+**Inactive** — development and deployment concluded after my time in aviation.
 
 ##
 
