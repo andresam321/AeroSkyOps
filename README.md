@@ -1,6 +1,6 @@
 ## ✈️ AeroSkyOps
 
-AeroSkyOps (also called SkyHighOps Aviation) is a personal full-stack project. It started from a static Excel sheet I saw while working in airport operations at Rabbit Aviation, and I wanted to see what that idea would look like as a web app. It was deployed as a personal demo, but it was never adopted or used operationally by Rabbit Aviation or any airport, and it did not replace any existing system.
+AeroSkyOps is a personal full-stack project. It started from a static Excel sheet I saw while working in airport operations at Rabbit Aviation, and I wanted to see what that idea would look like as a web app. It was deployed as a personal demo, but it was never adopted or used operationally by Rabbit Aviation or any airport, and it did not replace any existing system.
 
 The app lets a user add and manage airport parking spots, assign or unassign aircraft to those spots, and keep records of aircraft owners. It also pulls airport weather observations and flight lookups from the FlightAware AeroAPI, and includes fuel request and fuel tank tracking.
 
